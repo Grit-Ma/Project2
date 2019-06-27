@@ -19,8 +19,16 @@ public class MaterialServiceImpl implements MaterialService {
 
     @Override
     public List<Material> getMaterial() {
-
         List<Material> materialList = materialMapper.selectByExample(new MaterialExample());
+        return materialList;
+    }
+
+    @Override
+    public List<Material> getMaterial_by_materialId(String searchValue) {
+        MaterialExample materialExample = new MaterialExample();
+        MaterialExample.Criteria criteria = materialExample.createCriteria();
+        criteria.andMaterialIdLike(searchValue);
+        List<Material> materialList = materialMapper.selectByExample(materialExample);
         return materialList;
     }
 
@@ -75,4 +83,28 @@ public class MaterialServiceImpl implements MaterialService {
         }
         return responseVo;
     }
+
+    @Override
+    public ResponseVo updateMaterialNote(Material material) {
+        Material material1 = materialMapper.selectByPrimaryKey(material.getMaterialId());
+        material1.setNote(material.getNote());
+        ResponseVo responseVo = new ResponseVo();
+        try{
+            materialMapper.updateByPrimaryKey(material1);
+            responseVo.setMsg("修改成功");
+            responseVo.setStatus(200);
+        }catch (Exception e){
+            responseVo.setMsg("修改失败:"+e.getMessage());
+            responseVo.setStatus(500);
+        }
+        return responseVo;
+    }
+
+    @Override
+    public PageVo search_material_by_materialId(String searchValue, int page, int rows) {
+        List<Material> materials = getMaterial_by_materialId(searchValue);
+        PageVo pages = PageTool.getPageVo(materials, page, rows);
+        return pages;
+    }
+
 }

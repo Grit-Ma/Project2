@@ -36,11 +36,6 @@ public class DeviceController {
     @Autowired
     DeviceKeeperService deviceKeeperService;
 
-    @RequestMapping("/")
-    public String gotoHome() {
-        return "/WEB-INF/jsp/home.jsp";
-    }
-
     @RequestMapping("device/deviceList")
     public String gotoList() {
         return "/WEB-INF/jsp/deviceList.jsp";
