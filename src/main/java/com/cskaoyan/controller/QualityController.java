@@ -32,12 +32,6 @@ public class QualityController {
 
     @RequestMapping("unqualify/find")
     public String findAllUnqualify(HttpServletRequest request){
-        HttpSession session = request.getSession();
-        ArrayList arrayList = new ArrayList();
-        arrayList.add("unqualify:add");
-        arrayList.add("unqualify:edit");
-        arrayList.add("unqualify:delete");
-        session.setAttribute("sysPermissionList",arrayList);
         return ("/WEB-INF/jsp/unqualify_list.jsp");
     }
 
