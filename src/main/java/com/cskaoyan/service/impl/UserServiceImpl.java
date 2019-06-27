@@ -5,10 +5,11 @@ import com.cskaoyan.bean.Sys_userExample;
 import com.cskaoyan.mapper.Sys_userMapper;
 import com.cskaoyan.service.UserService;
 import com.cskaoyan.tool.PageTool;
+import com.cskaoyan.vo.PageVo;
+import com.cskaoyan.vo.ResponseVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -30,10 +31,24 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public HashMap<String, Object> getJson(int page, int rows) {
+    public PageVo getPage(int page, int rows) {
         List<Sys_user> users = queryUsers();
-        HashMap<String, Object> map = PageTool.getPageMap(users, page, rows);
-        return map;
+        PageVo pages = PageTool.getPageVo(users, page, rows);
+        return pages;
+    }
+
+    @Override
+    public ResponseVo updateUser(Sys_user user) {
+        ResponseVo responseVo = new ResponseVo();
+        try{
+            int res = userMapper.updateByPrimaryKey(user);
+            responseVo.setMsg("修改成功");
+            responseVo.setStatus(200);
+        }catch (Exception e){
+            responseVo.setMsg("修改失败:"+e.getMessage());
+            responseVo.setStatus(500);
+        }
+        return responseVo;
     }
 
 

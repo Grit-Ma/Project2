@@ -1,5 +1,7 @@
 package com.cskaoyan.tool;
 
+import com.cskaoyan.vo.PageVo;
+
 import java.util.HashMap;
 import java.util.List;
 
@@ -25,16 +27,14 @@ public class PageTool {
 
 
     /**
-     * 构造出分页信息Map
+     * 构造出分页信息
      * @param list 全部数据
      * @param page 页码
      * @param rows 每页行数
-     * @return 分页的HashMap
+     * @return 分页PageVo类
      */
-    public static HashMap<String,Object> getPageMap(List list,int page, int rows){
-        HashMap<String, Object> map = new HashMap<>();
-        map.put("total",list.size());
-        map.put("rows",getPagedData(list,page,rows));
-        return map;
+    public static PageVo getPageVo(List list, int page, int rows){
+        PageVo pageVo = new PageVo<Object>(list.size(), getPagedData(list, page, rows));
+        return pageVo;
     }
 }
