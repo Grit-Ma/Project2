@@ -51,5 +51,36 @@ public class UserServiceImpl implements UserService {
         return responseVo;
     }
 
+    @Override
+    public ResponseVo insertUser(Sys_user user) {
+        ResponseVo responseVo = new ResponseVo();
+        try{
+            int res = userMapper.insert(user);
+            responseVo.setMsg("新增成功");
+            responseVo.setStatus(200);
+        }catch (Exception e){
+            responseVo.setMsg("新增失败:"+e.getMessage());
+            responseVo.setStatus(500);
+        }
+        return responseVo;
+    }
+
+    @Override
+    public ResponseVo batchDeleteUserByIds(List<String> ids) {
+        ResponseVo responseVo = new ResponseVo();
+        Sys_userExample example = new Sys_userExample();
+        Sys_userExample.Criteria criteria = example.createCriteria();
+        criteria.andIdIn(ids);
+        try{
+            userMapper.deleteByExample(example);
+            responseVo.setMsg("删除成功");
+            responseVo.setStatus(200);
+        }catch (Exception e){
+            responseVo.setMsg("删除失败");
+            responseVo.setStatus(500);
+        }
+        return responseVo;
+    }
+
 
 }
