@@ -1,8 +1,9 @@
-package com.cskaoyan.service;
+package com.cskaoyan.service.impl;
 
 import com.cskaoyan.bean.Product;
 import com.cskaoyan.bean.ProductExample;
 import com.cskaoyan.mapper.ProductMapper;
+import com.cskaoyan.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

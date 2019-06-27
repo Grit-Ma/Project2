@@ -1,4 +1,4 @@
-package com.cskaoyan.controller;
+package com.cskaoyan.controller.plan;
 
 import com.cskaoyan.bean.Product;
 import com.cskaoyan.service.ProductService;

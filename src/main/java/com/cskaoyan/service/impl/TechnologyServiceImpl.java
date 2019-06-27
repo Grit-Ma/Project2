@@ -1,7 +1,8 @@
-package com.cskaoyan.service;
+package com.cskaoyan.service.impl;
 
 import com.cskaoyan.bean.Technology;
 import com.cskaoyan.mapper.TechnologyMapper;
+import com.cskaoyan.service.TechnologyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
