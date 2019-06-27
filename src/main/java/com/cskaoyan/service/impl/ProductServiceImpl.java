@@ -1,8 +1,9 @@
-package com.cskaoyan.service;
+package com.cskaoyan.service.impl;
 
 import com.cskaoyan.bean.Product;
 import com.cskaoyan.bean.ProductExample;
 import com.cskaoyan.mapper.ProductMapper;
+import com.cskaoyan.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,5 +23,25 @@ public class ProductServiceImpl implements ProductService {
         List<Product> productList = productMapper.selectByExample(productExample);
         System.out.println("end");
         return productList;
+    }
+
+    @Override
+    public int productAdd(Product product) {
+        return 0;
+    }
+
+    @Override
+    public int productUpdate(Product product) {
+        return 0;
+    }
+
+    @Override
+    public int productDelete(String ids) {
+        return 0;
+    }
+
+    @Override
+    public List<Product> productGetData() {
+        return null;
     }
 }
