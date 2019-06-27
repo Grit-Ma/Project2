@@ -1,0 +1,16 @@
+package com.cskaoyan.service;
+
+import com.cskaoyan.bean.C_order;
+import com.cskaoyan.bean.Custom;
+
+import java.util.List;
+
+public interface OrderService {
+    List<C_order> orderPage(int page, int rows);
+
+    int orderAdd(C_order order);
+
+    int orderUpdate(C_order  order);
+
+    int orderDelete(String ids);
+}
