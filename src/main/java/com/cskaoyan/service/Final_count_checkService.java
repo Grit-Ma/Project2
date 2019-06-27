@@ -1,12 +1,12 @@
-package com.cskaoyan.mapper;
+package com.cskaoyan.service;
 
 import com.cskaoyan.bean.Final_count_check;
 import com.cskaoyan.bean.Final_count_checkExample;
-import java.util.List;
-
 import org.apache.ibatis.annotations.Param;
 
-public interface Final_count_checkMapper {
+import java.util.List;
+
+public interface Final_count_checkService {
 
     List<Final_count_check> selectByPage(@Param("limit") int limit, @Param("offset") int offset);
 

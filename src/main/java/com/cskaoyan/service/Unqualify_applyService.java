@@ -1,4 +1,4 @@
-package com.cskaoyan.mapper;
+package com.cskaoyan.service;
 
 import com.cskaoyan.bean.Unqualify_apply;
 import com.cskaoyan.bean.Unqualify_applyExample;
@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-public interface Unqualify_applyMapper {
+public interface Unqualify_applyService {
 
     List<Unqualify_apply> selectAll();
 

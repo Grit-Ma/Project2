@@ -30,4 +30,13 @@ public class Department {
     public void setNote(String note) {
         this.note = note == null ? null : note.trim();
     }
+
+    public Department() {
+    }
+
+    public Department(String departmentId, String departmentName, String note) {
+        this.departmentId = departmentId;
+        this.departmentName = departmentName;
+        this.note = note;
+    }
 }

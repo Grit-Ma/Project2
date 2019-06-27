@@ -10,6 +10,7 @@
     <result column="emp_id" jdbcType="VARCHAR" property="empId" />
     <result column="result" jdbcType="VARCHAR" property="result" />
     <result column="note" jdbcType="VARCHAR" property="note" />
+    <result column="emp_name"  jdbcType="VARCHAR" property="empName"/>
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -72,6 +73,17 @@
   <sql id="Base_Column_List">
     f_measure_check_id, order_id, check_item, cdate, measure_data, emp_id, result, note
   </sql>
+
+
+  <select id="selectByPage" resultMap="BaseResultMap" >
+    select f.f_measure_check_id, f.order_id, f.check_item, f.cdate, f.measure_data, f.emp_id, f.result, f.note,e.emp_name
+    from final_measuret_check f
+    left join employee e
+    on e.emp_id=f.emp_id
+    limit #{limit} offset #{offset}
+  </select>
+
+
   <select id="selectByExample" parameterType="com.cskaoyan.bean.Final_measuret_checkExample" resultMap="BaseResultMap">
     select
     <if test="distinct">

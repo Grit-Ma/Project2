@@ -22,12 +22,6 @@ public class CountCheckController {
 
     @RequestMapping("f_count_check/find")
     public String countCheck(HttpServletRequest request){
-        HttpSession session = request.getSession();
-        ArrayList arrayList = new ArrayList();
-        arrayList.add("fCountCheck:add");
-        arrayList.add("fCountCheck:edit");
-        arrayList.add("fCountCheck:delete");
-        session.setAttribute("sysPermissionList", arrayList);
         return ("/WEB-INF/jsp/p_measure_check_list.jsp");
     }
 

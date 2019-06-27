@@ -2,10 +2,14 @@ package com.cskaoyan.mapper;
 
 import com.cskaoyan.bean.Department;
 import com.cskaoyan.bean.DepartmentExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 public interface DepartmentMapper {
+
+    List<Department> selectAll();
+
     long countByExample(DepartmentExample example);
 
     int deleteByExample(DepartmentExample example);

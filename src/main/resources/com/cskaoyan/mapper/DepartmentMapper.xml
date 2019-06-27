@@ -67,6 +67,14 @@
   <sql id="Base_Column_List">
     department_id, department_name, note
   </sql>
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from department
+  </select>
+
+
   <select id="selectByExample" parameterType="com.cskaoyan.bean.DepartmentExample" resultMap="BaseResultMap">
     select
     <if test="distinct">

@@ -1,13 +1,15 @@
-package com.cskaoyan.mapper;
+package com.cskaoyan.service;
 
+import com.cskaoyan.bean.Final_count_check;
 import com.cskaoyan.bean.Final_measuret_check;
 import com.cskaoyan.bean.Final_measuret_checkExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
-public interface Final_measuret_checkMapper {
+import java.util.List;
 
-    List<Final_measuret_check> selectByPage(@Param("limit") int limit,@Param("offset") int offset);
+public interface Final_measuret_checkService {
+
+    List<Final_measuret_check> selectByPage(int page, int rows);
 
     long countByExample(Final_measuret_checkExample example);
 
