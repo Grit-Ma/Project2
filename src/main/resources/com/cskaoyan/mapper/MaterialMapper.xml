@@ -19,7 +19,7 @@
       m1.material_type,
       m1.note,
       m1.remaining,
-      m1.`status`
+      m1.`status` ,
     from
         material m1, material_consume m2
     where
