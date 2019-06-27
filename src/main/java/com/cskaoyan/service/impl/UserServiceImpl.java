@@ -31,11 +31,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public HashMap<String, Object> getJson(int page, int rows) {
-        HashMap<String, Object> map = new HashMap<>();
-        List<Sys_user> users = userMapper.selectByExample(new Sys_userExample());
-        List<Sys_user> list = PageTool.getPagedData(users,page,rows);
-        map.put("total",users.size());
-        map.put("rows",list);
+        List<Sys_user> users = queryUsers();
+        HashMap<String, Object> map = PageTool.getPageMap(users, page, rows);
         return map;
     }
 
