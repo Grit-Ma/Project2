@@ -11,6 +11,16 @@ public class Material {
 
     private String note;
 
+    private String workId;
+
+    public String getWorkId() {
+        return workId;
+    }
+
+    public void setWorkId(String workId) {
+        this.workId = workId == null ? null : workId.trim();
+    }
+
     public String getMaterialId() {
         return materialId;
     }
