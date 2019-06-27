@@ -4,7 +4,6 @@ import com.cskaoyan.bean.Product;
 import com.cskaoyan.bean.ProductExample;
 import com.cskaoyan.mapper.ProductMapper;
 import com.cskaoyan.service.ProductService;
-import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,36 +17,11 @@ public class ProductServiceImpl implements ProductService {
     public List<Product> productPage(int page, int rows) {
         ProductExample productExample = new ProductExample();
         ProductExample.Criteria criteria = productExample.createCriteria();
-        criteria.andProductIdIsNotNull();
-        PageHelper.startPage(page, rows);
+        criteria.andStatusEqualTo(1);
+        // PageHelper.startPage(page, rows);
+        System.out.println("start");
         List<Product> productList = productMapper.selectByExample(productExample);
-        return productList;
-    }
-
-    @Override
-    public int productAdd(Product product) {
-        int insert = productMapper.insert(product);
-        return insert  != 0 ? 1 : 0;
-    }
-
-    @Override
-    public int productUpdate(Product product) {
-        int update = productMapper.updateByPrimaryKey(product);
-        return update  != 0 ? 1 : 0;
-    }
-
-    @Override
-    public int productDelete(String ids) {
-        int delete = productMapper.deleteByPrimaryKey(ids);
-        return delete  != 0 ? 1 : 0;
-    }
-
-    @Override
-    public List<Product> productGetData() {
-        ProductExample productExample = new ProductExample();
-        ProductExample.Criteria criteria = productExample.createCriteria();
-        criteria.andProductIdIsNotNull();
-        List<Product> productList = productMapper.selectByExample(productExample);
+        System.out.println("end");
         return productList;
     }
 }

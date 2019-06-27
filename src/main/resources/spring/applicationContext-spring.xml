@@ -14,17 +14,14 @@
     <bean id="myds" class="com.alibaba.druid.pool.DruidDataSource">
         <property name="driverClassName" value="${jdbc.driver}"/>
         <property name="url" value="${jdbc.url}"/>
+<<<<<<< HEAD:src/main/resources/applicationContext-spring.xml
         <property name="username" value="${jdbc.user}"/>
+=======
+        <property name="username" value="${jdbc.username}"/>
+>>>>>>> e9a9548ed4ad740a7e2bf727f7d25cdf04e285df:src/main/resources/spring/applicationContext-spring.xml
         <property name="password" value="${jdbc.password}"/>
         <property name="filters" value="stat"/>
     </bean>
-
-    <!--<bean id="myds" class="com.mchange.v2.c3p0.ComboPooledDataSource">
-        <property name="driverClass" value="${driver}"/>
-        <property name="jdbcUrl" value="${url}"/>
-        <property name="user" value="${user}"/>
-        <property name="password" value="${password}"/>
-    </bean>-->
 
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="myds"/>
