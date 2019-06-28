@@ -1,4 +1,6 @@
-package com.cskaoyan.bean;
+package com.cskaoyan.bean.material;
+
+import com.cskaoyan.bean.Work;
 
 public class Material {
     private String materialId;
@@ -11,14 +13,14 @@ public class Material {
 
     private String note;
 
-    private String workId;
+    private Work workId;
 
-    public String getWorkId() {
+    public Work getWorkId() {
         return workId;
     }
 
-    public void setWorkId(String workId) {
-        this.workId = workId == null ? null : workId.trim();
+    public void setWorkId(Work workId) {
+        this.workId = workId;
     }
 
     public String getMaterialId() {

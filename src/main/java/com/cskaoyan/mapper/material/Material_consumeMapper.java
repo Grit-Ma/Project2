@@ -1,7 +1,7 @@
-package com.cskaoyan.mapper;
+package com.cskaoyan.mapper.material;
 
-import com.cskaoyan.bean.Material_consume;
-import com.cskaoyan.bean.Material_consumeExample;
+import com.cskaoyan.bean.material.Material_consume;
+import com.cskaoyan.bean.material.Material_consumeExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
@@ -27,4 +27,12 @@ public interface Material_consumeMapper {
     int updateByPrimaryKeySelective(Material_consume record);
 
     int updateByPrimaryKey(Material_consume record);
+
+    List<Material_consume> selectForMaterialAndMaterialConsumeAndWork();
+
+    List<Material_consume> getMaterialConsumeByConsumeId(String searchValue);
+
+    List<Material_consume> getMaterialConsumeByMaterialId(String searchValue);
+
+    List<Material_consume> getMaterialConsumeByWorkId(String searchValue);
 }

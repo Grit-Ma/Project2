@@ -1,4 +1,4 @@
-package com.cskaoyan.bean;
+package com.cskaoyan.bean.material;
 
 import java.util.Date;
 
@@ -17,7 +17,7 @@ public class Material_receive {
 
     private String note;
 
-    /*private Material material;
+    private Material material;
 
     public Material getMaterial() {
         return material;
@@ -25,7 +25,7 @@ public class Material_receive {
 
     public void setMaterial(Material material) {
         this.material = material;
-    }*/
+    }
 
     public String getReceiveId() {
         return receiveId;

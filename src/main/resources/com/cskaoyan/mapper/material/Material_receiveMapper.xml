@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.cskaoyan.mapper.Material_receiveMapper">
-  <resultMap id="BaseResultMap" type="com.cskaoyan.bean.Material_receive">
+<mapper namespace="com.cskaoyan.mapper.material.Material_receiveMapper">
+  <resultMap id="BaseResultMap" type="com.cskaoyan.bean.material.Material_receive">
     <id column="receive_id" jdbcType="VARCHAR" property="receiveId" />
     <result column="material_id" jdbcType="VARCHAR" property="materialId" />
     <result column="amount" jdbcType="INTEGER" property="amount" />
@@ -71,7 +71,7 @@
   <sql id="Base_Column_List">
     receive_id, material_id, amount, receive_date, sender, receiver, note
   </sql>
-  <select id="selectByExample" parameterType="com.cskaoyan.bean.Material_receiveExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.cskaoyan.bean.material.Material_receiveExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -96,13 +96,13 @@
     delete from material_receive
     where receive_id = #{receiveId,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.cskaoyan.bean.Material_receiveExample">
+  <delete id="deleteByExample" parameterType="com.cskaoyan.bean.material.Material_receiveExample">
     delete from material_receive
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.cskaoyan.bean.Material_receive">
+  <insert id="insert" parameterType="com.cskaoyan.bean.material.Material_receive">
     insert into material_receive (receive_id, material_id, amount, 
       receive_date, sender, receiver, 
       note)
@@ -110,7 +110,7 @@
       #{receiveDate,jdbcType=TIMESTAMP}, #{sender,jdbcType=VARCHAR}, #{receiver,jdbcType=VARCHAR}, 
       #{note,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.cskaoyan.bean.Material_receive">
+  <insert id="insertSelective" parameterType="com.cskaoyan.bean.material.Material_receive">
     insert into material_receive
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="receiveId != null">
@@ -159,7 +159,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.cskaoyan.bean.Material_receiveExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.cskaoyan.bean.material.Material_receiveExample" resultType="java.lang.Long">
     select count(*) from material_receive
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -207,7 +207,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.cskaoyan.bean.Material_receive">
+  <update id="updateByPrimaryKeySelective" parameterType="com.cskaoyan.bean.material.Material_receive">
     update material_receive
     <set>
       <if test="materialId != null">
@@ -231,7 +231,7 @@
     </set>
     where receive_id = #{receiveId,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.cskaoyan.bean.Material_receive">
+  <update id="updateByPrimaryKey" parameterType="com.cskaoyan.bean.material.Material_receive">
     update material_receive
     set material_id = #{materialId,jdbcType=VARCHAR},
       amount = #{amount,jdbcType=INTEGER},
@@ -242,7 +242,9 @@
     where receive_id = #{receiveId,jdbcType=VARCHAR}
   </update>
 
-  <resultMap id="BaseResultMap1" type="com.cskaoyan.bean.Material_receive">
+  <!--自己写的部分分界线-->
+
+  <resultMap id="BaseResultMap_new" type="com.cskaoyan.bean.material.Material_receive">
     <id column="receive_id" jdbcType="VARCHAR" property="receiveId" />
     <result column="material_id2" jdbcType="VARCHAR" property="materialId" />
     <result column="amount" jdbcType="INTEGER" property="amount" />
@@ -251,7 +253,7 @@
     <result column="receiver" jdbcType="VARCHAR" property="receiver" />
     <result column="note2" jdbcType="VARCHAR" property="note" />
 
-    <association property="material" column="material">
+    <association property="material" javaType="com.cskaoyan.bean.material.Material">
       <id column="material_id1" jdbcType="VARCHAR" property="materialId" />
       <result column="material_type" jdbcType="VARCHAR" property="materialType" />
       <result column="status" jdbcType="VARCHAR" property="status" />
@@ -260,10 +262,50 @@
     </association>
 
   </resultMap>
-  <select id="selectForMaterialAndMaterialReceive" resultMap="BaseResultMap1">
+  <sql id="Base_Column_List_new">
     select
-        m2.receive_id, m2.material_id as material_id2, m2.amount, m2.receive_date, m2.sender, m2.receiver, m2.note as note2,
-        m1.material_id as material_id1, m1.material_type, m1.status, m1.remaining, m1.note as note1
-    from material m1, material_receive m2 where m1.material_id = m2.material_id
+        m2.receive_id,
+        m2.material_id as material_id2,
+        m2.amount,
+        m2.receive_date,
+        m2.sender,
+        m2.receiver,
+        m2.note as note2,
+
+        m1.material_id as material_id1,
+        m1.material_type,
+        m1.status,
+        m1.remaining,
+        m1.note as note1
+  </sql>
+  <sql id="Table_Form_Material_MaterialReceive">
+    from
+        material m1,
+        material_receive m2
+  </sql>
+
+  <select id="selectForMaterialAndMaterialReceive" resultMap="BaseResultMap_new">
+    <include refid="Base_Column_List_new"/>
+    <include refid="Table_Form_Material_MaterialReceive"/>
+     where
+        m1.material_id = m2.material_id
+  </select>
+
+  <select id="getMaterialReceiveByMaterialId" resultMap="BaseResultMap_new">
+    <include refid="Base_Column_List_new"/>
+    <include refid="Table_Form_Material_MaterialReceive"/>
+    where
+        m1.material_id = m2.material_id
+    and
+        m2.material_id like #{searchValue}
+  </select>
+
+  <select id="getMaterialReceiveByReceiveId" resultMap="BaseResultMap_new">
+    <include refid="Base_Column_List_new"/>
+    <include refid="Table_Form_Material_MaterialReceive"/>
+    where
+        m1.material_id = m2.material_id
+    and
+        m2.receive_id like #{searchValue}
   </select>
 </mapper>

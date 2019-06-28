@@ -1,18 +1,15 @@
 package com.cskaoyan.mapper;
 
 import com.cskaoyan.bean.Department;
-import com.cskaoyan.bean.DepartmentExample;
 import java.util.List;
 
-import com.cskaoyan.bean.Employee;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface DepartmentMapper {
 
 
-    List<Department> selectAll();
-
-    int countNum();  //求部门总数
+    List<Department> selectAll();  //返回所有部门
 
     Department findOne(@Param("id")int id);  //根据id返回相关部门数据
 
@@ -21,5 +18,9 @@ public interface DepartmentMapper {
     void delete_batch(String[] ids);  //选择删除
 
     void updateDepartment(Department department);  //编辑部门信息
+
+    List<Department> selectById(String searchValue);  // 根据id迷糊查询
+
+    List<Department> selectByName(String searchValue);  // 根据name迷糊查询
 
 }

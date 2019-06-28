@@ -27,14 +27,13 @@ public class DepartmentController {
     public String find(){
         return "/WEB-INF/jsp/department_list.jsp";
     }
-
     //返回部门列表的json数据
     @RequestMapping("list")
     @ResponseBody
     public Map<String,Object> list(int page, int rows){
-        //查找全部员工,及员工总数
+        //查找全部部门,及部门总数
         List<Department> departmentList = departmentServiceImp.selectAll();
-        int count = departmentServiceImp.countNum();
+        int count = departmentList.size();
         //封装当前页面显示数据
         List<Department> pageList = PageTool.getPagedData(departmentList,page,rows);
         //封装map返回
@@ -46,10 +45,45 @@ public class DepartmentController {
 
 
 
-    //员工列表回显员工的部门信息
-    @RequestMapping(value = "/get/{id}")
+
+    //模糊搜索-部门编号
+    @RequestMapping("search_department_by_departmentId")
     @ResponseBody
-    public Department department(@PathVariable int id){
+    public Map<String,Object> search_department_by_departmentId(String searchValue,int page,int rows ){
+        //根据输入的value模糊查找部门,及查找出来的部门总数
+        List<Department> departmentList = departmentServiceImp.selectById(searchValue);
+        int count = departmentList.size();
+        //封装当前页面显示数据
+        List<Department> pageList = PageTool.getPagedData(departmentList,page,rows);
+        //封装map返回
+        Map<String,Object> result = new HashMap();
+        result.put("rows",pageList);
+        result.put("total",count);
+        return result;
+    }
+    //模糊搜索-部门名称
+    @RequestMapping("search_department_by_departmentName")
+    @ResponseBody
+    public Map<String,Object> search_department_by_departmentName(String searchValue,int page,int rows ){
+        //根据输入的value模糊查找部门,及查找出来的部门总数
+        List<Department> departmentList = departmentServiceImp.selectByName(searchValue);
+        int count = departmentList.size();
+        //封装当前页面显示数据
+        List<Department> pageList = PageTool.getPagedData(departmentList,page,rows);
+        //封装map返回
+        Map<String,Object> result = new HashMap();
+        result.put("rows",pageList);
+        result.put("total",count);
+        return result;
+    }
+
+
+
+
+    //员工列表回显员工的部门信息
+    @RequestMapping("/get/{id}")
+    @ResponseBody
+    public Department department(@PathVariable("id") int id){
         Department department = departmentServiceImp.findOne(id);
         return department;
     }
@@ -123,4 +157,7 @@ public class DepartmentController {
         ResponseVo result = new ResponseVo(200,"ok","");
         return result;
     }
+
+
+
 }

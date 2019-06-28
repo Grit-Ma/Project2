@@ -17,6 +17,12 @@ public interface EmployeeMapper {
 
     void delete_batch(String[] ids);  //选择删除
 
-    Employee selectByPrimaryKey(String empId);
+    Employee selectByPrimaryKey(String empId);  //根据编号返回一 个员工
+
+    List<Employee> selectById(String searchValue);  //模糊查询根据员工编号
+
+    List<Employee> selectByName(String searchValue);  //模糊查询根据员工名称
+
+    List<Employee> selectByDepartmentName(String searchValue);   //模糊查询根据部门名称
 
 }
