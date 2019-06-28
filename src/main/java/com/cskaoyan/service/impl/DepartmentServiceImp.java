@@ -15,58 +15,47 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 @Service
-public class DepartmentServiceImp implements DepartmentService {
+public class DepartmentServiceImp implements DepartmentService{
 
-    SqlSession sqlSession;
     @Autowired
-    SqlSessionFactory sqlSessionFactory;
-
+    DepartmentMapper departmentMapper;
 
 
     //返回所有部门的列表
     public List<Department> selectAll(){
-        sqlSession = sqlSessionFactory.openSession();
-        return sqlSession.getMapper(DepartmentMapper.class).selectAll();
+        return departmentMapper.selectAll();
     }
 
 
     //求部门总数
     public int countNum(){
-        sqlSession = sqlSessionFactory.openSession();
-        return sqlSession.getMapper(DepartmentMapper.class).countNum();
+        return departmentMapper.countNum();
     }
 
     //根据id查询部门信息
     public Department findOne(int id){
-        sqlSession = sqlSessionFactory.openSession();
-        return sqlSession.getMapper(DepartmentMapper.class).findOne(id);
+        return departmentMapper.findOne(id);
     }
 
     //增加部门
     public void addDepartment(Department department){
-        sqlSession = sqlSessionFactory.openSession();
-        sqlSession.getMapper(DepartmentMapper.class).addDepartment(department);
-        sqlSession.commit();
-        sqlSession.close();
+        departmentMapper.addDepartment(department);
+
     }
 
     //删除部门
     @Override
     public void delete_batch(String[] ids) {
-        sqlSession = sqlSessionFactory.openSession();
-        sqlSession.getMapper(DepartmentMapper.class).delete_batch(ids);
-        sqlSession.commit();
-        sqlSession.close();
+        departmentMapper.delete_batch(ids);
+
     }
 
 
     //编辑部门
     @Override
     public void updateEmployee(Department department) {
-        sqlSession = sqlSessionFactory.openSession();
-        sqlSession.getMapper(DepartmentMapper.class).updateDepartment(department);
-        sqlSession.commit();
-        sqlSession.close();
+        departmentMapper.updateDepartment(department);
+
     }
 
 }
