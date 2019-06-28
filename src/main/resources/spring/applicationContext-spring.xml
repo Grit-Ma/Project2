@@ -21,22 +21,6 @@
 
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="myds"/>
-        <property name="plugins">
-            <array>
-                <bean class="com.github.pagehelper.PageHelper">
-                    <property name="properties">
-<<<<<<< HEAD
-                        <!--使用下面的方式配置参数，一行配置一个 -->
-=======
-
->>>>>>> 3ff4910a4e8e66a4b8c430d71851eb563468eace
-                        <value>
-                            reasonable=true
-                        </value>
-                    </property>
-                </bean>
-            </array>
-        </property>
     </bean>
 
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">

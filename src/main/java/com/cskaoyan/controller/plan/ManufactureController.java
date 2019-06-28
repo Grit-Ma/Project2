@@ -49,7 +49,7 @@ public class ManufactureController {
         return "/WEB-INF/jsp/manufacture_edit.jsp";
     }
 
-    @RequestMapping("manufacture/manufacture_judge")
+    @RequestMapping("manufacture/edit_judge")
     @ResponseBody
     public String edit_judge(){
         return null;
