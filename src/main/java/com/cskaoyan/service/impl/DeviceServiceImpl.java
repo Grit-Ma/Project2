@@ -33,7 +33,7 @@ public class DeviceServiceImpl implements DeviceService {
     }
 
 
-    @Override
+/*    @Override
     public List<Department> selectAllDepartment() {
         List<Department> departments = departmentMapper.selectByExample(new DepartmentExample());
         return departments;
@@ -42,7 +42,7 @@ public class DeviceServiceImpl implements DeviceService {
     @Override
     public Department selectDepartmentById(String departmentId) {
         return departmentMapper.selectByPrimaryKey(departmentId);
-    }
+    }*/
 
     @Override
     public PageVo getPage(int page, int rows, List<DevicePlus> devicePluses) {

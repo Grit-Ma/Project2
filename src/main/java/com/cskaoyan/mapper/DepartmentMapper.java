@@ -1,10 +1,9 @@
 package com.cskaoyan.mapper;
 
 import com.cskaoyan.bean.Department;
-import com.cskaoyan.bean.DepartmentExample;
 import java.util.List;
 
-import com.cskaoyan.bean.Employee;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface DepartmentMapper {

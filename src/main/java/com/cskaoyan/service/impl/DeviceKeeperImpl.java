@@ -26,6 +26,6 @@ public class DeviceKeeperImpl implements DeviceKeeperService {
 
     @Override
     public List<Employee> selectAllEmp() {
-        return employeeMapper.selectByExample(new EmployeeExample());
+        return employeeMapper.selectAll();
     }
 }

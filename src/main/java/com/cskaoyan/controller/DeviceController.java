@@ -1,6 +1,7 @@
 package com.cskaoyan.controller;
 
 import com.cskaoyan.bean.*;
+import com.cskaoyan.service.DepartmentService;
 import com.cskaoyan.service.DeviceKeeperService;
 import com.cskaoyan.service.DeviceService;
 import com.cskaoyan.service.DeviceTypeService;
@@ -34,6 +35,9 @@ public class DeviceController {
 
     @Autowired
     DeviceKeeperService deviceKeeperService;
+
+    @Autowired
+    DepartmentService departmentService;
 
     @RequestMapping("device/deviceList")
     public String gotoList() {
@@ -87,32 +91,12 @@ public class DeviceController {
 
     @ResponseBody
     @RequestMapping("employee/get/{EmpId}")
-    public DeviceKeeper searchEmpInfo(@PathVariable("EmpId") String EmpId)
+    public Employee searchEmpInfo(@PathVariable("EmpId") String EmpId)
     {
-            Employee e = deviceKeeperService.selectEmpById(EmpId);
-            DeviceKeeper dk = new DeviceKeeper();
-            dk.setEmpId(e.getEmpId());
-            dk.setEmpName(e.getEmpName());
-            dk.setSex(e.getSex());
-            dk.setBirthday(e.getBirthday());
-            dk.setDegree(e.getDegree());
-            dk.setDepartmentId(e.getDepartmentId());
-            dk.setGraduateSchool(e.getGraduateSchool());
-            dk.setEducation(e.getEducation());
-            dk.setIdCode(e.getIdCode());
-            dk.setJoinDate(e.getJoinDate());
-            dk.setEducationForm(e.getEducationForm());
-            dk.setStatus(e.getStatus());
-            dk.setEducationForm(e.getEducationForm());
-            dk.setDepartment(deviceService.selectDepartmentById(e.getDepartmentId()));
-        return  dk;
+        Employee employee = deviceKeeperService.selectEmpById(EmpId);
+        return  employee;
     }
 
-    @ResponseBody
-    @RequestMapping("department/get_data")
-    public List<Department> selectAllDepartment() {
-        return deviceService.selectAllDepartment();
-    }
 
     @ResponseBody
     @RequestMapping("deviceList/add_judge")
@@ -133,29 +117,10 @@ public class DeviceController {
 
     @ResponseBody
     @RequestMapping("employee/get_data")
-    public List<DeviceKeeper> selectAllDecvieKeeper() {
+    public List<Employee> selectAllEmp() {
+
         List<Employee> employees = deviceKeeperService.selectAllEmp();
-        List<DeviceKeeper> deviceKeepers = new ArrayList<>();
-        for (int i = 0; i < employees.size() ; i++) {
-            Employee e = employees.get(i);
-            deviceKeepers.add(new DeviceKeeper());
-            DeviceKeeper dk = deviceKeepers.get(i);
-            dk.setEmpId(e.getEmpId());
-            dk.setEmpName(e.getEmpName());
-            dk.setSex(e.getSex());
-            dk.setBirthday(e.getBirthday());
-            dk.setDegree(e.getDegree());
-            dk.setDepartmentId(e.getDepartmentId());
-            dk.setGraduateSchool(e.getGraduateSchool());
-            dk.setEducation(e.getEducation());
-            dk.setIdCode(e.getIdCode());
-            dk.setJoinDate(e.getJoinDate());
-            dk.setEducationForm(e.getEducationForm());
-            dk.setStatus(e.getStatus());
-            dk.setEducationForm(e.getEducationForm());
-            dk.setDepartment(deviceService.selectDepartmentById(e.getDepartmentId()));
-        }
-        return deviceKeepers;
+        return employees;
     }
 
     @ResponseBody
@@ -163,6 +128,12 @@ public class DeviceController {
     public ResponseVo insertDevice(DevicePlus devicePlus) {
         ResponseVo responseVo = deviceService.insertDevice(devicePlus);
         return responseVo;
+    }
+
+    @ResponseBody
+    @RequestMapping("deviceList/get_data")
+    public List<Device> searchAllDevice() {
+        return deviceService.selectAllDevice();
     }
 
 }

@@ -1,16 +1,10 @@
 package com.cskaoyan.service.impl;
 
 import com.cskaoyan.bean.Department;
-import com.cskaoyan.bean.Employee;
 import com.cskaoyan.mapper.DepartmentMapper;
-import com.cskaoyan.mapper.EmployeeMapper;
 import com.cskaoyan.service.DepartmentService;
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
