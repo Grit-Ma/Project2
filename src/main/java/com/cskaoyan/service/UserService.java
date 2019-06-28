@@ -15,8 +15,4 @@ public interface UserService {
     ResponseVo insertUser(Sys_user user);
     @Delete("delete from ")
     ResponseVo batchDeleteUserByIds(List<String> ids);
-
-    PageVo searchUserByUserId(String searchValue, int page, int rows);
-
-    PageVo searchUserByUserName(String searchValue, int page, int rows);
 }

@@ -53,6 +53,55 @@ public class EmployeeController {
 
 
 
+    //模糊搜索-员工编号
+    @RequestMapping("search_employee_by_employeeId")
+    @ResponseBody
+    public Map<String,Object> search_employee_by_employeeId(String searchValue,int page,int rows ){
+        //根据输入的value模糊查找员工,及查找出来的员工总数
+        List<Employee> employeeList = employeeService.selectById(searchValue);
+        int count = employeeList.size();
+        //封装当前页面显示数据
+        List<Department> pageList = PageTool.getPagedData(employeeList,page,rows);
+        //封装map返回
+        Map<String,Object> result = new HashMap();
+        result.put("rows",pageList);
+        result.put("total",count);
+        return result;
+    }
+    //模糊搜索-员工名称
+    @RequestMapping("search_employee_by_employeeName")
+    @ResponseBody
+    public Map<String,Object> search_employee_by_employeeName(String searchValue,int page,int rows ){
+        //根据输入的value模糊查找员工,及查找出来的员工总
+        List<Employee> employeeList = employeeService.selectByName(searchValue);
+        int count = employeeList.size();
+        //封装当前页面显示数据
+        List<Department> pageList = PageTool.getPagedData(employeeList,page,rows);
+        //封装map返回
+        Map<String,Object> result = new HashMap();
+        result.put("rows",pageList);
+        result.put("total",count);
+        return result;
+    }
+    //模糊搜索-部门名称
+    @RequestMapping("search_employee_by_departmentName")
+    @ResponseBody
+    public Map<String,Object> search_employee_by_departmentName(String searchValue,int page,int rows ){
+        //根据输入的value模糊查找员工,及查找出来的员工总
+        List<Employee> employeeList = employeeService.selectByDepartmentName(searchValue);
+        int count = employeeList.size();
+        //封装当前页面显示数据
+        List<Department> pageList = PageTool.getPagedData(employeeList,page,rows);
+        //封装map返回
+        Map<String,Object> result = new HashMap();
+        result.put("rows",pageList);
+        result.put("total",count);
+        return result;
+    }
+
+
+
+
     //判断
     @RequestMapping("*_judge")
     @ResponseBody
