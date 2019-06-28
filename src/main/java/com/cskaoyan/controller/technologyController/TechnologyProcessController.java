@@ -5,6 +5,7 @@ import com.cskaoyan.service.technologyService.TechnologyProcessServie;
 import com.cskaoyan.vo.ResponseVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -127,6 +128,13 @@ public class TechnologyProcessController {
     @ResponseBody
     public List<Process> technologyPlanGetData(){
         List<Process> list = processService.queryAllProcess();
+        return list;
+    }
+
+    @RequestMapping("process/get/{id}")
+    @ResponseBody
+    public Process technologyPlanGet(@PathVariable("id") String id){
+        Process list = processService.queryProcessById(id);
         return list;
     }
 
