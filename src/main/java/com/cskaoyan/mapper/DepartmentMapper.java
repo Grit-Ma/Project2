@@ -3,28 +3,23 @@ package com.cskaoyan.mapper;
 import com.cskaoyan.bean.Department;
 import com.cskaoyan.bean.DepartmentExample;
 import java.util.List;
+
+import com.cskaoyan.bean.Employee;
 import org.apache.ibatis.annotations.Param;
 
 public interface DepartmentMapper {
-    long countByExample(DepartmentExample example);
 
-    int deleteByExample(DepartmentExample example);
 
-    int deleteByPrimaryKey(String departmentId);
+    List<Department> selectAll();
 
-    int insert(Department record);
+    int countNum();  //求部门总数
 
-    int insertSelective(Department record);
+    Department findOne(@Param("id")int id);  //根据id返回相关部门数据
 
-    List<Department> selectByExample(DepartmentExample example);
+    void addDepartment(Department department);   //增加部门
 
-    Department selectByPrimaryKey(String departmentId);
+    void delete_batch(String[] ids);  //选择删除
 
-    int updateByExampleSelective(@Param("record") Department record, @Param("example") DepartmentExample example);
+    void updateDepartment(Department department);  //编辑部门信息
 
-    int updateByExample(@Param("record") Department record, @Param("example") DepartmentExample example);
-
-    int updateByPrimaryKeySelective(Department record);
-
-    int updateByPrimaryKey(Department record);
 }
