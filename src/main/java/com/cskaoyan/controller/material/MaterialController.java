@@ -1,6 +1,6 @@
 package com.cskaoyan.controller.material;
 
-import com.cskaoyan.bean.Material;
+import com.cskaoyan.bean.material.Material;
 import com.cskaoyan.service.material.MaterialService;
 import com.cskaoyan.vo.PageVo;
 import com.cskaoyan.vo.ResponseVo;

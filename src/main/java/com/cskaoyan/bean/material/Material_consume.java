@@ -1,4 +1,6 @@
-package com.cskaoyan.bean;
+package com.cskaoyan.bean.material;
+
+import com.cskaoyan.bean.Work;
 
 import java.util.Date;
 
@@ -18,6 +20,26 @@ public class Material_consume {
     private String receiver;
 
     private String note;
+
+    private Work work;
+
+    private Material material;
+
+    public Work getWork() {
+        return work;
+    }
+
+    public void setWork(Work work) {
+        this.work = work;
+    }
+
+    public Material getMaterial() {
+        return material;
+    }
+
+    public void setMaterial(Material material) {
+        this.material = material;
+    }
 
     public String getConsumeId() {
         return consumeId;

@@ -1,17 +1,17 @@
-package com.cskaoyan.bean;
+package com.cskaoyan.bean.material;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Material_receiveExample {
+public class Material_consumeExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public Material_receiveExample() {
+    public Material_consumeExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -105,73 +105,143 @@ public class Material_receiveExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
-        public Criteria andReceiveIdIsNull() {
-            addCriterion("receive_id is null");
+        public Criteria andConsumeIdIsNull() {
+            addCriterion("consume_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andReceiveIdIsNotNull() {
-            addCriterion("receive_id is not null");
+        public Criteria andConsumeIdIsNotNull() {
+            addCriterion("consume_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andReceiveIdEqualTo(String value) {
-            addCriterion("receive_id =", value, "receiveId");
+        public Criteria andConsumeIdEqualTo(String value) {
+            addCriterion("consume_id =", value, "consumeId");
             return (Criteria) this;
         }
 
-        public Criteria andReceiveIdNotEqualTo(String value) {
-            addCriterion("receive_id <>", value, "receiveId");
+        public Criteria andConsumeIdNotEqualTo(String value) {
+            addCriterion("consume_id <>", value, "consumeId");
             return (Criteria) this;
         }
 
-        public Criteria andReceiveIdGreaterThan(String value) {
-            addCriterion("receive_id >", value, "receiveId");
+        public Criteria andConsumeIdGreaterThan(String value) {
+            addCriterion("consume_id >", value, "consumeId");
             return (Criteria) this;
         }
 
-        public Criteria andReceiveIdGreaterThanOrEqualTo(String value) {
-            addCriterion("receive_id >=", value, "receiveId");
+        public Criteria andConsumeIdGreaterThanOrEqualTo(String value) {
+            addCriterion("consume_id >=", value, "consumeId");
             return (Criteria) this;
         }
 
-        public Criteria andReceiveIdLessThan(String value) {
-            addCriterion("receive_id <", value, "receiveId");
+        public Criteria andConsumeIdLessThan(String value) {
+            addCriterion("consume_id <", value, "consumeId");
             return (Criteria) this;
         }
 
-        public Criteria andReceiveIdLessThanOrEqualTo(String value) {
-            addCriterion("receive_id <=", value, "receiveId");
+        public Criteria andConsumeIdLessThanOrEqualTo(String value) {
+            addCriterion("consume_id <=", value, "consumeId");
             return (Criteria) this;
         }
 
-        public Criteria andReceiveIdLike(String value) {
-            addCriterion("receive_id like", value, "receiveId");
+        public Criteria andConsumeIdLike(String value) {
+            addCriterion("consume_id like", value, "consumeId");
             return (Criteria) this;
         }
 
-        public Criteria andReceiveIdNotLike(String value) {
-            addCriterion("receive_id not like", value, "receiveId");
+        public Criteria andConsumeIdNotLike(String value) {
+            addCriterion("consume_id not like", value, "consumeId");
             return (Criteria) this;
         }
 
-        public Criteria andReceiveIdIn(List<String> values) {
-            addCriterion("receive_id in", values, "receiveId");
+        public Criteria andConsumeIdIn(List<String> values) {
+            addCriterion("consume_id in", values, "consumeId");
             return (Criteria) this;
         }
 
-        public Criteria andReceiveIdNotIn(List<String> values) {
-            addCriterion("receive_id not in", values, "receiveId");
+        public Criteria andConsumeIdNotIn(List<String> values) {
+            addCriterion("consume_id not in", values, "consumeId");
             return (Criteria) this;
         }
 
-        public Criteria andReceiveIdBetween(String value1, String value2) {
-            addCriterion("receive_id between", value1, value2, "receiveId");
+        public Criteria andConsumeIdBetween(String value1, String value2) {
+            addCriterion("consume_id between", value1, value2, "consumeId");
             return (Criteria) this;
         }
 
-        public Criteria andReceiveIdNotBetween(String value1, String value2) {
-            addCriterion("receive_id not between", value1, value2, "receiveId");
+        public Criteria andConsumeIdNotBetween(String value1, String value2) {
+            addCriterion("consume_id not between", value1, value2, "consumeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkIdIsNull() {
+            addCriterion("work_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkIdIsNotNull() {
+            addCriterion("work_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkIdEqualTo(String value) {
+            addCriterion("work_id =", value, "workId");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkIdNotEqualTo(String value) {
+            addCriterion("work_id <>", value, "workId");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkIdGreaterThan(String value) {
+            addCriterion("work_id >", value, "workId");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkIdGreaterThanOrEqualTo(String value) {
+            addCriterion("work_id >=", value, "workId");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkIdLessThan(String value) {
+            addCriterion("work_id <", value, "workId");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkIdLessThanOrEqualTo(String value) {
+            addCriterion("work_id <=", value, "workId");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkIdLike(String value) {
+            addCriterion("work_id like", value, "workId");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkIdNotLike(String value) {
+            addCriterion("work_id not like", value, "workId");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkIdIn(List<String> values) {
+            addCriterion("work_id in", values, "workId");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkIdNotIn(List<String> values) {
+            addCriterion("work_id not in", values, "workId");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkIdBetween(String value1, String value2) {
+            addCriterion("work_id between", value1, value2, "workId");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkIdNotBetween(String value1, String value2) {
+            addCriterion("work_id not between", value1, value2, "workId");
             return (Criteria) this;
         }
 
@@ -245,123 +315,123 @@ public class Material_receiveExample {
             return (Criteria) this;
         }
 
-        public Criteria andAmountIsNull() {
-            addCriterion("amount is null");
+        public Criteria andConsumeAmountIsNull() {
+            addCriterion("consume_amount is null");
             return (Criteria) this;
         }
 
-        public Criteria andAmountIsNotNull() {
-            addCriterion("amount is not null");
+        public Criteria andConsumeAmountIsNotNull() {
+            addCriterion("consume_amount is not null");
             return (Criteria) this;
         }
 
-        public Criteria andAmountEqualTo(Integer value) {
-            addCriterion("amount =", value, "amount");
+        public Criteria andConsumeAmountEqualTo(Integer value) {
+            addCriterion("consume_amount =", value, "consumeAmount");
             return (Criteria) this;
         }
 
-        public Criteria andAmountNotEqualTo(Integer value) {
-            addCriterion("amount <>", value, "amount");
+        public Criteria andConsumeAmountNotEqualTo(Integer value) {
+            addCriterion("consume_amount <>", value, "consumeAmount");
             return (Criteria) this;
         }
 
-        public Criteria andAmountGreaterThan(Integer value) {
-            addCriterion("amount >", value, "amount");
+        public Criteria andConsumeAmountGreaterThan(Integer value) {
+            addCriterion("consume_amount >", value, "consumeAmount");
             return (Criteria) this;
         }
 
-        public Criteria andAmountGreaterThanOrEqualTo(Integer value) {
-            addCriterion("amount >=", value, "amount");
+        public Criteria andConsumeAmountGreaterThanOrEqualTo(Integer value) {
+            addCriterion("consume_amount >=", value, "consumeAmount");
             return (Criteria) this;
         }
 
-        public Criteria andAmountLessThan(Integer value) {
-            addCriterion("amount <", value, "amount");
+        public Criteria andConsumeAmountLessThan(Integer value) {
+            addCriterion("consume_amount <", value, "consumeAmount");
             return (Criteria) this;
         }
 
-        public Criteria andAmountLessThanOrEqualTo(Integer value) {
-            addCriterion("amount <=", value, "amount");
+        public Criteria andConsumeAmountLessThanOrEqualTo(Integer value) {
+            addCriterion("consume_amount <=", value, "consumeAmount");
             return (Criteria) this;
         }
 
-        public Criteria andAmountIn(List<Integer> values) {
-            addCriterion("amount in", values, "amount");
+        public Criteria andConsumeAmountIn(List<Integer> values) {
+            addCriterion("consume_amount in", values, "consumeAmount");
             return (Criteria) this;
         }
 
-        public Criteria andAmountNotIn(List<Integer> values) {
-            addCriterion("amount not in", values, "amount");
+        public Criteria andConsumeAmountNotIn(List<Integer> values) {
+            addCriterion("consume_amount not in", values, "consumeAmount");
             return (Criteria) this;
         }
 
-        public Criteria andAmountBetween(Integer value1, Integer value2) {
-            addCriterion("amount between", value1, value2, "amount");
+        public Criteria andConsumeAmountBetween(Integer value1, Integer value2) {
+            addCriterion("consume_amount between", value1, value2, "consumeAmount");
             return (Criteria) this;
         }
 
-        public Criteria andAmountNotBetween(Integer value1, Integer value2) {
-            addCriterion("amount not between", value1, value2, "amount");
+        public Criteria andConsumeAmountNotBetween(Integer value1, Integer value2) {
+            addCriterion("consume_amount not between", value1, value2, "consumeAmount");
             return (Criteria) this;
         }
 
-        public Criteria andReceiveDateIsNull() {
-            addCriterion("receive_date is null");
+        public Criteria andConsumeDateIsNull() {
+            addCriterion("consume_date is null");
             return (Criteria) this;
         }
 
-        public Criteria andReceiveDateIsNotNull() {
-            addCriterion("receive_date is not null");
+        public Criteria andConsumeDateIsNotNull() {
+            addCriterion("consume_date is not null");
             return (Criteria) this;
         }
 
-        public Criteria andReceiveDateEqualTo(Date value) {
-            addCriterion("receive_date =", value, "receiveDate");
+        public Criteria andConsumeDateEqualTo(Date value) {
+            addCriterion("consume_date =", value, "consumeDate");
             return (Criteria) this;
         }
 
-        public Criteria andReceiveDateNotEqualTo(Date value) {
-            addCriterion("receive_date <>", value, "receiveDate");
+        public Criteria andConsumeDateNotEqualTo(Date value) {
+            addCriterion("consume_date <>", value, "consumeDate");
             return (Criteria) this;
         }
 
-        public Criteria andReceiveDateGreaterThan(Date value) {
-            addCriterion("receive_date >", value, "receiveDate");
+        public Criteria andConsumeDateGreaterThan(Date value) {
+            addCriterion("consume_date >", value, "consumeDate");
             return (Criteria) this;
         }
 
-        public Criteria andReceiveDateGreaterThanOrEqualTo(Date value) {
-            addCriterion("receive_date >=", value, "receiveDate");
+        public Criteria andConsumeDateGreaterThanOrEqualTo(Date value) {
+            addCriterion("consume_date >=", value, "consumeDate");
             return (Criteria) this;
         }
 
-        public Criteria andReceiveDateLessThan(Date value) {
-            addCriterion("receive_date <", value, "receiveDate");
+        public Criteria andConsumeDateLessThan(Date value) {
+            addCriterion("consume_date <", value, "consumeDate");
             return (Criteria) this;
         }
 
-        public Criteria andReceiveDateLessThanOrEqualTo(Date value) {
-            addCriterion("receive_date <=", value, "receiveDate");
+        public Criteria andConsumeDateLessThanOrEqualTo(Date value) {
+            addCriterion("consume_date <=", value, "consumeDate");
             return (Criteria) this;
         }
 
-        public Criteria andReceiveDateIn(List<Date> values) {
-            addCriterion("receive_date in", values, "receiveDate");
+        public Criteria andConsumeDateIn(List<Date> values) {
+            addCriterion("consume_date in", values, "consumeDate");
             return (Criteria) this;
         }
 
-        public Criteria andReceiveDateNotIn(List<Date> values) {
-            addCriterion("receive_date not in", values, "receiveDate");
+        public Criteria andConsumeDateNotIn(List<Date> values) {
+            addCriterion("consume_date not in", values, "consumeDate");
             return (Criteria) this;
         }
 
-        public Criteria andReceiveDateBetween(Date value1, Date value2) {
-            addCriterion("receive_date between", value1, value2, "receiveDate");
+        public Criteria andConsumeDateBetween(Date value1, Date value2) {
+            addCriterion("consume_date between", value1, value2, "consumeDate");
             return (Criteria) this;
         }
 
-        public Criteria andReceiveDateNotBetween(Date value1, Date value2) {
-            addCriterion("receive_date not between", value1, value2, "receiveDate");
+        public Criteria andConsumeDateNotBetween(Date value1, Date value2) {
+            addCriterion("consume_date not between", value1, value2, "consumeDate");
             return (Criteria) this;
         }
 

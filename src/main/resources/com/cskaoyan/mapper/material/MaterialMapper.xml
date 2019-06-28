@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.cskaoyan.mapper.MaterialMapper">
-  <resultMap id="BaseResultMap" type="com.cskaoyan.bean.Material">
+<mapper namespace="com.cskaoyan.mapper.material.MaterialMapper">
+  <resultMap id="BaseResultMap" type="com.cskaoyan.bean.material.Material">
     <id column="material_id" jdbcType="VARCHAR" property="materialId" />
     <result column="material_type" jdbcType="VARCHAR" property="materialType" />
     <result column="status" jdbcType="VARCHAR" property="status" />
@@ -69,7 +69,7 @@
   <sql id="Base_Column_List">
     material_id, material_type, status, remaining, note
   </sql>
-  <select id="selectByExample" parameterType="com.cskaoyan.bean.MaterialExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.cskaoyan.bean.material.MaterialExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -94,19 +94,19 @@
     delete from material
     where material_id = #{materialId,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.cskaoyan.bean.MaterialExample">
+  <delete id="deleteByExample" parameterType="com.cskaoyan.bean.material.MaterialExample">
     delete from material
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.cskaoyan.bean.Material">
+  <insert id="insert" parameterType="com.cskaoyan.bean.material.Material">
     insert into material (material_id, material_type, status, 
       remaining, note)
     values (#{materialId,jdbcType=VARCHAR}, #{materialType,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
       #{remaining,jdbcType=INTEGER}, #{note,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.cskaoyan.bean.Material">
+  <insert id="insertSelective" parameterType="com.cskaoyan.bean.material.Material">
     insert into material
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="materialId != null">
@@ -143,7 +143,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.cskaoyan.bean.MaterialExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.cskaoyan.bean.material.MaterialExample" resultType="java.lang.Long">
     select count(*) from material
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -183,7 +183,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.cskaoyan.bean.Material">
+  <update id="updateByPrimaryKeySelective" parameterType="com.cskaoyan.bean.material.Material">
     update material
     <set>
       <if test="materialType != null">
@@ -201,7 +201,7 @@
     </set>
     where material_id = #{materialId,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.cskaoyan.bean.Material">
+  <update id="updateByPrimaryKey" parameterType="com.cskaoyan.bean.material.Material">
     update material
     set material_type = #{materialType,jdbcType=VARCHAR},
       status = #{status,jdbcType=VARCHAR},
