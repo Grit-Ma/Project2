@@ -18,6 +18,8 @@ public interface DeviceMapper {
 
     List<Device> selectByExample(DeviceExample example);
 
+    List<Device> selectAllDevice();
+
     Device selectByPrimaryKey(String deviceId);
 
     int updateByExampleSelective(@Param("record") Device record, @Param("example") DeviceExample example);

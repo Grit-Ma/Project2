@@ -1,13 +1,14 @@
-package com.cskaoyan.mapper;
+package com.cskaoyan.service;
 
 import com.cskaoyan.bean.Process_count_check;
 import com.cskaoyan.bean.Process_count_checkExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
-public interface Process_count_checkMapper {
+import java.util.List;
 
-    List<Process_count_check> selectByPage(@Param("limit") int limit, @Param("offset") int offset);
+public interface Process_count_checkService {
+
+    List<Process_count_check> selectByPage(int page, int rows);
 
     long countByExample(Process_count_checkExample example);
 

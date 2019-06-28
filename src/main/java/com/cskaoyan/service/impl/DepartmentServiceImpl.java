@@ -17,7 +17,6 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Override
     public List<Department> queryAllDepartments() {
         List<Department> departments = departmentMapper.selectAll();
-        System.out.println(departments);
         return departments;
     }
 }

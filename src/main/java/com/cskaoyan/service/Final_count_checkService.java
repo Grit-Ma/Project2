@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface Final_count_checkService {
 
-    List<Final_count_check> selectByPage(@Param("limit") int limit, @Param("offset") int offset);
+    List<Final_count_check> selectByPage(int page,int rows);
 
     long countByExample(Final_count_checkExample example);
 

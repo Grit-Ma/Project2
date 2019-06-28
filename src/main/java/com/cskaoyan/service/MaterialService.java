@@ -11,6 +11,8 @@ public interface MaterialService {
 
     List<Material> getMaterial();
 
+    List<Material> getMaterial_by_materialId(String searchValue);
+
     PageVo getPage(int page, int rows);
 
     ResponseVo updateMaterial(Material material);
@@ -19,4 +21,8 @@ public interface MaterialService {
 
     @Delete("delete from ")
     ResponseVo batchDeleteMaterialByIds(List<String> ids);
+
+    ResponseVo updateMaterialNote(Material material);
+
+    PageVo search_material_by_materialId(String searchValue, int page, int rows);
 }

@@ -18,6 +18,8 @@ public interface Device_typeMapper {
 
     List<Device_type> selectByExample(Device_typeExample example);
 
+    List<Device_type> selectAllType();
+
     Device_type selectByPrimaryKey(String deviceTypeId);
 
     int updateByExampleSelective(@Param("record") Device_type record, @Param("example") Device_typeExample example);

@@ -1,4 +1,4 @@
-package com.cskaoyan.controller;
+package com.cskaoyan.controller.quality;
 
 import com.cskaoyan.bean.Department;
 
@@ -11,15 +11,12 @@ import com.cskaoyan.vo.PageVo;
 import com.cskaoyan.vo.ResponseVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -44,14 +41,6 @@ public class QualityController {
         return pageVo;
     }
 
-    @RequestMapping("department/get_data")
-    @ResponseBody
-    public List<Department> getData(){
-        List<Department> departments = departmentService.queryAllDepartments();
-        System.out.println(departments);
-        return departments;
-    }
-
     @RequestMapping("unqualify/delete_judge")
     @ResponseBody
     public void deleteUnqualify_Judge(){
@@ -60,15 +49,13 @@ public class QualityController {
 
     @RequestMapping("unqualify/delete_batch")
     @ResponseBody
-    public ResponseVo deleteBatch(@RequestParam("ids")String ids){
+    public ResponseVo deleteBatch(@RequestParam("ids")String[] ids){
         ResponseVo responseVo = new ResponseVo();
         Unqualify_applyExample unqualify_applyExample = new Unqualify_applyExample();
         Unqualify_applyExample.Criteria criteria = unqualify_applyExample.createCriteria();
-        ArrayList<String> list = new ArrayList<>();
-        list.add(ids);
-        criteria.andUnqualifyApplyIdIn(list);
+        criteria.andUnqualifyApplyIdIn(Arrays.asList(ids));
         int i = unqualify_applyService.deleteByExample(unqualify_applyExample);
-        if(i==1) {
+        if(i>=1) {
             responseVo.setMsg("ok");
             responseVo.setStatus(200);
         }
@@ -121,4 +108,12 @@ public class QualityController {
         }
         return responseVo;
     }
+
+    @RequestMapping("department/get_data")
+    @ResponseBody
+    public List<Department> getData(){
+        List<Department> departments = departmentService.queryAllDepartments();
+        return departments;
+    }
+
 }

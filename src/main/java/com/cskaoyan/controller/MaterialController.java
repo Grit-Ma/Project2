@@ -29,21 +29,47 @@ public class MaterialController {
         return pageVo;
     }
 
-    @RequestMapping("material/edit_judge")
+    @RequestMapping("material/edit")
     public String edit(){
         return "/WEB-INF/jsp/material_edit.jsp";
     }
 
+    @RequestMapping("material/edit_judge")
+    @ResponseBody
+    public String edit_judge(){
+        return null;
+    }
+
     @RequestMapping("material/update_all")
     @ResponseBody
-    public ResponseVo update(Material material){
+    public ResponseVo update_all(Material material){
         ResponseVo responseVo = materialService.updateMaterial(material);
+        return responseVo;
+    }
+
+    @RequestMapping("material/search_material_by_materialId")
+    @ResponseBody
+    public PageVo search_material_by_materialId(String searchValue, int page, int rows){
+        PageVo pageVo = materialService.search_material_by_materialId(searchValue, page, rows);
+        return pageVo;
+    }
+
+    @RequestMapping("material/update_note")
+    @ResponseBody
+    public ResponseVo update_note(Material material){
+        ResponseVo responseVo = materialService.updateMaterialNote(material);
         return responseVo;
     }
 
     @RequestMapping("material/add")
     public String add(){
         return "/WEB-INF/jsp/material_add.jsp";
+    }
+
+    @RequestMapping("material/add_judge")
+    @ResponseBody
+    public String add_judge(){
+        return null;
     }
 
     @RequestMapping("material/insert")
