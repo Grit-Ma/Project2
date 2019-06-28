@@ -14,6 +14,7 @@
     <result column="emp_id" jdbcType="VARCHAR" property="empId" />
     <result column="result" jdbcType="VARCHAR" property="result" />
     <result column="note" jdbcType="VARCHAR" property="note" />
+    <result column="emp_name"  jdbcType="VARCHAR" property="empName"/>
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -77,6 +78,31 @@
     p_count_check_id, process_id, check_item, sample, check_number, unqualify, qualify, 
     cdate, measure_data, emp_id, result, note
   </sql>
+
+
+  <select id="selectByPage" resultMap="BaseResultMap">
+    select  p.p_count_check_id, p.process_id, p.check_item, p.sample, p.check_number, p.unqualify, p.qualify,
+    p.cdate, p.measure_data, p.emp_id, p.result, p.note,e.emp_name
+    from process_count_check p
+    left join employee e
+    on e.emp_id=p.emp_id
+    limit #{limit}
+    offset #{offset}
+  </select>
+
+  <select id="fuzzyQueryByPCountCheckId" resultMap="BaseResultMap">
+    select  p.p_count_check_id, p.process_id, p.check_item, p.sample, p.check_number, p.unqualify, p.qualify,
+    p.cdate, p.measure_data, p.emp_id, p.result, p.note,e.emp_name
+    from process_count_check p
+    left join employee e
+    on e.emp_id=p.emp_id
+    where p.p_count_check_id like concat('%',#{cid},'%')
+    limit #{limit}
+    offset #{offset}
+  </select>
+
+
+
   <select id="selectByExample" parameterType="com.cskaoyan.bean.Process_count_checkExample" resultMap="BaseResultMap">
     select
     <if test="distinct">

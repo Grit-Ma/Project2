@@ -3,15 +3,11 @@ package com.cskaoyan.controller;
 
 import com.cskaoyan.bean.Department;
 import com.cskaoyan.bean.Employee;
-import com.cskaoyan.service.DepartmentService;
-import com.cskaoyan.service.impl.DepartmentServiceImp;
 import com.cskaoyan.service.impl.EmployeeServiceImp;
 import com.cskaoyan.tool.PageTool;
 import com.cskaoyan.vo.ResponseVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 

@@ -28,6 +28,35 @@ public class Process_count_check {
 
     private String note;
 
+    private String empName;
+
+    public Process_count_check(String pCountCheckId, String processId, String checkItem, Integer sample, Integer checkNumber, Integer unqualify, BigDecimal qualify, Date cdate, String measureData, String empId, String result, String note, String empName) {
+        this.pCountCheckId = pCountCheckId;
+        this.processId = processId;
+        this.checkItem = checkItem;
+        this.sample = sample;
+        this.checkNumber = checkNumber;
+        this.unqualify = unqualify;
+        this.qualify = qualify;
+        this.cdate = cdate;
+        this.measureData = measureData;
+        this.empId = empId;
+        this.result = result;
+        this.note = note;
+        this.empName = empName;
+    }
+
+    public Process_count_check() {
+    }
+
+    public String getEmpName() {
+        return empName;
+    }
+
+    public void setEmpName(String empName) {
+        this.empName = empName;
+    }
+
     public String getpCountCheckId() {
         return pCountCheckId;
     }
@@ -122,5 +151,24 @@ public class Process_count_check {
 
     public void setNote(String note) {
         this.note = note == null ? null : note.trim();
+    }
+
+    @Override
+    public String toString() {
+        return "Process_count_check{" +
+                "pCountCheckId='" + pCountCheckId + '\'' +
+                ", processId='" + processId + '\'' +
+                ", checkItem='" + checkItem + '\'' +
+                ", sample=" + sample +
+                ", checkNumber=" + checkNumber +
+                ", unqualify=" + unqualify +
+                ", qualify=" + qualify +
+                ", cdate=" + cdate +
+                ", measureData='" + measureData + '\'' +
+                ", empId='" + empId + '\'' +
+                ", result='" + result + '\'' +
+                ", note='" + note + '\'' +
+                ", empName='" + empName + '\'' +
+                '}';
     }
 }

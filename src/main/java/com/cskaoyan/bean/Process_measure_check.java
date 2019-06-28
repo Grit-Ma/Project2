@@ -19,11 +19,31 @@ public class Process_measure_check {
 
     private String note;
 
+    private String empName;
+
+
+    public Process_measure_check() {
+    }
+
+    public Process_measure_check(String pMeasureCheckId, String processId, String checkItem, Date cdate, String measureData, String empId, String result, String note, String empName) {
+        this.pMeasureCheckId = pMeasureCheckId;
+        this.processId = processId;
+        this.checkItem = checkItem;
+        this.cdate = cdate;
+        this.measureData = measureData;
+        this.empId = empId;
+        this.result = result;
+        this.note = note;
+        this.empName = empName;
+    }
+
+
     public String getpMeasureCheckId() {
         return pMeasureCheckId;
     }
 
     public void setpMeasureCheckId(String pMeasureCheckId) {
+
         this.pMeasureCheckId = pMeasureCheckId == null ? null : pMeasureCheckId.trim();
     }
 
@@ -56,6 +76,7 @@ public class Process_measure_check {
     }
 
     public void setMeasureData(String measureData) {
+
         this.measureData = measureData == null ? null : measureData.trim();
     }
 
@@ -80,6 +101,29 @@ public class Process_measure_check {
     }
 
     public void setNote(String note) {
-        this.note = note == null ? null : note.trim();
+        this.note = note;
+    }
+
+    public String getEmpName() {
+        return empName;
+    }
+
+    public void setEmpName(String empName) {
+        this.empName = empName;
+    }
+
+    @Override
+    public String toString() {
+        return "Process_measure_check{" +
+                "pMeasureCheckId='" + pMeasureCheckId + '\'' +
+                ", processId='" + processId + '\'' +
+                ", checkItem='" + checkItem + '\'' +
+                ", cdate=" + cdate +
+                ", measureData='" + measureData + '\'' +
+                ", empId='" + empId + '\'' +
+                ", result='" + result + '\'' +
+                ", note='" + note + '\'' +
+                ", empName='" + empName + '\'' +
+                '}';
     }
 }
