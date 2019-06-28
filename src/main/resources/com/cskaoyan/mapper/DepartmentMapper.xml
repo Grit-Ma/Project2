@@ -45,4 +45,6 @@
             #{id}
         </foreach>
     </delete>
+
 </mapper>
+

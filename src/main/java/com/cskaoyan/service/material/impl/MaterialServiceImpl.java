@@ -1,9 +1,9 @@
-package com.cskaoyan.service.impl;
+package com.cskaoyan.service.material.impl;
 
 import com.cskaoyan.bean.Material;
 import com.cskaoyan.bean.MaterialExample;
 import com.cskaoyan.mapper.MaterialMapper;
-import com.cskaoyan.service.MaterialService;
+import com.cskaoyan.service.material.MaterialService;
 import com.cskaoyan.tool.PageTool;
 import com.cskaoyan.vo.PageVo;
 import com.cskaoyan.vo.ResponseVo;
@@ -24,10 +24,19 @@ public class MaterialServiceImpl implements MaterialService {
     }
 
     @Override
-    public List<Material> getMaterial_by_materialId(String searchValue) {
+    public List<Material> getMaterialByMaterialId(String searchValue) {
         MaterialExample materialExample = new MaterialExample();
         MaterialExample.Criteria criteria = materialExample.createCriteria();
-        criteria.andMaterialIdLike(searchValue);
+        criteria.andMaterialIdLike("%" + searchValue + "%");
+        List<Material> materialList = materialMapper.selectByExample(materialExample);
+        return materialList;
+    }
+
+    @Override
+    public List<Material> getMaterialByMaterialType(String searchValue) {
+        MaterialExample materialExample = new MaterialExample();
+        MaterialExample.Criteria criteria = materialExample.createCriteria();
+        criteria.andMaterialTypeLike("%" + searchValue + "%");
         List<Material> materialList = materialMapper.selectByExample(materialExample);
         return materialList;
     }
@@ -101,8 +110,15 @@ public class MaterialServiceImpl implements MaterialService {
     }
 
     @Override
-    public PageVo search_material_by_materialId(String searchValue, int page, int rows) {
-        List<Material> materials = getMaterial_by_materialId(searchValue);
+    public PageVo searchMaterialByMaterialId(String searchValue, int page, int rows) {
+        List<Material> materials = getMaterialByMaterialId(searchValue);
+        PageVo pages = PageTool.getPageVo(materials, page, rows);
+        return pages;
+    }
+
+    @Override
+    public PageVo searchMaterialByMaterialType(String searchValue, int page, int rows) {
+        List<Material> materials = getMaterialByMaterialType(searchValue);
         PageVo pages = PageTool.getPageVo(materials, page, rows);
         return pages;
     }

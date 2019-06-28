@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="com.cskaoyan.bean.Technology_plan">
     <id column="technology_plan_id" jdbcType="VARCHAR" property="technologyPlanId" />
     <result column="technology_id" jdbcType="VARCHAR" property="technologyId" />
+    <result column="technology_name" jdbcType="VARCHAR" property="technologyName" />
     <result column="batch_amount" jdbcType="INTEGER" property="batchAmount" />
     <result column="start_plan" jdbcType="TIMESTAMP" property="startPlan" />
     <result column="end_plan" jdbcType="TIMESTAMP" property="endPlan" />
@@ -259,4 +260,16 @@
       technology_plan_end = #{technologyPlanEnd,jdbcType=TIMESTAMP}
     where technology_plan_id = #{technologyPlanId,jdbcType=VARCHAR}
   </update>
+
+  <select id="selectTecnologyPlanByPageAndRows" resultMap="BaseResultMap">
+    select
+     technology_plan_id, technology_name, batch_amount, start_plan, end_plan, commit_plan,
+    technology_plan_start, technology_plan_end
+    from technology_plan
+    left join technology on technology_plan.technology_id = technology.technology_id
+    limit #{number} offset #{offset}
+  </select>
+  <select id="queryTotalTechonlogyPlan" resultType="_int">
+    select count(*) from technology_plan
+  </select>
 </mapper>

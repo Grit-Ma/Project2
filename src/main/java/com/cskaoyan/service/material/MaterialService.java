@@ -1,4 +1,4 @@
-package com.cskaoyan.service;
+package com.cskaoyan.service.material;
 
 import com.cskaoyan.bean.Material;
 import com.cskaoyan.vo.PageVo;
@@ -11,7 +11,9 @@ public interface MaterialService {
 
     List<Material> getMaterial();
 
-    List<Material> getMaterial_by_materialId(String searchValue);
+    List<Material> getMaterialByMaterialId(String searchValue);
+
+    List<Material> getMaterialByMaterialType(String searchValue);
 
     PageVo getPage(int page, int rows);
 
@@ -24,5 +26,7 @@ public interface MaterialService {
 
     ResponseVo updateMaterialNote(Material material);
 
-    PageVo search_material_by_materialId(String searchValue, int page, int rows);
+    PageVo searchMaterialByMaterialId(String searchValue, int page, int rows);
+
+    PageVo searchMaterialByMaterialType(String searchValue, int page, int rows);
 }
