@@ -1,7 +1,6 @@
 package com.cskaoyan.service;
 
 import com.cskaoyan.bean.Custom;
-import com.cskaoyan.bean.Product;
 
 import java.util.List;
 
@@ -12,7 +11,11 @@ public interface CustomService {
 
     int customUpdate(Custom custom);
 
-    int customDelete(String ids);
+    int customDelete(List<String > ids);
+
+    List<Custom> searchByCustomId(String id, int page, int rows);
+
+    List<Custom> searchByCustomName(String name, int page, int rows);
 
     List<Custom> customGetData();
 }
