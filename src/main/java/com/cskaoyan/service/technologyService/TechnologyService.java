@@ -22,4 +22,7 @@ public interface TechnologyService {
     int searchByTechnologyIdOrNameTotal(String searchValue, String flag);
 
     Technology queryTechnologyById(String technologyId);
+
+    Technology queryTechnologyPlanById(String technologyId);
+
 }

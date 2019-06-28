@@ -154,5 +154,11 @@ public class TechnologyController {
         return technology;
     }
 
+    @RequestMapping("technology/get/{technologyId}")
+    @ResponseBody
+    public Technology getTechnologyPlanById(@PathVariable("technologyId") String technologyId){
+        Technology technology = technologyService.queryTechnologyPlanById(technologyId);
+        return technology;
+    }
 
 }
