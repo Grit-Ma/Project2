@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="com.cskaoyan.bean.Technology_requirement">
     <id column="technology_requirement_id" jdbcType="VARCHAR" property="technologyRequirementId" />
     <result column="technology_id" jdbcType="VARCHAR" property="technologyId" />
+    <result column="technology_name" jdbcType="VARCHAR" property="technologyName" />
     <result column="requirement" jdbcType="VARCHAR" property="requirement" />
     <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
     <result column="revise_time" jdbcType="TIMESTAMP" property="reviseTime" />
@@ -211,4 +212,21 @@
       revise_time = #{reviseTime,jdbcType=TIMESTAMP}
     where technology_requirement_id = #{technologyRequirementId,jdbcType=VARCHAR}
   </update>
+
+  <select id="queyTechnologyRequirement" resultMap="BaseResultMap">
+    select
+     technology_requirement_id, technology_name , requirement, add_time, revise_time
+     from technology_requirement
+     left join technology on technology_requirement.technology_id = technology.technology_id
+      limit #{number} offset #{offset}
+  </select>
+  <select id="queryTotalTechnologyRequirement" resultType="_int">
+    select count(*) from technology_requirement
+  </select>
+  <select id="queryTechnologyRequirementAll" resultMap="BaseResultMap">
+    select
+     technology_requirement_id,technology_name , technology_requirement.technology_id, requirement, add_time, revise_time
+     from technology_requirement
+     left join technology on technology_requirement.technology_id = technology.technology_id
+  </select>
 </mapper>
