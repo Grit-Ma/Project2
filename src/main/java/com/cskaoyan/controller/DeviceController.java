@@ -1,12 +1,11 @@
 package com.cskaoyan.controller;
 
-import com.cskaoyan.bean.Device;
-import com.cskaoyan.bean.DevicePlus;
-import com.cskaoyan.bean.Device_type;
-import com.cskaoyan.bean.Employee;
+import com.cskaoyan.bean.*;
 import com.cskaoyan.service.DeviceKeeperService;
 import com.cskaoyan.service.DeviceService;
 import com.cskaoyan.service.DeviceTypeService;
+import com.cskaoyan.vo.PageVo;
+import com.cskaoyan.vo.ResponseVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -36,11 +35,6 @@ public class DeviceController {
     @Autowired
     DeviceKeeperService deviceKeeperService;
 
-    @RequestMapping("/")
-    public String gotoHome() {
-        return "/WEB-INF/jsp/home.jsp";
-    }
-
     @RequestMapping("device/deviceList")
     public String gotoList() {
         return "/WEB-INF/jsp/deviceList.jsp";
@@ -48,7 +42,7 @@ public class DeviceController {
 
     @ResponseBody
     @RequestMapping("deviceList/list")
-    public List<DevicePlus> selectAllDevice() {
+    public PageVo selectAllDevice(int page, int rows) {
         List<Device> devices = deviceService.selectAllDevice();
         List<DevicePlus> devicePluses = new ArrayList<>();
         for (int i = 0; i < devices.size() ; i++) {
@@ -69,7 +63,8 @@ public class DeviceController {
             dp.setDeviceTypeName(deviceTypeService.selectTypeById(d.getDeviceTypeId()).getDeviceTypeName());
             dp.setDeviceKeeper(deviceKeeperService.selectEmpById(d.getDeviceKeeperId()).getEmpName());
         }
-        return devicePluses;
+        PageVo pageVo = deviceService.getPage(page, rows, devicePluses);
+        return pageVo;
     }
 
     @RequestMapping("device/deviceType")
@@ -92,8 +87,82 @@ public class DeviceController {
 
     @ResponseBody
     @RequestMapping("employee/get/{EmpId}")
-    public Employee searchEmpInfo(@PathVariable("EmpId") String EmpId)
+    public DeviceKeeper searchEmpInfo(@PathVariable("EmpId") String EmpId)
     {
-        return deviceKeeperService.selectEmpById(EmpId);
+            Employee e = deviceKeeperService.selectEmpById(EmpId);
+            DeviceKeeper dk = new DeviceKeeper();
+            dk.setEmpId(e.getEmpId());
+            dk.setEmpName(e.getEmpName());
+            dk.setSex(e.getSex());
+            dk.setBirthday(e.getBirthday());
+            dk.setDegree(e.getDegree());
+            dk.setDepartmentId(e.getDepartmentId());
+            dk.setGraduateSchool(e.getGraduateSchool());
+            dk.setEducation(e.getEducation());
+            dk.setIdCode(e.getIdCode());
+            dk.setJoinDate(e.getJoinDate());
+            dk.setEducationForm(e.getEducationForm());
+            dk.setStatus(e.getStatus());
+            dk.setEducationForm(e.getEducationForm());
+            dk.setDepartment(deviceService.selectDepartmentById(e.getDepartmentId()));
+        return  dk;
     }
+
+    @ResponseBody
+    @RequestMapping("department/get_data")
+    public List<Department> selectAllDepartment() {
+        return deviceService.selectAllDepartment();
+    }
+
+    @ResponseBody
+    @RequestMapping("deviceList/add_judge")
+    public String gotoAddJudge() {
+        return null;
+    }
+
+    @RequestMapping("deviceList/add")
+    public String gotoAdd() {
+        return "/WEB-INF/jsp/deviceList_add.jsp";
+    }
+
+    @ResponseBody
+    @RequestMapping("deviceType/get_data")
+    public List<Device_type> selectAllDeviceType() {
+        return deviceTypeService.selectAllType();
+    }
+
+    @ResponseBody
+    @RequestMapping("employee/get_data")
+    public List<DeviceKeeper> selectAllDecvieKeeper() {
+        List<Employee> employees = deviceKeeperService.selectAllEmp();
+        List<DeviceKeeper> deviceKeepers = new ArrayList<>();
+        for (int i = 0; i < employees.size() ; i++) {
+            Employee e = employees.get(i);
+            deviceKeepers.add(new DeviceKeeper());
+            DeviceKeeper dk = deviceKeepers.get(i);
+            dk.setEmpId(e.getEmpId());
+            dk.setEmpName(e.getEmpName());
+            dk.setSex(e.getSex());
+            dk.setBirthday(e.getBirthday());
+            dk.setDegree(e.getDegree());
+            dk.setDepartmentId(e.getDepartmentId());
+            dk.setGraduateSchool(e.getGraduateSchool());
+            dk.setEducation(e.getEducation());
+            dk.setIdCode(e.getIdCode());
+            dk.setJoinDate(e.getJoinDate());
+            dk.setEducationForm(e.getEducationForm());
+            dk.setStatus(e.getStatus());
+            dk.setEducationForm(e.getEducationForm());
+            dk.setDepartment(deviceService.selectDepartmentById(e.getDepartmentId()));
+        }
+        return deviceKeepers;
+    }
+
+    @ResponseBody
+    @RequestMapping("deviceList/insert")
+    public ResponseVo insertDevice(DevicePlus devicePlus) {
+        ResponseVo responseVo = deviceService.insertDevice(devicePlus);
+        return responseVo;
+    }
+
 }
