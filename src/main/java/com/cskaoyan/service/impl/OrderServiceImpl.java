@@ -1,9 +1,8 @@
 package com.cskaoyan.service.impl;
 
-import com.cskaoyan.bean.C_order;
-import com.cskaoyan.bean.C_orderExample;
-import com.cskaoyan.bean.CustomExample;
-import com.cskaoyan.mapper.C_orderMapper;
+import com.cskaoyan.bean.Order;
+import com.cskaoyan.bean.OrderExample;
+import com.cskaoyan.mapper.OrderMapper;
 import com.cskaoyan.service.OrderService;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,66 +13,66 @@ import java.util.List;
 @Service
 public class OrderServiceImpl implements OrderService {
     @Autowired
-    C_orderMapper cOrderMapper;
+    OrderMapper OrderMapper;
 
     @Override
-    public List<C_order> orderPage(int page, int rows) {
-        C_orderExample cOrderExample = new C_orderExample();
-        C_orderExample.Criteria criteria = cOrderExample.createCriteria();
+    public List<Order> orderPage(int page, int rows) {
+        OrderExample OrderExample = new OrderExample();
+        OrderExample.Criteria criteria = OrderExample.createCriteria();
         criteria.andOrderIdIsNotNull();
         PageHelper.startPage(page, rows);
-        List<C_order> cOrders = cOrderMapper.selectByExample(cOrderExample);
-        return cOrders;
+        List<Order> orderList = OrderMapper.selectByExample(OrderExample);
+        return orderList;
     }
 
     @Override
-    public int orderAdd(C_order order) {
-        int insert = cOrderMapper.insert(order);
+    public int orderAdd(Order order) {
+        int insert = OrderMapper.insert(order);
         return insert  != 0 ? 1 : 0;
     }
 
     @Override
-    public int orderUpdate(C_order order) {
-        int update = cOrderMapper.updateByPrimaryKey(order);
+    public int orderUpdate(Order order) {
+        int update = OrderMapper.updateByPrimaryKey(order);
         return update  != 0 ? 1 : 0;
     }
 
     @Override
     public int orderDelete(List<String> ids) {
-        C_orderExample cOrderExample = new C_orderExample();
-        C_orderExample.Criteria criteria = cOrderExample.createCriteria();
-        criteria.andCustomIdIn(ids);
-        int delete = cOrderMapper.deleteByExample(cOrderExample);
+        OrderExample orderExample = new OrderExample();
+        OrderExample.Criteria criteria = orderExample.createCriteria();
+        criteria.andOrderIdIn(ids);
+        int delete = OrderMapper.deleteByExample(orderExample);
         return delete  != 0 ? 1 : 0;
     }
 
     @Override
-    public List<C_order> searchByOrderId(String id, int page, int rows) {
-        C_orderExample cOrderExample = new C_orderExample();
-        C_orderExample.Criteria criteria = cOrderExample.createCriteria();
+    public List<Order> searchByOrderId(String id, int page, int rows) {
+        OrderExample orderExample = new OrderExample();
+        OrderExample.Criteria criteria = orderExample.createCriteria();
         criteria.andOrderIdLike("%" + id + "%");
-        List<C_order> cOrders = cOrderMapper.selectByExample(cOrderExample);
-        return cOrders;
+        List<Order> orderList = OrderMapper.selectByExample(orderExample);
+        return orderList;
     }
 
     @Override
-    public List<C_order> searchByOrderCustom(String custom, int page, int rows) {
+    public List<Order> searchByOrderCustom(String custom, int page, int rows) {
         // c_order left join custom
         return null;
     }
 
     @Override
-    public List<C_order> searchByOrderProduct(String product, int page, int rows) {
+    public List<Order> searchByOrderProduct(String product, int page, int rows) {
         // c_order  left join product
         return null;
     }
 
     @Override
-    public List<C_order> orderGetData() {
-        C_orderExample cOrderExample = new C_orderExample();
-        C_orderExample.Criteria criteria = cOrderExample.createCriteria();
+    public List<Order> orderGetData() {
+        OrderExample orderExample = new OrderExample();
+        OrderExample.Criteria criteria = orderExample.createCriteria();
         criteria.andOrderIdIsNotNull();
-        List<C_order> cOrders = cOrderMapper.selectByExample(cOrderExample);
-        return cOrders;
+        List<Order> orderList = OrderMapper.selectByExample(orderExample);
+        return orderList;
     }
 }

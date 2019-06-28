@@ -105,8 +105,15 @@ public class ProductController {
 
     @RequestMapping("product/get_data")
     @ResponseBody
-    public List<Product> productGet() {
+    public List<Product> productGetData() {
         List<Product> productList = productService.productGetData();
         return productList;
+    }
+
+    @RequestMapping("product/get/{id}")
+    @ResponseBody
+    public Product productGet(@PathVariable("id") String id) {
+        Product product = productService.productGet(id);
+        return product;
     }
 }

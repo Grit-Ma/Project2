@@ -99,8 +99,15 @@ public class CustomController {
 
     @RequestMapping("custom/get_data")
     @ResponseBody
-    public  List<Custom> customGet() {
+    public  List<Custom> customGetData() {
         List<Custom> customList = customService.customGetData();
         return customList;
+    }
+
+    @RequestMapping("custom/get/{id}")
+    @ResponseBody
+    public Custom productGet(@PathVariable("id") String id) {
+        Custom custom = customService.customGet(id);
+        return custom;
     }
 }

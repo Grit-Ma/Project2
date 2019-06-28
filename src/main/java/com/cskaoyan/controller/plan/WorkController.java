@@ -18,14 +18,28 @@ public class WorkController {
     WorkService workService;
 
     @RequestMapping("work/find{id}")
-    public String productManager(@PathVariable("id") String id) {
+    public String workManager(@PathVariable("id") String id) {
         return "/WEB-INF/jsp/work_list.jsp";
     }
 
     @RequestMapping("work/list")
     @ResponseBody
-    public List<Work> manufacturePage(int page, int rows) {
+    public List<Work> workPage(int page, int rows) {
         List<Work> workList = workService.workPage(page, rows);
         return workList;
+    }
+
+    @RequestMapping("work/get_data")
+    @ResponseBody
+    public List<Work> workGetData() {
+        List<Work> workList = workService.workGetData();
+        return workList;
+    }
+
+    @RequestMapping("work/get{id}")
+    @ResponseBody
+    public Work workGetData(@PathVariable("id") String id) {
+        Work work = workService.workGet(id);
+        return work;
     }
 }
