@@ -30,4 +30,13 @@ public class ManufactureServiceImpl implements ManufactureService {
         Manufacture manufacture = manufactureMapper.selectByPrimaryKey(id);
         return manufacture;
     }
+
+    @Override
+    public List<Manufacture> manufactureGetData() {
+        ManufactureExample manufactureExample = new ManufactureExample();
+        ManufactureExample.Criteria criteria = manufactureExample.createCriteria();
+        criteria.andManufactureSnIsNotNull();
+        List<Manufacture> manufactureList = manufactureMapper.selectByExample(manufactureExample);
+        return manufactureList;
+    }
 }

@@ -33,4 +33,11 @@ public class ManufactureController {
         Manufacture manufacture = manufactureService.manufactureGet(id);
         return manufacture;
     }
+
+    @RequestMapping("manufacture/get_data")
+    @ResponseBody
+    public List<Manufacture> manufactureGetData() {
+        List<Manufacture> manufactureList = manufactureService.manufactureGetData();
+        return manufactureList;
+    }
 }

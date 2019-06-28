@@ -8,4 +8,6 @@ public interface ManufactureService {
     List<Manufacture> manufacturePage(int page, int rows) ;
 
     Manufacture manufactureGet(String id);
+
+    List<Manufacture> manufactureGetData();
 }
