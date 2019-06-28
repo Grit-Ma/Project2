@@ -25,4 +25,5 @@ public interface TechnologyProcessServie {
 
     List<Process> queryAllProcess();
 
+    Process queryProcessById(String id);
 }

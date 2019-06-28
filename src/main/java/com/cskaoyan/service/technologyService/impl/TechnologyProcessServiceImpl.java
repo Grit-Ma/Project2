@@ -84,4 +84,13 @@ public class TechnologyProcessServiceImpl implements TechnologyProcessServie {
         List<Process> processes = processMapper.selectByExample(example);
         return processes;
     }
+
+    @Override
+    public Process queryProcessById(String id) {
+        ProcessExample example = new ProcessExample();
+        ProcessExample.Criteria criteria = example.createCriteria();
+        criteria.andProcessIdLike(id);
+        List<Process> processes = processMapper.selectByExample(example);
+        return processes.get(0);
+    }
 }
