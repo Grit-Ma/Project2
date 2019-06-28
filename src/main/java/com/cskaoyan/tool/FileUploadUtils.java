@@ -60,7 +60,9 @@ public class FileUploadUtils {
         for (char c : chars) {
             uploadPath.append( c + "/");
         }
-        fileName = uuid.toString() + suffix;
+        if(!"file".equals(fieldName)) {
+            fileName = uuid.toString() + suffix;
+        }
         File uploadFile = new File(rootPath + uploadPath + fileName);
         if(!uploadFile.getParentFile().exists()){
             uploadFile.getParentFile().mkdirs();
