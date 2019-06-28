@@ -11,9 +11,9 @@ public class Employee {
 
     private String idCode;
 
-    private Date birthday;
+    private String birthday;
 
-    private Date joinDate;
+    private String joinDate;
 
     private String status;
 
@@ -26,6 +26,8 @@ public class Employee {
     private String graduateSchool;
 
     private String educationForm;
+
+    private Department department;
 
     private String departmentId;
 
@@ -61,19 +63,19 @@ public class Employee {
         this.idCode = idCode == null ? null : idCode.trim();
     }
 
-    public Date getBirthday() {
+    public String getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Date birthday) {
+    public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
 
-    public Date getJoinDate() {
+    public String getJoinDate() {
         return joinDate;
     }
 
-    public void setJoinDate(Date joinDate) {
+    public void setJoinDate(String joinDate) {
         this.joinDate = joinDate;
     }
 
@@ -125,11 +127,39 @@ public class Employee {
         this.educationForm = educationForm == null ? null : educationForm.trim();
     }
 
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
+
     public String getDepartmentId() {
         return departmentId;
     }
 
     public void setDepartmentId(String departmentId) {
-        this.departmentId = departmentId == null ? null : departmentId.trim();
+        this.departmentId = departmentId;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "empId='" + empId + '\'' +
+                ", empName='" + empName + '\'' +
+                ", sex='" + sex + '\'' +
+                ", idCode='" + idCode + '\'' +
+                ", birthday=" + birthday +
+                ", joinDate=" + joinDate +
+                ", status='" + status + '\'' +
+                ", education='" + education + '\'' +
+                ", degree='" + degree + '\'' +
+                ", major='" + major + '\'' +
+                ", graduateSchool='" + graduateSchool + '\'' +
+                ", educationForm='" + educationForm + '\'' +
+                ", department=" + department +
+                ", departmentId='" + departmentId + '\'' +
+                '}';
     }
 }

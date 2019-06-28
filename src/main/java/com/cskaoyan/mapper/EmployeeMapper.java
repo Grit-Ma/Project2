@@ -6,25 +6,17 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface EmployeeMapper {
-    long countByExample(EmployeeExample example);
 
-    int deleteByExample(EmployeeExample example);
+    List<Employee> selectAll();  //获取所有员工
 
-    int deleteByPrimaryKey(String empId);
+    int countNum();  //计算员工总数
 
-    int insert(Employee record);
+    void addEmployee(Employee employee);  //z增加一个员工
 
-    int insertSelective(Employee record);
+    void updateEmployee(Employee employee);  //编辑员工信息
 
-    List<Employee> selectByExample(EmployeeExample example);
+    void delete_batch(String[] ids);  //选择删除
 
     Employee selectByPrimaryKey(String empId);
 
-    int updateByExampleSelective(@Param("record") Employee record, @Param("example") EmployeeExample example);
-
-    int updateByExample(@Param("record") Employee record, @Param("example") EmployeeExample example);
-
-    int updateByPrimaryKeySelective(Employee record);
-
-    int updateByPrimaryKey(Employee record);
 }
