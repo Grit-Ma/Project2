@@ -36,7 +36,7 @@ public class WorkController {
         return workList;
     }
 
-    @RequestMapping("work/get{id}")
+    @RequestMapping("work/get/{id}")
     @ResponseBody
     public Work workGetData(@PathVariable("id") String id) {
         Work work = workService.workGet(id);

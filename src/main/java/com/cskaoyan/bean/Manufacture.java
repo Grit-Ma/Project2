@@ -9,6 +9,10 @@ public class Manufacture {
 
     private String technologyId;
 
+    private C_order cOrder;
+
+    private Technology technology;
+
     private Integer launchQuantity;
 
     private Date beginDate;
@@ -37,6 +41,22 @@ public class Manufacture {
 
     public void setTechnologyId(String technologyId) {
         this.technologyId = technologyId == null ? null : technologyId.trim();
+    }
+
+    public C_order getcOrder() {
+        return cOrder;
+    }
+
+    public void setcOrder(C_order cOrder) {
+        this.cOrder = cOrder;
+    }
+
+    public Technology getTechnology() {
+        return technology;
+    }
+
+    public void setTechnology(Technology technology) {
+        this.technology = technology;
     }
 
     public Integer getLaunchQuantity() {

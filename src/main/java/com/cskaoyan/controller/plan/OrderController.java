@@ -107,4 +107,11 @@ public class OrderController {
         List<Order> orderList = orderService.orderGetData();
         return orderList;
     }
+
+    @RequestMapping("order/get/{id}")
+    @ResponseBody
+    public Order orderGet(@PathVariable("id") String id) {
+        Order order = orderService.orderGet(id);
+        return order;
+    }
 }

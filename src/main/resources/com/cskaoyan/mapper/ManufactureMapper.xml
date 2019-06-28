@@ -8,6 +8,31 @@
     <result column="launch_quantity" jdbcType="INTEGER" property="launchQuantity" />
     <result column="begin_date" jdbcType="TIMESTAMP" property="beginDate" />
     <result column="end_date" jdbcType="TIMESTAMP" property="endDate" />
+    <association property="cOrder" javaType="com.cskaoyan.bean.C_order">
+      <id column="order_id" jdbcType="VARCHAR" property="orderId" />
+      <result column="custom_id" jdbcType="VARCHAR" property="customId" />
+      <result column="product_id" jdbcType="VARCHAR" property="productId" />
+      <result column="order_date" jdbcType="TIMESTAMP" property="orderDate" />
+      <result column="request_date" jdbcType="TIMESTAMP" property="requestDate" />
+      <result column="note" jdbcType="VARCHAR" property="note" />
+      <result column="quantity" jdbcType="INTEGER" property="quantity" />
+      <result column="unit_price" jdbcType="DECIMAL" property="unitPrice" />
+      <result column="unit" jdbcType="VARCHAR" property="unit" />
+      <result column="image" jdbcType="VARCHAR" property="image" />
+      <result column="file" jdbcType="VARCHAR" property="file" />
+      <result column="status" jdbcType="INTEGER" property="status" />
+    </association>
+    <association property="technology" javaType="com.cskaoyan.bean.Technology">
+      <id column="technology_id" jdbcType="VARCHAR" property="technologyId" />
+      <result column="technology_name" jdbcType="VARCHAR" property="technologyName" />
+      <result column="price" jdbcType="DECIMAL" property="price" />
+      <result column="vital_process_period" jdbcType="VARCHAR" property="vitalProcessPeriod" />
+      <result column="standard_capacity" jdbcType="INTEGER" property="standardCapacity" />
+      <result column="overtime_standard_capacity" jdbcType="INTEGER" property="overtimeStandardCapacity" />
+      <result column="overtime_overfulfil_capacity" jdbcType="INTEGER" property="overtimeOverfulfilCapacity" />
+      <result column="double_capacity" jdbcType="INTEGER" property="doubleCapacity" />
+      <result column="overfulfil_capacity" jdbcType="INTEGER" property="overfulfilCapacity" />
+    </association>
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -68,7 +93,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    manufacture_sn, order_id, technology_id, launch_quantity, begin_date, end_date
+    manufacture_sn, order_id, manufacture.technology_id, launch_quantity, begin_date, end_date, technology_name
   </sql>
   <select id="selectByExample" parameterType="com.cskaoyan.bean.ManufactureExample" resultMap="BaseResultMap">
     select
@@ -77,7 +102,7 @@
     </if>
     'true' as QUERYID,
     <include refid="Base_Column_List" />
-    from manufacture
+    from manufacture left join technology on manufacture.technology_id = technology.technology_id
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
