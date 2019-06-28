@@ -261,15 +261,54 @@
     where technology_plan_id = #{technologyPlanId,jdbcType=VARCHAR}
   </update>
 
-  <select id="selectTecnologyPlanByPageAndRows" resultMap="BaseResultMap">
+  <select id="selectTechnologyPlanByPageAndRows" resultMap="BaseResultMap">
     select
-     technology_plan_id, technology_name, batch_amount, start_plan, end_plan, commit_plan,
+     technology_plan_id, technology_name,technology_plan.technology_id, batch_amount, start_plan, end_plan, commit_plan,
     technology_plan_start, technology_plan_end
     from technology_plan
     left join technology on technology_plan.technology_id = technology.technology_id
     limit #{number} offset #{offset}
   </select>
-  <select id="queryTotalTechonlogyPlan" resultType="_int">
+  <select id="queryTotalTechnologyPlan" resultType="_int">
     select count(*) from technology_plan
+  </select>
+
+  <delete id="deleteBatch">
+    delete from technology_plan where technology_plan_id in
+    <foreach collection="ids" item="id" separator="," open="(" close=")">
+      #{id}
+    </foreach>
+  </delete>
+
+  <select id="searchByTechnologyPlanIdOrName" resultMap="BaseResultMap">
+    select
+    technology_plan_id, technology_name,technology_plan.technology_id, batch_amount, start_plan, end_plan, commit_plan,
+    technology_plan_start, technology_plan_end
+    from technology_plan
+    left join technology on technology_plan.technology_id = technology.technology_id
+    <where>
+      <if test="flag == 'planId'">
+        technology_plan_id like #{search}
+      </if>
+      <if test="flag == 'planName'">
+        technology.technology_name like #{search}
+      </if>
+    </where>
+    limit #{number} offset #{offset}
+  </select>
+
+  <select id="searchByTechnologyPlanTotal" resultType="_int">
+    select
+    count(*)
+    from technology_plan
+    left join technology on technology_plan.technology_id = technology.technology_id
+    <where>
+      <if test="flag == 'planId'">
+        technology_plan_id like #{search}
+      </if>
+      <if test="flag == 'planName'">
+        technology_name like #{search}
+      </if>
+    </where>
   </select>
 </mapper>

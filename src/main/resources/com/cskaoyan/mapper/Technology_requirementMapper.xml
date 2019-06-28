@@ -215,7 +215,7 @@
 
   <select id="queyTechnologyRequirement" resultMap="BaseResultMap">
     select
-     technology_requirement_id, technology_name , requirement, add_time, revise_time
+     technology_requirement_id,technology_requirement.technology_id, technology_name , requirement, add_time, revise_time
      from technology_requirement
      left join technology on technology_requirement.technology_id = technology.technology_id
       limit #{number} offset #{offset}
@@ -225,8 +225,50 @@
   </select>
   <select id="queryTechnologyRequirementAll" resultMap="BaseResultMap">
     select
-     technology_requirement_id,technology_name , technology_requirement.technology_id, requirement, add_time, revise_time
+     technology_requirement_id,technology_name,technology_requirement.technology_id, requirement, add_time, revise_time
      from technology_requirement
      left join technology on technology_requirement.technology_id = technology.technology_id
   </select>
+
+  <delete id="deleteBatch">
+    delete from technology_requirement where technology_requirement_id in
+    <foreach collection="ids" item="id" separator="," open="(" close=")">
+      #{id}
+    </foreach>
+  </delete>
+
+  <select id="searchByTechnologyRequirementIdOrName" resultMap="BaseResultMap">
+    select technology_requirement_id,technology_name,technology_requirement.technology_id, requirement, add_time, revise_time
+    from technology_requirement
+    left join technology on technology_requirement.technology_id = technology.technology_id
+    <where>
+      <if test="flag == 'technologyRequirementId'">
+        technology_requirement_id like #{search}
+      </if>
+      <if test="flag == 'technologyRequirementName'">
+        technology.technology_name like #{search}
+      </if>
+    </where>
+    limit #{number} offset #{offset}
+  </select>
+
+  <select id="searchByTechnologyRequirementTotal" resultType="_int">
+    select
+    count(*)
+    from technology_requirement
+    left join technology on technology_requirement.technology_id = technology.technology_id
+    <where>
+      <if test="flag == 'technologyRequirementId'">
+        technology_requirement_id like #{search}
+      </if>
+      <if test="flag == 'technologyRequirementName'">
+        technology_name like #{search}
+      </if>
+    </where>
+  </select>
+
+  <update id="updateRequirementById">
+    update technology_requirement set requirement = #{requirement} where technology_requirement_id = #{technologyRequirementId}
+  </update>
+
 </mapper>

@@ -20,4 +20,6 @@ public interface TechnologyService {
     List<Technology> searchByTechnologyIdOrName(String searchValue, int page, int rows, String flag);
 
     int searchByTechnologyIdOrNameTotal(String searchValue, String flag);
+
+    Technology queryTechnologyById(String technologyId);
 }

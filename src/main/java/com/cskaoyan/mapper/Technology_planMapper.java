@@ -29,8 +29,13 @@ public interface Technology_planMapper {
 
     int updateByPrimaryKey(Technology_plan record);
 
-    List<Technology_plan> selectTecnologyPlanByPageAndRows(@Param("number") int number, @Param("offset") int offset);
+    List<Technology_plan> selectTechnologyPlanByPageAndRows(@Param("number") int number, @Param("offset") int offset);
 
-    int queryTotalTechonlogyPlan();
+    int queryTotalTechnologyPlan();
 
+    int deleteBatch(@Param("ids") String[] ids);
+
+    List<Technology_plan> searchByTechnologyPlanIdOrName(@Param("search") String search, @Param("number") int number, @Param("offset") int offset, @Param("flag") String flag);
+
+    int searchByTechnologyPlanTotal(@Param("search") String search, @Param("flag") String flag);
 }
