@@ -19,4 +19,6 @@ public interface OrderService {
     List<C_order> searchByOrderCustom(String custom, int page, int rows);
 
     List<C_order> searchByOrderProduct(String product, int page, int rows);
+
+    List<C_order> orderGetData();
 }

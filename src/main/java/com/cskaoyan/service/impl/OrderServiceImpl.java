@@ -5,6 +5,7 @@ import com.cskaoyan.bean.C_orderExample;
 import com.cskaoyan.bean.CustomExample;
 import com.cskaoyan.mapper.C_orderMapper;
 import com.cskaoyan.service.OrderService;
+import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +20,8 @@ public class OrderServiceImpl implements OrderService {
     public List<C_order> orderPage(int page, int rows) {
         C_orderExample cOrderExample = new C_orderExample();
         C_orderExample.Criteria criteria = cOrderExample.createCriteria();
-        criteria.andCustomIdIsNotNull();
+        criteria.andOrderIdIsNotNull();
+        PageHelper.startPage(page, rows);
         List<C_order> cOrders = cOrderMapper.selectByExample(cOrderExample);
         return cOrders;
     }
@@ -64,5 +66,14 @@ public class OrderServiceImpl implements OrderService {
     public List<C_order> searchByOrderProduct(String product, int page, int rows) {
         // c_order  left join product
         return null;
+    }
+
+    @Override
+    public List<C_order> orderGetData() {
+        C_orderExample cOrderExample = new C_orderExample();
+        C_orderExample.Criteria criteria = cOrderExample.createCriteria();
+        criteria.andOrderIdIsNotNull();
+        List<C_order> cOrders = cOrderMapper.selectByExample(cOrderExample);
+        return cOrders;
     }
 }
