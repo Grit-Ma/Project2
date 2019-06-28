@@ -33,14 +33,15 @@ public class ManufactureServiceImpl implements ManufactureService {
     }
 
     @Override
-<<<<<<< HEAD
     public List<Manufacture> manufactureGetData() {
         ManufactureExample manufactureExample = new ManufactureExample();
         ManufactureExample.Criteria criteria = manufactureExample.createCriteria();
         criteria.andManufactureSnIsNotNull();
         List<Manufacture> manufactureList = manufactureMapper.selectByExample(manufactureExample);
         return manufactureList;
-=======
+    }
+
+    @Override
     public ResponseVo updateManufacture(Manufacture manufacture) {
         ResponseVo responseVo = new ResponseVo();
         try{
@@ -83,6 +84,5 @@ public class ManufactureServiceImpl implements ManufactureService {
             responseVo.setStatus(500);
         }
         return responseVo;
->>>>>>> 3de0c9461739f158f94aee34fa3eeae93b9f314b
     }
 }

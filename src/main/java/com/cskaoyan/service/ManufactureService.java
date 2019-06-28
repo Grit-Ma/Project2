@@ -10,13 +10,11 @@ public interface ManufactureService {
 
     Manufacture manufactureGet(String id);
 
-<<<<<<< HEAD
     List<Manufacture> manufactureGetData();
-=======
+
     ResponseVo updateManufacture(Manufacture manufacture);
 
     ResponseVo insertManufacture(Manufacture manufacture);
 
     ResponseVo batchDeleteManufactureByIds(List<String> ids);
->>>>>>> 3de0c9461739f158f94aee34fa3eeae93b9f314b
 }
