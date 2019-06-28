@@ -21,4 +21,6 @@ public interface OrderService {
     List<Order> searchByOrderProduct(String product, int page, int rows);
 
     List<Order> orderGetData();
+
+    Order orderGet(String id);
 }

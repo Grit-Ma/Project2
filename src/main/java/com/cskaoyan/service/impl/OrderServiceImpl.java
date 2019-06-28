@@ -13,7 +13,7 @@ import java.util.List;
 @Service
 public class OrderServiceImpl implements OrderService {
     @Autowired
-    OrderMapper OrderMapper;
+    OrderMapper orderMapper;
 
     @Override
     public List<Order> orderPage(int page, int rows) {
@@ -21,19 +21,19 @@ public class OrderServiceImpl implements OrderService {
         OrderExample.Criteria criteria = OrderExample.createCriteria();
         criteria.andOrderIdIsNotNull();
         PageHelper.startPage(page, rows);
-        List<Order> orderList = OrderMapper.selectByExample(OrderExample);
+        List<Order> orderList = orderMapper.selectByExample(OrderExample);
         return orderList;
     }
 
     @Override
     public int orderAdd(Order order) {
-        int insert = OrderMapper.insert(order);
+        int insert = orderMapper.insert(order);
         return insert  != 0 ? 1 : 0;
     }
 
     @Override
     public int orderUpdate(Order order) {
-        int update = OrderMapper.updateByPrimaryKey(order);
+        int update = orderMapper.updateByPrimaryKey(order);
         return update  != 0 ? 1 : 0;
     }
 
@@ -42,7 +42,7 @@ public class OrderServiceImpl implements OrderService {
         OrderExample orderExample = new OrderExample();
         OrderExample.Criteria criteria = orderExample.createCriteria();
         criteria.andOrderIdIn(ids);
-        int delete = OrderMapper.deleteByExample(orderExample);
+        int delete = orderMapper.deleteByExample(orderExample);
         return delete  != 0 ? 1 : 0;
     }
 
@@ -51,7 +51,7 @@ public class OrderServiceImpl implements OrderService {
         OrderExample orderExample = new OrderExample();
         OrderExample.Criteria criteria = orderExample.createCriteria();
         criteria.andOrderIdLike("%" + id + "%");
-        List<Order> orderList = OrderMapper.selectByExample(orderExample);
+        List<Order> orderList = orderMapper.selectByExample(orderExample);
         return orderList;
     }
 
@@ -72,7 +72,13 @@ public class OrderServiceImpl implements OrderService {
         OrderExample orderExample = new OrderExample();
         OrderExample.Criteria criteria = orderExample.createCriteria();
         criteria.andOrderIdIsNotNull();
-        List<Order> orderList = OrderMapper.selectByExample(orderExample);
+        List<Order> orderList = orderMapper.selectByExample(orderExample);
         return orderList;
+    }
+
+    @Override
+    public Order orderGet(String id) {
+        Order order = orderMapper.selectByPrimaryKey(id);
+        return order;
     }
 }

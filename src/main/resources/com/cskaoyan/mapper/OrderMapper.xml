@@ -95,8 +95,12 @@
       </foreach>
     </where>
   </sql>
+  <sql id="Base_Column_List_e">
+    order_id, c_order.custom_id, c_order.product_id, order_date, request_date, c_order.note, quantity, unit_price, custom.custom_name, product.product_name,
+    unit, c_order.image, file, c_order.status
+  </sql>
   <sql id="Base_Column_List">
-    order_id, custom_id, product_id, order_date, request_date, note, quantity, unit_price, 
+    order_id, custom_id, product_id, order_date, request_date, note, quantity, unit_price,
     unit, image, file, status
   </sql>
   <select id="selectByExample" parameterType="com.cskaoyan.bean.OrderExample" resultMap="BaseResultMap">
@@ -105,8 +109,8 @@
       distinct
     </if>
     'true' as QUERYID,
-    <include refid="Base_Column_List" />
-    from c_order
+    <include refid="Base_Column_List_e" />
+    from c_order join custom join product on c_order.custom_id = custom.custom_id and c_order.product_id = product.product_id
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>

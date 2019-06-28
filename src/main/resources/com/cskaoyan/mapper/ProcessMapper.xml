@@ -203,4 +203,37 @@
   <select id="queryTotalProcess" resultType="_int">
     select count(*) from process
   </select>
+
+  <delete id="deleteBatch">
+    delete from process where process_id in
+    <foreach collection="ids" item="id" separator="," open="(" close=")">
+      #{id}
+    </foreach>
+  </delete>
+
+  <select id="searchByProcessIdOrName" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" /> from process
+    <where>
+      <if test="flag == 'processId'">
+        process_id like #{search}
+      </if>
+      <if test="flag == 'planId'">
+        technology_plan_id like #{search}
+      </if>
+    </where>
+    limit #{number} offset #{offset}
+  </select>
+
+  <select id="searchByProcessTotal" resultType="_int">
+    select count(*) from process
+    <where>
+      <if test="flag == 'processId'">
+        process_id like #{search}
+      </if>
+      <if test="flag == 'planId'">
+        technology_plan_id like #{search}
+      </if>
+    </where>
+  </select>
+
 </mapper>
