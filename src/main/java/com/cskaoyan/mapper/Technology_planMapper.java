@@ -2,8 +2,9 @@ package com.cskaoyan.mapper;
 
 import com.cskaoyan.bean.Technology_plan;
 import com.cskaoyan.bean.Technology_planExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface Technology_planMapper {
     long countByExample(Technology_planExample example);
@@ -27,4 +28,9 @@ public interface Technology_planMapper {
     int updateByPrimaryKeySelective(Technology_plan record);
 
     int updateByPrimaryKey(Technology_plan record);
+
+    List<Technology_plan> selectTecnologyPlanByPageAndRows(@Param("number") int number, @Param("offset") int offset);
+
+    int queryTotalTechonlogyPlan();
+
 }

@@ -194,4 +194,13 @@
       quota = #{quota,jdbcType=INTEGER}
     where process_id = #{processId,jdbcType=VARCHAR}
   </update>
+
+  <select id="queyProcessByPageAndRows" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" /> from process
+    limit #{number} offset #{offset}
+  </select>
+
+  <select id="queryTotalProcess" resultType="_int">
+    select count(*) from process
+  </select>
 </mapper>

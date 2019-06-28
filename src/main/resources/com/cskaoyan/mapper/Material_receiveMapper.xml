@@ -241,4 +241,29 @@
       note = #{note,jdbcType=VARCHAR}
     where receive_id = #{receiveId,jdbcType=VARCHAR}
   </update>
+
+  <resultMap id="BaseResultMap1" type="com.cskaoyan.bean.Material_receive">
+    <id column="receive_id" jdbcType="VARCHAR" property="receiveId" />
+    <result column="material_id2" jdbcType="VARCHAR" property="materialId" />
+    <result column="amount" jdbcType="INTEGER" property="amount" />
+    <result column="receive_date" jdbcType="TIMESTAMP" property="receiveDate" />
+    <result column="sender" jdbcType="VARCHAR" property="sender" />
+    <result column="receiver" jdbcType="VARCHAR" property="receiver" />
+    <result column="note2" jdbcType="VARCHAR" property="note" />
+
+    <association property="material" column="material">
+      <id column="material_id1" jdbcType="VARCHAR" property="materialId" />
+      <result column="material_type" jdbcType="VARCHAR" property="materialType" />
+      <result column="status" jdbcType="VARCHAR" property="status" />
+      <result column="remaining" jdbcType="INTEGER" property="remaining" />
+      <result column="note1" jdbcType="VARCHAR" property="note" />
+    </association>
+
+  </resultMap>
+  <select id="selectForMaterialAndMaterialReceive" resultMap="BaseResultMap1">
+    select
+        m2.receive_id, m2.material_id as material_id2, m2.amount, m2.receive_date, m2.sender, m2.receiver, m2.note as note2,
+        m1.material_id as material_id1, m1.material_type, m1.status, m1.remaining, m1.note as note1
+    from material m1, material_receive m2 where m1.material_id = m2.material_id
+  </select>
 </mapper>

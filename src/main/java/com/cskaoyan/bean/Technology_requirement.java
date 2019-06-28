@@ -7,6 +7,8 @@ public class Technology_requirement {
 
     private String technologyId;
 
+    private String technologyName;
+
     private String requirement;
 
     private Date addTime;
@@ -19,6 +21,14 @@ public class Technology_requirement {
 
     public void setTechnologyRequirementId(String technologyRequirementId) {
         this.technologyRequirementId = technologyRequirementId == null ? null : technologyRequirementId.trim();
+    }
+
+    public String getTechnologyName() {
+        return technologyName;
+    }
+
+    public void setTechnologyName(String technologyName) {
+        this.technologyName = technologyName;
     }
 
     public String getTechnologyId() {

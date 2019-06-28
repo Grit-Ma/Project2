@@ -39,9 +39,32 @@ public class CustomServiceImpl implements CustomService {
     }
 
     @Override
-    public int customDelete(String ids) {
-        int delete = customMapper.deleteByPrimaryKey(ids);
+    public int customDelete(List<String> ids) {
+        CustomExample customExample = new CustomExample();
+        CustomExample.Criteria criteria = customExample.createCriteria();
+        criteria.andCustomIdIn(ids);
+        int delete = customMapper.deleteByExample(customExample);
         return delete  != 0 ? 1 : 0;
+    }
+
+    @Override
+    public List<Custom> searchByCustomId(String id, int page, int rows) {
+        CustomExample customExample = new CustomExample();
+        CustomExample.Criteria criteria = customExample.createCriteria();
+        criteria.andCustomIdLike("%" + id + "%");
+        PageHelper.startPage(page, rows);
+        List<Custom> customList = customMapper.selectByExample(customExample);
+        return customList;
+    }
+
+    @Override
+    public List<Custom> searchByCustomName(String name, int page, int rows) {
+        CustomExample customExample = new CustomExample();
+        CustomExample.Criteria criteria = customExample.createCriteria();
+        criteria.andCustomNameLike("%" + name + "%");
+        PageHelper.startPage(page, rows);
+        List<Custom> customList = customMapper.selectByExample(customExample);
+        return customList;
     }
 
     @Override

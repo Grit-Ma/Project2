@@ -1,0 +1,6 @@
+.idea/
+*.iml
+mydb.properties
+target/
+test/
+.gitignore

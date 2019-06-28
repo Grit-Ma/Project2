@@ -2,8 +2,9 @@ package com.cskaoyan.mapper;
 
 import com.cskaoyan.bean.Technology_requirement;
 import com.cskaoyan.bean.Technology_requirementExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface Technology_requirementMapper {
     long countByExample(Technology_requirementExample example);
@@ -27,4 +28,10 @@ public interface Technology_requirementMapper {
     int updateByPrimaryKeySelective(Technology_requirement record);
 
     int updateByPrimaryKey(Technology_requirement record);
+
+    List<Technology_requirement> queyTechnologyRequirement(@Param("number") int number, @Param("offset") int offset);
+
+    int queryTotalTechnologyRequirement();
+
+    List<Technology_requirement> queryTechnologyRequirementAll();
 }

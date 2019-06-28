@@ -12,5 +12,11 @@ public interface OrderService {
 
     int orderUpdate(C_order  order);
 
-    int orderDelete(String ids);
+    int orderDelete(List<String> ids);
+
+    List<C_order> searchByOrderId(String id, int page, int rows);
+
+    List<C_order> searchByOrderCustom(String custom, int page, int rows);
+
+    List<C_order> searchByOrderProduct(String product, int page, int rows);
 }

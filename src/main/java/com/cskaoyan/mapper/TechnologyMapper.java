@@ -29,6 +29,16 @@ public interface TechnologyMapper {
 
     int updateByPrimaryKey(Technology record);
 
+    List<Technology> selectTecnologyByPageAndRows(@Param("number") int number, @Param("offset") int offset);
 
-    List<Technology> selectTecnologyByPageAndRows(@Param("number") int number,@Param("offset") int offset);
+    int queryTotalTechonlogyManage();
+
+    int insertTechnology(Technology technology);
+
+    int deleteBatch(@Param("ids") String[] ids);
+
+    List<Technology> searchByTechnologyIdOrName(
+            @Param("search") String search, @Param("number") int number, @Param("offset") int offset, @Param("flag") String flag);
+
+    int searchByTechnologyIdOrNameTotal(@Param("search") String search, @Param("flag") String flag);
 }
