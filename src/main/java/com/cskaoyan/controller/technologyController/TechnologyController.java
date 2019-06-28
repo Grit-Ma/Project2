@@ -145,20 +145,13 @@ public class TechnologyController {
     }
 
 
-
-    @RequestMapping("technology/get/{TechnologyId}")
+    //technology/get/02
+    @RequestMapping("technology/get/{id}")
     @ResponseBody
-    public Technology getTechnologyById(@PathVariable("TechnologyId") String TechnologyId){
-        System.out.println();
+    public Technology getTechnologyById(@PathVariable("id") String TechnologyId){
         Technology technology = technologyService.queryTechnologyById(TechnologyId);
         return technology;
     }
 
-    @RequestMapping("technology/get/{technologyId}")
-    @ResponseBody
-    public Technology getTechnologyPlanById(@PathVariable("technologyId") String technologyId){
-        Technology technology = technologyService.queryTechnologyPlanById(technologyId);
-        return technology;
-    }
 
 }

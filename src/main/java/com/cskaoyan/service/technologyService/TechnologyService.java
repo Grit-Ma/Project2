@@ -23,6 +23,5 @@ public interface TechnologyService {
 
     Technology queryTechnologyById(String technologyId);
 
-    Technology queryTechnologyPlanById(String technologyId);
 
 }

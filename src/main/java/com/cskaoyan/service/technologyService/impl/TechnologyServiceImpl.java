@@ -76,10 +76,6 @@ public class TechnologyServiceImpl implements TechnologyService {
         return technology;
     }
 
-    @Override
-    public Technology queryTechnologyPlanById(String technologyId) {
-        Technology technology = technologyMapper.selectByPrimaryKey(technologyId);
-        return technology;
-    }
+
 
 }
