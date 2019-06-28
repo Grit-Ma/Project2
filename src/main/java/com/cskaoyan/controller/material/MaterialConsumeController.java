@@ -1,5 +1,6 @@
 package com.cskaoyan.controller.material;
 
+import com.cskaoyan.bean.Work;
 import com.cskaoyan.bean.material.Material;
 import com.cskaoyan.bean.material.Material_consume;
 import com.cskaoyan.service.material.MaterialConsumeService;
@@ -35,20 +36,6 @@ public class MaterialConsumeController {
         PageVo pageVo = materialConsumeService.getPage(page, rows);
         return pageVo;
     }
-
-    /*@RequestMapping("work/get_data")
-    @ResponseBody
-    public List<Material> get_data(){
-        List<Material> material = .getMaterial();
-        return material;
-    }*/
-
-    /*@RequestMapping("material/get/{id}")
-    @ResponseBody
-    public Material material_get(@PathVariable("id") String id){
-        Material material = materialService.getAMaterialByMaterialId(id);
-        return material;
-    }*/
 
     @RequestMapping("materialConsume/edit")
     public String edit(){
