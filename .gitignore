@@ -1,12 +1,6 @@
 .idea/
-<<<<<<< HEAD
 *.iml
 mydb.properties
 target/
 test/
-=======
-target/
-test/
-*.iml
-mydb.properties
->>>>>>> 412e5e54bb2aa088d99565d3a6b866bf860ae3d4
+.gitignore
