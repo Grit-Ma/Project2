@@ -12,4 +12,18 @@ public interface TechnologyRequirementService {
     int insertTechnologyRequirement(Technology_requirement requirement);
 
     List<Technology_requirement> queyAllTechnologyRequirement();
+
+    int updateTechnologyRequirement(Technology_requirement technologyRequirement);
+
+    int deleteBatch(String[] ids);
+
+    List<Technology_requirement> searchByTechnologyRequirementId(String s, int page, int rows, String flag);
+
+    int searchByTechnologyRequirementIdTotal(String s, String flag);
+
+    List<Technology_requirement> searchByTechnologyIdOrName(String searchValue, int page, int rows, String flag);
+
+    int searchByTechnologyIdOrNameTotal(String searchValue, String flag);
+
+    int update_requirement(String technologyRequirementId, String requirement);
 }

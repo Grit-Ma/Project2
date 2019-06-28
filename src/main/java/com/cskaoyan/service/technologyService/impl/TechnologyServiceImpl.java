@@ -70,4 +70,16 @@ public class TechnologyServiceImpl implements TechnologyService {
         return total;
     }
 
+    @Override
+    public Technology queryTechnologyById(String technologyId) {
+        Technology technology = technologyMapper.selectByPrimaryKey(technologyId);
+        return technology;
+    }
+
+    @Override
+    public Technology queryTechnologyPlanById(String technologyId) {
+        Technology technology = technologyMapper.selectByPrimaryKey(technologyId);
+        return technology;
+    }
+
 }
