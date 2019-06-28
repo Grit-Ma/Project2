@@ -27,4 +27,6 @@ public interface Material_receiveMapper {
     int updateByPrimaryKeySelective(Material_receive record);
 
     int updateByPrimaryKey(Material_receive record);
+
+    List<Material_receive> selectForMaterialAndMaterialReceive();
 }

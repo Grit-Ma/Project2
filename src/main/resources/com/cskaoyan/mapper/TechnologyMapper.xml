@@ -106,13 +106,13 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.cskaoyan.bean.Technology">
-    insert into technology (technology_id, technology_name, price, 
-      vital_process_period, standard_capacity, overtime_standard_capacity, 
-      overtime_overfulfil_capacity, double_capacity, 
+    insert into technology (technology_id, technology_name, price,
+      vital_process_period, standard_capacity, overtime_standard_capacity,
+      overtime_overfulfil_capacity, double_capacity,
       overfulfil_capacity)
-    values (#{technologyId,jdbcType=VARCHAR}, #{technologyName,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, 
-      #{vitalProcessPeriod,jdbcType=VARCHAR}, #{standardCapacity,jdbcType=INTEGER}, #{overtimeStandardCapacity,jdbcType=INTEGER}, 
-      #{overtimeOverfulfilCapacity,jdbcType=INTEGER}, #{doubleCapacity,jdbcType=INTEGER}, 
+    values (#{technologyId,jdbcType=VARCHAR}, #{technologyName,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL},
+      #{vitalProcessPeriod,jdbcType=VARCHAR}, #{standardCapacity,jdbcType=INTEGER}, #{overtimeStandardCapacity,jdbcType=INTEGER},
+      #{overtimeOverfulfilCapacity,jdbcType=INTEGER}, #{doubleCapacity,jdbcType=INTEGER},
       #{overfulfilCapacity,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.cskaoyan.bean.Technology">
@@ -277,5 +277,47 @@
 
   <select id="selectTecnologyByPageAndRows" resultMap="BaseResultMap">
     select <include refid="Base_Column_List" /> from technology limit #{number} offset #{offset}
+  </select>
+  <select id="queryTotalTechonlogyManage" resultType="_int">
+    select count(*) from technology
+  </select>
+  <insert id="insertTechnology">
+    insert technology (<include refid="Base_Column_List" />) value (#{technologyId},#{technologyName},#{price},#{vitalProcessPeriod},#{standardCapacity},#{overtimeStandardCapacity},#{overtimeOverfulfilCapacity},#{doubleCapacity},#{overfulfilCapacity})
+  </insert>
+
+  <delete id="deleteBatch">
+    delete from technology where technology_id in
+    <foreach collection="ids" item="id" open="(" close=")" separator=",">
+      #{id}
+    </foreach>
+  </delete>
+
+  <select id="searchByTechnologyIdOrName" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from technology
+    <where>
+      <if test="flag == 'TechnologyId'">
+        technology_id like #{search}
+      </if>
+      <if test="flag == 'TechnologyName'">
+        technology_name like #{search}
+      </if>
+    </where>
+    limit #{number} offset #{offset}
+  </select>
+
+  <select id="searchByTechnologyIdOrNameTotal" resultType="_int">
+    select
+    count(*)
+    from technology
+    <where>
+      <if test="flag == 'TechnologyId'">
+        technology_id like #{search}
+      </if>
+      <if test="flag == 'TechnologyName'">
+        technology_name like #{search}
+      </if>
+    </where>
   </select>
 </mapper>

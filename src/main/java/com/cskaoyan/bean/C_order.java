@@ -1,5 +1,7 @@
 package com.cskaoyan.bean;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -10,8 +12,10 @@ public class C_order {
 
     private String productId;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date orderDate;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date requestDate;
 
     private String note;
