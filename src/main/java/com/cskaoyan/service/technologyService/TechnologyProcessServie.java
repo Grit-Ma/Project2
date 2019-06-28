@@ -22,4 +22,7 @@ public interface TechnologyProcessServie {
     List<Process> searchByProcessByPlanId(String searchValue, int page, int rows, String flag);
 
     int searchByProcessByPlanIdTotal(String searchValue, String flag);
+
+    List<Process> queryAllProcess();
+
 }

@@ -122,4 +122,12 @@ public class TechnologyProcessController {
         map.put("total",total);
         return map;
     }
+
+    @RequestMapping("process/get_data")
+    @ResponseBody
+    public List<Process> technologyPlanGetData(){
+        List<Process> list = processService.queryAllProcess();
+        return list;
+    }
+
 }

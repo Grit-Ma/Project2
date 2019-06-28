@@ -1,6 +1,7 @@
 package com.cskaoyan.service.technologyService.impl;
 
 import com.cskaoyan.bean.Process;
+import com.cskaoyan.bean.ProcessExample;
 import com.cskaoyan.mapper.ProcessMapper;
 import com.cskaoyan.service.technologyService.TechnologyProcessServie;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,5 +76,12 @@ public class TechnologyProcessServiceImpl implements TechnologyProcessServie {
         String search  = "%" + searchValue + "%";
         int total = processMapper.searchByProcessTotal(search,flag);
         return total;
+    }
+
+    @Override
+    public List<Process> queryAllProcess() {
+        ProcessExample example = new ProcessExample();
+        List<Process> processes = processMapper.selectByExample(example);
+        return processes;
     }
 }
