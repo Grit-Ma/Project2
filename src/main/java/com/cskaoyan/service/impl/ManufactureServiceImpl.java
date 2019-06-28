@@ -41,6 +41,7 @@ public class ManufactureServiceImpl implements ManufactureService {
         return manufactureList;
     }
 
+    @Override
     public ResponseVo updateManufacture(Manufacture manufacture) {
         ResponseVo responseVo = new ResponseVo();
         try{
