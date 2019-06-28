@@ -1,4 +1,4 @@
-package com.cskaoyan.bean;
+package com.cskaoyan.bean.quality;
 
 import java.util.ArrayList;
 import java.util.Date;

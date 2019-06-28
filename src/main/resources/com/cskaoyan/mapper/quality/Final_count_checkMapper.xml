@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.cskaoyan.mapper.Final_count_checkMapper">
-    <resultMap id="BaseResultMap" type="com.cskaoyan.bean.Final_count_check">
+<mapper namespace="com.cskaoyan.mapper.quality.Final_count_checkMapper">
+    <resultMap id="BaseResultMap" type="com.cskaoyan.bean.quality.Final_count_check">
         <id column="f_count_check_id" jdbcType="VARCHAR" property="fCountCheckId"/>
         <result column="order_id" jdbcType="VARCHAR" property="orderId"/>
         <result column="check_item" jdbcType="VARCHAR" property="checkItem"/>
@@ -114,7 +114,7 @@
   </select>
 
 
-    <select id="selectByExample" parameterType="com.cskaoyan.bean.Final_count_checkExample" resultMap="BaseResultMap">
+    <select id="selectByExample" parameterType="com.cskaoyan.bean.quality.Final_count_checkExample" resultMap="BaseResultMap">
         select
         <if test="distinct">
             distinct
@@ -139,13 +139,13 @@
     delete from final_count_check
     where f_count_check_id = #{fCountCheckId,jdbcType=VARCHAR}
   </delete>
-    <delete id="deleteByExample" parameterType="com.cskaoyan.bean.Final_count_checkExample">
+    <delete id="deleteByExample" parameterType="com.cskaoyan.bean.quality.Final_count_checkExample">
         delete from final_count_check
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </delete>
-    <insert id="insert" parameterType="com.cskaoyan.bean.Final_count_check">
+    <insert id="insert" parameterType="com.cskaoyan.bean.quality.Final_count_check">
     insert into final_count_check (f_count_check_id, order_id, check_item, 
       sample, check_number, unqualify, 
       qualify, cdate, measure_data, 
@@ -157,7 +157,7 @@
       #{empId,jdbcType=VARCHAR}, #{result,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}
       )
   </insert>
-    <insert id="insertSelective" parameterType="com.cskaoyan.bean.Final_count_check">
+    <insert id="insertSelective" parameterType="com.cskaoyan.bean.quality.Final_count_check">
         insert into final_count_check
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="fCountCheckId != null">
@@ -236,7 +236,7 @@
             </if>
         </trim>
     </insert>
-    <select id="countByExample" parameterType="com.cskaoyan.bean.Final_count_checkExample" resultType="java.lang.Long">
+    <select id="countByExample" parameterType="com.cskaoyan.bean.quality.Final_count_checkExample" resultType="java.lang.Long">
         select count(*) from final_count_check
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
@@ -304,7 +304,7 @@
             <include refid="Update_By_Example_Where_Clause"/>
         </if>
     </update>
-    <update id="updateByPrimaryKeySelective" parameterType="com.cskaoyan.bean.Final_count_check">
+    <update id="updateByPrimaryKeySelective" parameterType="com.cskaoyan.bean.quality.Final_count_check">
         update final_count_check
         <set>
             <if test="orderId != null">
@@ -343,7 +343,7 @@
         </set>
         where f_count_check_id = #{fCountCheckId,jdbcType=VARCHAR}
     </update>
-    <update id="updateByPrimaryKey" parameterType="com.cskaoyan.bean.Final_count_check">
+    <update id="updateByPrimaryKey" parameterType="com.cskaoyan.bean.quality.Final_count_check">
     update final_count_check
     set order_id = #{orderId,jdbcType=VARCHAR},
       check_item = #{checkItem,jdbcType=VARCHAR},

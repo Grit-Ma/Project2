@@ -1,8 +1,8 @@
 package com.cskaoyan.service.quality.impl;
 
-import com.cskaoyan.bean.Unqualify_apply;
-import com.cskaoyan.bean.Unqualify_applyExample;
-import com.cskaoyan.mapper.Unqualify_applyMapper;
+import com.cskaoyan.bean.quality.Unqualify_apply;
+import com.cskaoyan.bean.quality.Unqualify_applyExample;
+import com.cskaoyan.mapper.quality.Unqualify_applyMapper;
 import com.cskaoyan.service.quality.Unqualify_applyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

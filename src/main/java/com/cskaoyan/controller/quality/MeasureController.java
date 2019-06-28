@@ -1,9 +1,8 @@
 package com.cskaoyan.controller.quality;
 
-import com.cskaoyan.bean.Final_measuret_check;
-import com.cskaoyan.bean.Final_measuret_checkExample;
+import com.cskaoyan.bean.quality.Final_measuret_check;
+import com.cskaoyan.bean.quality.Final_measuret_checkExample;
 import com.cskaoyan.service.quality.Final_measuret_checkService;
-import com.cskaoyan.tool.PageTool;
 import com.cskaoyan.vo.PageVo;
 import com.cskaoyan.vo.ResponseVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -149,5 +148,19 @@ public class MeasureController {
         }
     }
 
+    //  修改备注信息
+    @RequestMapping("measure/update_note")
+    @ResponseBody
+    public ResponseVo update_note(@RequestParam("fMeasureCheckId") String pCountCheckId, @RequestParam("note") String note) {
+        Final_measuret_check final_measuret_check = final_measuret_checkService.selectByPrimaryKey(pCountCheckId);
+        final_measuret_check.setNote(note);
+        int i = final_measuret_checkService.updateByPrimaryKey(final_measuret_check);
+        ResponseVo responseVo = new ResponseVo();
+        if (i == 1) {
+            responseVo.setMsg("ok");
+            responseVo.setStatus(200);
+        }
+        return responseVo;
+    }
 
 }

@@ -1,7 +1,7 @@
 package com.cskaoyan.controller.quality;
 
-import com.cskaoyan.bean.Process_measure_check;
-import com.cskaoyan.bean.Process_measure_checkExample;
+import com.cskaoyan.bean.quality.Process_measure_check;
+import com.cskaoyan.bean.quality.Process_measure_checkExample;
 import com.cskaoyan.service.quality.Process_measure_checkService;
 import com.cskaoyan.vo.PageVo;
 import com.cskaoyan.vo.ResponseVo;
@@ -132,5 +132,19 @@ public class ProcessMeasureController {
 
     }
 
+    //  修改备注信息
+    @RequestMapping("p_measure_check/update_note")
+    @ResponseBody
+    public ResponseVo update_note(@RequestParam("pMeasureCheckId")String pCountCheckId,@RequestParam("note")String note){
+        Process_measure_check process_measure_check = processMeasureCheckService.selectByPrimaryKey(pCountCheckId);
+        process_measure_check.setNote(note);
+        int i = processMeasureCheckService.updateByPrimaryKey(process_measure_check);
+        ResponseVo responseVo = new ResponseVo();
+        if (i == 1) {
+            responseVo.setMsg("ok");
+            responseVo.setStatus(200);
+        }
+        return responseVo;
+    }
 
 }

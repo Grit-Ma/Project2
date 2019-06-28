@@ -1,7 +1,7 @@
-package com.cskaoyan.mapper;
+package com.cskaoyan.mapper.quality;
 
-import com.cskaoyan.bean.Process_measure_check;
-import com.cskaoyan.bean.Process_measure_checkExample;
+import com.cskaoyan.bean.quality.Process_measure_check;
+import com.cskaoyan.bean.quality.Process_measure_checkExample;
 import org.apache.ibatis.annotations.Param;
 import java.util.List;
 

@@ -1,7 +1,7 @@
-package com.cskaoyan.mapper;
+package com.cskaoyan.mapper.quality;
 
-import com.cskaoyan.bean.Final_measuret_check;
-import com.cskaoyan.bean.Final_measuret_checkExample;
+import com.cskaoyan.bean.quality.Final_measuret_check;
+import com.cskaoyan.bean.quality.Final_measuret_checkExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
