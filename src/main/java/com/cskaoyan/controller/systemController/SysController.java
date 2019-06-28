@@ -1,4 +1,4 @@
-package com.cskaoyan.controller;
+package com.cskaoyan.controller.systemController;
 
 import com.cskaoyan.bean.Sys_user;
 import com.cskaoyan.service.UserService;
@@ -61,6 +61,26 @@ public class SysController {
         return responseVo;
     }
 
+   /* @RequestMapping("user/search_user_by_userId")
+    @ResponseBody
+    public PageVo searchUserByUserId(String searchValue,int page, int rows){
+        PageVo pagevo = userService.searchUserByUserId(searchValue,page,rows);
+        return pagevo;
+    }
+
+    @RequestMapping("user/search_user_by_userName")
+    @ResponseBody
+    public PageVo searchUserByUserName(String searchValue,int page, int rows){
+        PageVo pagevo = userService.searchUserByUserName(searchValue,page,rows);
+        return pagevo;
+    }*/
+
+    //TODO 缺少数据库
+    @RequestMapping("user/search_user_by_roleName")
+    @ResponseBody
+    public PageVo searchUserByRoleName(String searchValue,int page, int rows){
+        return null;
+    }
 
     @RequestMapping("user/*_judge")
     @ResponseBody
