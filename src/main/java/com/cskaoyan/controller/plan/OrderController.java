@@ -100,4 +100,11 @@ public class OrderController {
         }
         return new ResponseVo(400, null, "bad request");
     }
+
+    @RequestMapping("order/get_data")
+    @ResponseBody
+    public List<C_order> orderGetData() {
+        List<C_order> orderList = orderService.orderGetData();
+        return orderList;
+    }
 }
