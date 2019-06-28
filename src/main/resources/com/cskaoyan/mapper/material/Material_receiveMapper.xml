@@ -242,6 +242,8 @@
     where receive_id = #{receiveId,jdbcType=VARCHAR}
   </update>
 
+  <!--自己写的部分分界线-->
+
   <resultMap id="BaseResultMap_new" type="com.cskaoyan.bean.material.Material_receive">
     <id column="receive_id" jdbcType="VARCHAR" property="receiveId" />
     <result column="material_id2" jdbcType="VARCHAR" property="materialId" />
@@ -262,28 +264,48 @@
   </resultMap>
   <sql id="Base_Column_List_new">
     select
-        m2.receive_id, m2.material_id as material_id2, m2.amount, m2.receive_date, m2.sender, m2.receiver, m2.note as note2,
-        m1.material_id as material_id1, m1.material_type, m1.status, m1.remaining, m1.note as note1
+        m2.receive_id,
+        m2.material_id as material_id2,
+        m2.amount,
+        m2.receive_date,
+        m2.sender,
+        m2.receiver,
+        m2.note as note2,
+
+        m1.material_id as material_id1,
+        m1.material_type,
+        m1.status,
+        m1.remaining,
+        m1.note as note1
   </sql>
   <sql id="Table_Form_Material_MaterialReceive">
-    from material m1, material_receive m2
+    from
+        material m1,
+        material_receive m2
   </sql>
 
   <select id="selectForMaterialAndMaterialReceive" resultMap="BaseResultMap_new">
     <include refid="Base_Column_List_new"/>
     <include refid="Table_Form_Material_MaterialReceive"/>
-     where m1.material_id = m2.material_id
+     where
+        m1.material_id = m2.material_id
   </select>
 
   <select id="getMaterialReceiveByMaterialId" resultMap="BaseResultMap_new">
     <include refid="Base_Column_List_new"/>
     <include refid="Table_Form_Material_MaterialReceive"/>
-    where m1.material_id = m2.material_id and m2.material_id like #{searchValue}
+    where
+        m1.material_id = m2.material_id
+    and
+        m2.material_id like #{searchValue}
   </select>
 
   <select id="getMaterialReceiveByReceiveId" resultMap="BaseResultMap_new">
     <include refid="Base_Column_List_new"/>
     <include refid="Table_Form_Material_MaterialReceive"/>
-    where m1.material_id = m2.material_id and m2.receive_id like #{searchValue}
+    where
+        m1.material_id = m2.material_id
+    and
+        m2.receive_id like #{searchValue}
   </select>
 </mapper>

@@ -257,4 +257,108 @@
       note = #{note,jdbcType=VARCHAR}
     where consume_id = #{consumeId,jdbcType=VARCHAR}
   </update>
+
+  <!--自己写的部分分界线-->
+
+  <resultMap id="BaseResultMap_new" type="com.cskaoyan.bean.material.Material_consume">
+    <id column="consume_id" jdbcType="VARCHAR" property="consumeId" />
+    <result column="work_id2" jdbcType="VARCHAR" property="workId" />
+    <result column="material_id2" jdbcType="VARCHAR" property="materialId" />
+    <result column="consume_amount" jdbcType="INTEGER" property="consumeAmount" />
+    <result column="consume_date" jdbcType="TIMESTAMP" property="consumeDate" />
+    <result column="sender" jdbcType="VARCHAR" property="sender" />
+    <result column="receiver" jdbcType="VARCHAR" property="receiver" />
+    <result column="note" jdbcType="VARCHAR" property="note" />
+
+
+    <association property="material" javaType="com.cskaoyan.bean.material.Material">
+      <id column="material_id1" jdbcType="VARCHAR" property="materialId" />
+      <result column="material_type" jdbcType="VARCHAR" property="materialType" />
+      <result column="status" jdbcType="VARCHAR" property="status" />
+      <result column="remaining" jdbcType="INTEGER" property="remaining" />
+      <result column="note1" jdbcType="VARCHAR" property="note" />
+    </association>
+
+    <association property="work" javaType="com.cskaoyan.bean.Work">
+      <id column="work_id1" jdbcType="VARCHAR" property="workId" />
+      <result column="process_number" jdbcType="VARCHAR" property="processNumber" />
+      <result column="product_id" jdbcType="VARCHAR" property="productId" />
+      <result column="process_id" jdbcType="VARCHAR" property="processId" />
+      <result column="device_id" jdbcType="VARCHAR" property="deviceId" />
+      <result column="rating" jdbcType="INTEGER" property="rating" />
+    </association>
+  </resultMap>
+
+  <sql id="Base_Column_List_new">
+    select
+        m2.consume_id,
+        m2.work_id as work_id2,
+        m2.material_id as material_id2,
+        m2.consume_amount,
+        m2.consume_date,
+        m2.sender,
+        m2.receiver,
+        m2.note as note2,
+
+        m1.material_id as material_id1,
+        m1.material_type,
+        m1.status,
+        m1.remaining,
+        m1.note as note1,
+
+        w.work_id as work_id1,
+        w.process_number,
+        w.product_id,
+        w.process_id,
+        w.device_id,
+        w.rating
+  </sql>
+  <sql id="Table_Form_Material_MaterialConsume_Work">
+    from
+        material m1,
+        material_consume m2,
+        `work` w
+  </sql>
+
+  <select id="selectForMaterialAndMaterialConsumeAndWork" resultMap="BaseResultMap_new">
+    <include refid="Base_Column_List_new"/>
+    <include refid="Table_Form_Material_MaterialConsume_Work"/>
+    where
+        m1.material_id = m2.material_id
+    and
+        m2.work_id = w.work_id
+  </select>
+
+  <select id="getMaterialConsumeByConsumeId" resultMap="BaseResultMap_new">
+    <include refid="Base_Column_List_new"/>
+    <include refid="Table_Form_Material_MaterialConsume_Work"/>
+    where
+        m1.material_id = m2.material_id
+    and
+        m2.work_id = w.work_id
+    and
+        m2.consume_id like #{searchValue}
+  </select>
+
+  <select id="getMaterialConsumeByMaterialId" resultMap="BaseResultMap_new">
+    <include refid="Base_Column_List_new"/>
+    <include refid="Table_Form_Material_MaterialConsume_Work"/>
+    where
+        m1.material_id = m2.material_id
+    and
+        m2.work_id = w.work_id
+    and
+        m2.material_id like #{searchValue}
+  </select>
+
+  <select id="getMaterialConsumeByWorkId" resultMap="BaseResultMap_new">
+    <include refid="Base_Column_List_new"/>
+    <include refid="Table_Form_Material_MaterialConsume_Work"/>
+    where
+        m1.material_id = m2.material_id
+    and
+        m2.work_id = w.work_id
+    and
+        w.work_id like #{searchValue}
+  </select>
 </mapper>

@@ -27,4 +27,12 @@ public interface Material_consumeMapper {
     int updateByPrimaryKeySelective(Material_consume record);
 
     int updateByPrimaryKey(Material_consume record);
+
+    List<Material_consume> selectForMaterialAndMaterialConsumeAndWork();
+
+    List<Material_consume> getMaterialConsumeByConsumeId(String searchValue);
+
+    List<Material_consume> getMaterialConsumeByMaterialId(String searchValue);
+
+    List<Material_consume> getMaterialConsumeByWorkId(String searchValue);
 }
