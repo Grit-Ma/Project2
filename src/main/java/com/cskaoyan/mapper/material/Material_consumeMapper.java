@@ -1,7 +1,7 @@
-package com.cskaoyan.mapper;
+package com.cskaoyan.mapper.material;
 
-import com.cskaoyan.bean.Material_consume;
-import com.cskaoyan.bean.Material_consumeExample;
+import com.cskaoyan.bean.material.Material_consume;
+import com.cskaoyan.bean.material.Material_consumeExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 

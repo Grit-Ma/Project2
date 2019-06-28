@@ -21,10 +21,6 @@ public class DepartmentServiceImp implements DepartmentService{
     }
 
 
-    //求部门总数
-    public int countNum(){
-        return departmentMapper.countNum();
-    }
 
     //根据id查询部门信息
     public Department findOne(int id){
@@ -50,6 +46,20 @@ public class DepartmentServiceImp implements DepartmentService{
     public void updateEmployee(Department department) {
         departmentMapper.updateDepartment(department);
 
+    }
+
+
+    //根据编号模糊查询部门
+    @Override
+    public List<Department> selectById(String searchValue) {
+        List<Department> departmentList = departmentMapper.selectById(searchValue);
+        return departmentList;
+    }
+    //根据名称模糊查询部门
+    @Override
+    public List<Department> selectByName(String searchValue) {
+        List<Department> departmentList = departmentMapper.selectByName(searchValue);
+        return departmentList;
     }
 
 }
