@@ -1,7 +1,7 @@
 package com.cskaoyan.controller.quality;
 
-import com.cskaoyan.bean.Process_count_check;
-import com.cskaoyan.bean.Process_count_checkExample;
+import com.cskaoyan.bean.quality.Process_count_check;
+import com.cskaoyan.bean.quality.Process_count_checkExample;
 import com.cskaoyan.service.quality.Process_count_checkService;
 import com.cskaoyan.vo.PageVo;
 import com.cskaoyan.vo.ResponseVo;
@@ -130,7 +130,21 @@ public class ProcessCountCheckController {
         }finally {
             return pageVo;
         }
+    }
 
+    //  修改备注信息
+    @RequestMapping("p_count_check/update_note")
+    @ResponseBody
+    public ResponseVo update_note(@RequestParam("pCountCheckId")String pCountCheckId,@RequestParam("note")String note){
+        Process_count_check process_count_check = process_count_checkService.selectByPrimaryKey(pCountCheckId);
+        process_count_check.setNote(note);
+        int i = process_count_checkService.updateByPrimaryKey(process_count_check);
+        ResponseVo responseVo = new ResponseVo();
+        if (i == 1) {
+            responseVo.setMsg("ok");
+            responseVo.setStatus(200);
+        }
+        return responseVo;
     }
 
 

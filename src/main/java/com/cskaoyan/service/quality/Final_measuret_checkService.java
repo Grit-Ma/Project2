@@ -1,8 +1,7 @@
 package com.cskaoyan.service.quality;
 
-import com.cskaoyan.bean.Final_count_check;
-import com.cskaoyan.bean.Final_measuret_check;
-import com.cskaoyan.bean.Final_measuret_checkExample;
+import com.cskaoyan.bean.quality.Final_measuret_check;
+import com.cskaoyan.bean.quality.Final_measuret_checkExample;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

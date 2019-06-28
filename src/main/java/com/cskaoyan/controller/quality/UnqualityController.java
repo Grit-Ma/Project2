@@ -1,7 +1,7 @@
 package com.cskaoyan.controller.quality;
 
-import com.cskaoyan.bean.Unqualify_apply;
-import com.cskaoyan.bean.Unqualify_applyExample;
+import com.cskaoyan.bean.quality.Unqualify_apply;
+import com.cskaoyan.bean.quality.Unqualify_applyExample;
 import com.cskaoyan.service.quality.Unqualify_applyService;
 import com.cskaoyan.tool.PageTool;
 import com.cskaoyan.vo.PageVo;
@@ -150,5 +150,19 @@ public class UnqualityController {
         }
     }
 
+    //  修改备注信息
+    @RequestMapping("unqualify/update_note")
+    @ResponseBody
+    public ResponseVo update_note(@RequestParam("unqualifyApplyId") String pCountCheckId, @RequestParam("note") String note) {
+        Unqualify_apply unqualify_apply = unqualify_applyService.selectByPrimaryKey(pCountCheckId);
+        unqualify_apply.setNote(note);
+        int i = unqualify_applyService.updateByPrimaryKey(unqualify_apply);
+        ResponseVo responseVo = new ResponseVo();
+        if (i == 1) {
+            responseVo.setMsg("ok");
+            responseVo.setStatus(200);
+        }
+        return responseVo;
+    }
 
 }

@@ -1,8 +1,8 @@
 package com.cskaoyan.service.quality.impl;
 
-import com.cskaoyan.bean.Process_count_check;
-import com.cskaoyan.bean.Process_count_checkExample;
-import com.cskaoyan.mapper.Process_count_checkMapper;
+import com.cskaoyan.bean.quality.Process_count_check;
+import com.cskaoyan.bean.quality.Process_count_checkExample;
+import com.cskaoyan.mapper.quality.Process_count_checkMapper;
 import com.cskaoyan.service.quality.Process_count_checkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

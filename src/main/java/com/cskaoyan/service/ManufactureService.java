@@ -10,6 +10,8 @@ public interface ManufactureService {
 
     Manufacture manufactureGet(String id);
 
+    List<Manufacture> manufactureGetData();
+
     ResponseVo updateManufacture(Manufacture manufacture);
 
     ResponseVo insertManufacture(Manufacture manufacture);

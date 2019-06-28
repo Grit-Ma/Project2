@@ -1,7 +1,7 @@
-package com.cskaoyan.mapper;
+package com.cskaoyan.mapper.quality;
 
-import com.cskaoyan.bean.Unqualify_apply;
-import com.cskaoyan.bean.Unqualify_applyExample;
+import com.cskaoyan.bean.quality.Unqualify_apply;
+import com.cskaoyan.bean.quality.Unqualify_applyExample;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

@@ -36,6 +36,14 @@ public class ManufactureController {
         return manufacture;
     }
 
+
+    @RequestMapping("manufacture/get_data")
+    @ResponseBody
+    public List<Manufacture> manufactureGetData() {
+        List<Manufacture> manufactureList = manufactureService.manufactureGetData();
+        return manufactureList;
+    }
+    
     @RequestMapping("manufacture/edit")
     public String edit(){
         return "/WEB-INF/jsp/manufacture_edit.jsp";
@@ -78,8 +86,7 @@ public class ManufactureController {
         return null;
     }
 
-
-    @RequestMapping("gi/delete_batch")
+    @RequestMapping("manufacture/delete_batch")
     @ResponseBody
     public ResponseVo delete_batch(String[] ids){
         ResponseVo responseVo = manufactureService.batchDeleteManufactureByIds(Arrays.asList(ids));

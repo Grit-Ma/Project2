@@ -33,6 +33,14 @@ public class ManufactureServiceImpl implements ManufactureService {
     }
 
     @Override
+    public List<Manufacture> manufactureGetData() {
+        ManufactureExample manufactureExample = new ManufactureExample();
+        ManufactureExample.Criteria criteria = manufactureExample.createCriteria();
+        criteria.andManufactureSnIsNotNull();
+        List<Manufacture> manufactureList = manufactureMapper.selectByExample(manufactureExample);
+        return manufactureList;
+    }
+
     public ResponseVo updateManufacture(Manufacture manufacture) {
         ResponseVo responseVo = new ResponseVo();
         try{
