@@ -85,4 +85,10 @@ public class FileUploadUtils {
         }
     }
 
+    public static void deleteFile(String fullName) {
+        String rootPath = FileUploadUtils.class.getClassLoader().getResource("../..").getPath();
+        String filePath = rootPath + "WEB-INF/" + fullName;
+        File file = new File(filePath);
+        file.delete();
+    }
 }

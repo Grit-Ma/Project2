@@ -7,10 +7,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.Map;
 
 @Controller
@@ -36,11 +39,23 @@ public class FileController {
         return filevo;
     }
 
-    @RequestMapping("tttt")
-    public String  findUpload(HttpServletRequest request) throws MalformedURLException {
-        String servletPath = request.getServletPath();
-        String ret = "WEB-INF/" + servletPath;
-        System.out.println(ret);
-        return "WEB-INF/upload/image/4/7/6/5/1/8/7/7/f3292f9a-ce23-4459-8d7c-444d9db73ab4.jpg";
+    @RequestMapping("file/delete")
+    @ResponseBody
+    public HashMap filedelete(String fileName){
+        String fullName = fileName.substring(23);
+        FileUploadUtils.deleteFile(fullName);
+        HashMap<String,Object> map = new HashMap<>();
+        map.put("data","success");
+        return map;
+    }
+
+    @RequestMapping("pic/delete")
+    @ResponseBody
+    public HashMap picdelete(String picName){
+        FileUploadUtils.deleteFile(picName);
+
+        HashMap<String,Object> map = new HashMap<>();
+        map.put("data","success");
+        return map;
     }
 }
