@@ -2,9 +2,8 @@ package com.cskaoyan.controller.quality;
 
 import com.cskaoyan.bean.Final_measuret_check;
 import com.cskaoyan.bean.Final_measuret_checkExample;
-import com.cskaoyan.bean.Process_measure_check;
 import com.cskaoyan.service.quality.Final_measuret_checkService;
-import com.cskaoyan.service.quality.Process_measure_checkService;
+import com.cskaoyan.tool.PageTool;
 import com.cskaoyan.vo.PageVo;
 import com.cskaoyan.vo.ResponseVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -116,6 +115,42 @@ public class MeasureController {
             responseVo.setStatus(200);
         }
         return responseVo;
+    }
+
+    //通过成品id模糊查询成品计量质检
+    @RequestMapping("measure/search_fMeasureCheck_by_fMeasureCheckId")
+    @ResponseBody
+    public PageVo search_measure_by_measureId(@RequestParam("page") int page, @RequestParam("rows") int rows,String searchValue){
+        Final_measuret_checkExample example = new Final_measuret_checkExample();
+        Final_measuret_checkExample.Criteria criteria = example.createCriteria();
+        criteria.andFMeasureCheckIdLike("%"+searchValue+"%");
+        List<Final_measuret_check> final_measuret_checks = final_measuret_checkService.selectByExample(example);
+        PageVo pageVo  =new PageVo();
+        try{
+            pageVo = PageTool.getPageVo(final_measuret_checks, page, rows);
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }finally {
+            return pageVo;
+        }
+    }
+
+    //通过订单编号模糊查询成品计量质检
+    @RequestMapping("measure/search_fMeasureCheck_by_orderId")
+    @ResponseBody
+    public PageVo search_measure_by_measureName(@RequestParam("page") int page, @RequestParam("rows") int rows,String searchValue){
+        Final_measuret_checkExample example = new Final_measuret_checkExample();
+        Final_measuret_checkExample.Criteria criteria = example.createCriteria();
+        criteria.andOrderIdLike("%"+searchValue+"%");
+        List<Final_measuret_check> final_measuret_checks = final_measuret_checkService.selectByExample(example);
+        PageVo pageVo  =new PageVo();
+        try{
+            pageVo = PageTool.getPageVo(final_measuret_checks, page, rows);
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }finally {
+            return pageVo;
+        }
     }
 
 

@@ -23,56 +23,56 @@ public class Final_measuret_checkServiceImpl implements Final_measuret_checkServ
 
     @Override
     public long countByExample(Final_measuret_checkExample example) {
-        return 0;
+        return final_measuret_checkMapper.countByExample(example);
     }
 
     @Override
     public int deleteByExample(Final_measuret_checkExample example) {
-        return 0;
+        return final_measuret_checkMapper.deleteByExample(example);
     }
 
     @Override
     public int deleteByPrimaryKey(String fMeasureCheckId) {
-        return 0;
+        return final_measuret_checkMapper.deleteByPrimaryKey(fMeasureCheckId);
     }
 
     @Override
     public int insert(Final_measuret_check record) {
-        return 0;
+        return final_measuret_checkMapper.insert(record);
     }
 
     @Override
     public int insertSelective(Final_measuret_check record) {
-        return 0;
+        return final_measuret_checkMapper.insertSelective(record);
     }
 
     @Override
     public List<Final_measuret_check> selectByExample(Final_measuret_checkExample example) {
-        return null;
+        return final_measuret_checkMapper.selectByExample(example);
     }
 
     @Override
     public Final_measuret_check selectByPrimaryKey(String fMeasureCheckId) {
-        return null;
+        return final_measuret_checkMapper.selectByPrimaryKey(fMeasureCheckId);
     }
 
     @Override
     public int updateByExampleSelective(Final_measuret_check record, Final_measuret_checkExample example) {
-        return 0;
+        return final_measuret_checkMapper.updateByExampleSelective(record,example);
     }
 
     @Override
     public int updateByExample(Final_measuret_check record, Final_measuret_checkExample example) {
-        return 0;
+        return final_measuret_checkMapper.updateByExample(record,example);
     }
 
     @Override
     public int updateByPrimaryKeySelective(Final_measuret_check record) {
-        return 0;
+        return final_measuret_checkMapper.updateByPrimaryKeySelective(record);
     }
 
     @Override
     public int updateByPrimaryKey(Final_measuret_check record) {
-        return 0;
+        return final_measuret_checkMapper.updateByPrimaryKey(record);
     }
 }

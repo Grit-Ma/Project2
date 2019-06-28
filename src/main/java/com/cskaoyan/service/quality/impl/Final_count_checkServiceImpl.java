@@ -24,56 +24,56 @@ public class Final_count_checkServiceImpl implements Final_count_checkService {
 
     @Override
     public long countByExample(Final_count_checkExample example) {
-        return 0;
+        return final_count_checkMapper.countByExample(example);
     }
 
     @Override
     public int deleteByExample(Final_count_checkExample example) {
-        return 0;
+        return final_count_checkMapper.deleteByExample(example);
     }
 
     @Override
     public int deleteByPrimaryKey(String fCountCheckId) {
-        return 0;
+        return final_count_checkMapper.deleteByPrimaryKey(fCountCheckId);
     }
 
     @Override
     public int insert(Final_count_check record) {
-        return 0;
+        return final_count_checkMapper.insert(record);
     }
 
     @Override
     public int insertSelective(Final_count_check record) {
-        return 0;
+        return final_count_checkMapper.insertSelective(record);
     }
 
     @Override
     public List<Final_count_check> selectByExample(Final_count_checkExample example) {
-        return null;
+        return final_count_checkMapper.selectByExample(example);
     }
 
     @Override
     public Final_count_check selectByPrimaryKey(String fCountCheckId) {
-        return null;
+        return final_count_checkMapper.selectByPrimaryKey(fCountCheckId);
     }
 
     @Override
     public int updateByExampleSelective(Final_count_check record, Final_count_checkExample example) {
-        return 0;
+        return final_count_checkMapper.updateByExampleSelective(record,example);
     }
 
     @Override
     public int updateByExample(Final_count_check record, Final_count_checkExample example) {
-        return 0;
+        return final_count_checkMapper.updateByExample(record,example);
     }
 
     @Override
     public int updateByPrimaryKeySelective(Final_count_check record) {
-        return 0;
+        return final_count_checkMapper.updateByPrimaryKeySelective(record);
     }
 
     @Override
     public int updateByPrimaryKey(Final_count_check record) {
-        return 0;
+        return final_count_checkMapper.updateByPrimaryKey(record);
     }
 }

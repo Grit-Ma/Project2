@@ -12,7 +12,7 @@ public interface Unqualify_applyMapper {
     List<Unqualify_apply> selectAll();
 
     //根据名字模糊查询
-    List<Unqualify_apply> fuzzyquery(@Param("pname") String pname);
+    List<Unqualify_apply> fuzzyqueryByPname(@Param("pname") String pname);
 
     int countAll();
 

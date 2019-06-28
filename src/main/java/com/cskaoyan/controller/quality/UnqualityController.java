@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -115,13 +114,13 @@ public class UnqualityController {
         return responseVo;
     }
 
+    //通过商品id模糊查询不合格商品
     @RequestMapping("unqualify/search_unqualify_by_unqualifyId")
     @ResponseBody
     public PageVo search_unqualify_by_unqualifyId(@RequestParam("page") int page, @RequestParam("rows") int rows,String searchValue){
         Unqualify_applyExample example = new Unqualify_applyExample();
         Unqualify_applyExample.Criteria criteria = example.createCriteria();
         criteria.andUnqualifyApplyIdLike("%"+searchValue+"%");
-        System.out.println(example);
         List<Unqualify_apply> unqualify_applies = unqualify_applyService.selectByExample(example);
         PageVo pageVo  =new PageVo();
         try{
@@ -133,11 +132,12 @@ public class UnqualityController {
         }
     }
 
+    //通过商品名字模糊查询不合格品
     @RequestMapping("unqualify/search_unqualify_by_productName")
     @ResponseBody
     public PageVo search_unqualify_by_unqualifyName(@RequestParam("page") int page, @RequestParam("rows") int rows,String searchValue){
 
-        List<Unqualify_apply> unqualify_applies =unqualify_applyService.fuzzyquery(searchValue);
+        List<Unqualify_apply> unqualify_applies =unqualify_applyService.fuzzyqueryByPname(searchValue);
         PageVo pageVo  =new PageVo();
         try{
             pageVo = PageTool.getPageVo(unqualify_applies, page, rows);

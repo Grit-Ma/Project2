@@ -89,7 +89,7 @@
   </select>
 
 <!--  根据不合格品的部分名字字段模糊查询-->
-  <select id="fuzzyquery" resultMap="BaseResultMap" >
+  <select id="fuzzyqueryByPname" resultMap="BaseResultMap" >
     select
     u.unqualify_apply_id, u.product_id, u.unqualify_item, u.unqualify_count, u.assembly_date, u.emp_id,
     u.apply_date, u.note,p.product_name,e.emp_name

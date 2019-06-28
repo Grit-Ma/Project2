@@ -20,8 +20,8 @@ public class Unqualify_applyServiceImpl implements Unqualify_applyService {
     }
 
     @Override
-    public List<Unqualify_apply> fuzzyquery(String pname) {
-        return unqualify_applyMapper.fuzzyquery(pname);
+    public List<Unqualify_apply> fuzzyqueryByPname(String pname) {
+        return unqualify_applyMapper.fuzzyqueryByPname(pname);
     }
 
     @Override
@@ -42,46 +42,50 @@ public class Unqualify_applyServiceImpl implements Unqualify_applyService {
 
     @Override
     public int deleteByPrimaryKey(String unqualifyApplyId) {
-        return 0;
+        return unqualify_applyMapper.deleteByPrimaryKey(unqualifyApplyId);
     }
 
     @Override
     public int insert(Unqualify_apply record) {
-        return 0;
+        return unqualify_applyMapper.insert(record);
     }
 
     @Override
     public int insertSelective(Unqualify_apply record) {
-        return 0;
+        return unqualify_applyMapper.insertSelective(record);
     }
 
     @Override
     public List<Unqualify_apply> selectByExample(Unqualify_applyExample example) {
-        return null;
+        return unqualify_applyMapper.selectByExample(example);
     }
 
     @Override
     public Unqualify_apply selectByPrimaryKey(String unqualifyApplyId) {
-        return null;
+
+        return unqualify_applyMapper.selectByPrimaryKey(unqualifyApplyId);
     }
 
     @Override
     public int updateByExampleSelective(Unqualify_apply record, Unqualify_applyExample example) {
-        return 0;
+
+        return unqualify_applyMapper.updateByExampleSelective(record,example);
     }
 
     @Override
     public int updateByExample(Unqualify_apply record, Unqualify_applyExample example) {
-        return 0;
+
+        return unqualify_applyMapper.updateByExample(record,example);
     }
 
     @Override
     public int updateByPrimaryKeySelective(Unqualify_apply record) {
-        return 0;
+
+        return unqualify_applyMapper.updateByPrimaryKeySelective(record);
     }
 
     @Override
     public int updateByPrimaryKey(Unqualify_apply record) {
-        return 0;
+        return unqualify_applyMapper.updateByPrimaryKey(record);
     }
 }
