@@ -268,7 +268,7 @@
     <result column="consume_date" jdbcType="TIMESTAMP" property="consumeDate" />
     <result column="sender" jdbcType="VARCHAR" property="sender" />
     <result column="receiver" jdbcType="VARCHAR" property="receiver" />
-    <result column="note" jdbcType="VARCHAR" property="note" />
+    <result column="note2" jdbcType="VARCHAR" property="note" />
 
 
     <association property="material" javaType="com.cskaoyan.bean.material.Material">

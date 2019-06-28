@@ -61,7 +61,7 @@ public class SysController {
         return responseVo;
     }
 
-   /* @RequestMapping("user/search_user_by_userId")
+    @RequestMapping("user/search_user_by_userId")
     @ResponseBody
     public PageVo searchUserByUserId(String searchValue,int page, int rows){
         PageVo pagevo = userService.searchUserByUserId(searchValue,page,rows);
@@ -73,7 +73,7 @@ public class SysController {
     public PageVo searchUserByUserName(String searchValue,int page, int rows){
         PageVo pagevo = userService.searchUserByUserName(searchValue,page,rows);
         return pagevo;
-    }*/
+    }
 
     //TODO 缺少数据库
     @RequestMapping("user/search_user_by_roleName")
