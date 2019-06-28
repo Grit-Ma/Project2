@@ -26,4 +26,5 @@ public class ManufactureController {
         List<Manufacture> manufactureList = manufactureService.manufacturePage(page, rows);
         return manufactureList;
     }
+
 }
