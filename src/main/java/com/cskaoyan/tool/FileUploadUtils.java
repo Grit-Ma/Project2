@@ -60,7 +60,9 @@ public class FileUploadUtils {
         for (char c : chars) {
             uploadPath.append( c + "/");
         }
-        fileName = uuid.toString() + suffix;
+        if(!"file".equals(fieldName)) {
+            fileName = uuid.toString() + suffix;
+        }
         File uploadFile = new File(rootPath + uploadPath + fileName);
         if(!uploadFile.getParentFile().exists()){
             uploadFile.getParentFile().mkdirs();
@@ -83,4 +85,10 @@ public class FileUploadUtils {
         }
     }
 
+    public static void deleteFile(String fullName) {
+        String rootPath = FileUploadUtils.class.getClassLoader().getResource("../..").getPath();
+        String filePath = rootPath + "WEB-INF/" + fullName;
+        File file = new File(filePath);
+        file.delete();
+    }
 }
