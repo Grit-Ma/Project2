@@ -2,7 +2,7 @@ package com.cskaoyan.controller.quality;
 
 import com.cskaoyan.bean.Unqualify_apply;
 import com.cskaoyan.bean.Unqualify_applyExample;
-import com.cskaoyan.service.Unqualify_applyService;
+import com.cskaoyan.service.quality.Unqualify_applyService;
 import com.cskaoyan.tool.PageTool;
 import com.cskaoyan.vo.PageVo;
 import com.cskaoyan.vo.ResponseVo;
@@ -18,7 +18,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Controller
-public class QualityController {
+public class UnqualityController {
     @Autowired
     Unqualify_applyService unqualify_applyService;
 
@@ -77,6 +77,7 @@ public class QualityController {
 
     //提交添加操作，并返回操作结果状态信息
     @RequestMapping("unqualify/insert")
+    @ResponseBody
     public ResponseVo insertUnqualify(Unqualify_apply unqualify_apply) {
         ResponseVo responseVo = new ResponseVo();
         int i = unqualify_applyService.insert(unqualify_apply);
@@ -103,6 +104,7 @@ public class QualityController {
 
     //提交编辑，进行更新操作并返回操作结果状态信息
     @RequestMapping("unqualify/update_all")
+    @ResponseBody
     public ResponseVo updateUnqualify(Unqualify_apply unqualify_apply) {
         ResponseVo responseVo = new ResponseVo();
         int i = unqualify_applyService.updateByPrimaryKey(unqualify_apply);
@@ -114,34 +116,36 @@ public class QualityController {
     }
 
     @RequestMapping("unqualify/search_unqualify_by_unqualifyId")
+    @ResponseBody
     public PageVo search_unqualify_by_unqualifyId(@RequestParam("page") int page, @RequestParam("rows") int rows,String searchValue){
-        Unqualify_applyExample example = new Unqualify_applyExample();
-        Unqualify_applyExample.Criteria criteria = example.createCriteria();
-        ArrayList<String> list = new ArrayList<>();
-        list.add(searchValue);
-        criteria.andUnqualifyApplyIdIn(list);
-//        criteria.andUnqualifyApplyIdLike("%"+searchValue+"%");
-        System.out.println(example);
-        List<Unqualify_apply> unqualify_applies = unqualify_applyService.selectByExample(example);
-        PageVo pageVo  =new PageVo();
-        if(unqualify_applies.size()!=0||!unqualify_applies.isEmpty()) {
-            pageVo = PageTool.getPageVo(unqualify_applies, page, rows);
-        }
-        return pageVo;
-    }
-
-    @RequestMapping("search_unqualify_by_productName")
-    public PageVo search_unqualify_by_unqualifyName(@RequestParam("page") int page, @RequestParam("rows") int rows,String searchValue){
         Unqualify_applyExample example = new Unqualify_applyExample();
         Unqualify_applyExample.Criteria criteria = example.createCriteria();
         criteria.andUnqualifyApplyIdLike("%"+searchValue+"%");
         System.out.println(example);
         List<Unqualify_apply> unqualify_applies = unqualify_applyService.selectByExample(example);
         PageVo pageVo  =new PageVo();
-        if(unqualify_applies.size()!=0||!unqualify_applies.isEmpty()) {
+        try{
             pageVo = PageTool.getPageVo(unqualify_applies, page, rows);
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }finally {
+            return pageVo;
         }
-        return pageVo;
+    }
+
+    @RequestMapping("unqualify/search_unqualify_by_productName")
+    @ResponseBody
+    public PageVo search_unqualify_by_unqualifyName(@RequestParam("page") int page, @RequestParam("rows") int rows,String searchValue){
+
+        List<Unqualify_apply> unqualify_applies =unqualify_applyService.fuzzyquery(searchValue);
+        PageVo pageVo  =new PageVo();
+        try{
+            pageVo = PageTool.getPageVo(unqualify_applies, page, rows);
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }finally {
+            return pageVo;
+        }
     }
 
 

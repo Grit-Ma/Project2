@@ -1,9 +1,9 @@
-package com.cskaoyan.service.impl;
+package com.cskaoyan.service.quality.impl;
 
 import com.cskaoyan.bean.Unqualify_apply;
 import com.cskaoyan.bean.Unqualify_applyExample;
 import com.cskaoyan.mapper.Unqualify_applyMapper;
-import com.cskaoyan.service.Unqualify_applyService;
+import com.cskaoyan.service.quality.Unqualify_applyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +17,11 @@ public class Unqualify_applyServiceImpl implements Unqualify_applyService {
     @Override
     public List<Unqualify_apply> selectAll() {
         return unqualify_applyMapper.selectAll();
+    }
+
+    @Override
+    public List<Unqualify_apply> fuzzyquery(String pname) {
+        return unqualify_applyMapper.fuzzyquery(pname);
     }
 
     @Override

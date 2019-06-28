@@ -76,7 +76,7 @@
     apply_date, note
   </sql>
 
-
+<!--查询所有的不合格品-->
   <select id="selectAll" resultMap="BaseResultMap" >
     select
     u.unqualify_apply_id, u.product_id, u.unqualify_item, u.unqualify_count, u.assembly_date, u.emp_id,
@@ -86,6 +86,19 @@
     on u.product_id=p.product_id
     left join employee e
     on e.emp_id=u.emp_id
+  </select>
+
+<!--  根据不合格品的部分名字字段模糊查询-->
+  <select id="fuzzyquery" resultMap="BaseResultMap" >
+    select
+    u.unqualify_apply_id, u.product_id, u.unqualify_item, u.unqualify_count, u.assembly_date, u.emp_id,
+    u.apply_date, u.note,p.product_name,e.emp_name
+    from unqualify_apply u
+    left join product p
+    on u.product_id=p.product_id
+    left join employee e
+    on e.emp_id=u.emp_id
+    where p.product_name LIKE CONCAT ('%',#{pname},'%')
   </select>
 
   <select id="countAll" resultType="_int" >

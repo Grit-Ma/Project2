@@ -3,8 +3,8 @@ package com.cskaoyan.controller.quality;
 import com.cskaoyan.bean.Final_measuret_check;
 import com.cskaoyan.bean.Final_measuret_checkExample;
 import com.cskaoyan.bean.Process_measure_check;
-import com.cskaoyan.service.Final_measuret_checkService;
-import com.cskaoyan.service.Process_measure_checkService;
+import com.cskaoyan.service.quality.Final_measuret_checkService;
+import com.cskaoyan.service.quality.Process_measure_checkService;
 import com.cskaoyan.vo.PageVo;
 import com.cskaoyan.vo.ResponseVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +21,6 @@ import java.util.List;
 public class MeasureController {
     @Autowired
     Final_measuret_checkService final_measuret_checkService;
-    @Autowired
-    Process_measure_checkService processMeasureCheckService;
-
 
     /*
         成品计量检验部分
@@ -82,6 +79,7 @@ public class MeasureController {
 
     //提交编辑，进行更新操作并返回操作结果状态信息
     @RequestMapping("measure/update_all")
+    @ResponseBody
     public ResponseVo updateMeasure(Final_measuret_check final_measuret_check) {
         ResponseVo responseVo = new ResponseVo();
         int i = final_measuret_checkService.updateByPrimaryKey(final_measuret_check);
@@ -109,6 +107,7 @@ public class MeasureController {
 
     //提交添加操作，并返回操作结果状态信息
     @RequestMapping("measure/insert")
+    @ResponseBody
     public ResponseVo insertMeasure(Final_measuret_check final_measuret_check) {
         ResponseVo responseVo = new ResponseVo();
         int i = final_measuret_checkService.insert(final_measuret_check);
@@ -117,29 +116,6 @@ public class MeasureController {
             responseVo.setStatus(200);
         }
         return responseVo;
-    }
-
-
-
-    /*
-        工序计量检验部分
-     */
-
-
-    @RequestMapping("p_measure_check/find")
-    public String productMeasure(HttpServletRequest request){
-        return ("/WEB-INF/jsp/p_measure_check_list.jsp");
-    }
-
-
-    @RequestMapping("p_measure_check/list")
-    @ResponseBody
-    public PageVo pmeasureCheckList(@RequestParam("page") int page, @RequestParam("rows") int rows){
-        List<Process_measure_check> process_measure_checks = processMeasureCheckService.selectByPage(page, rows);
-        PageVo<Process_measure_check> process_measure_checkPageVo = new PageVo<>();
-        process_measure_checkPageVo.setRows(process_measure_checks);
-        process_measure_checkPageVo.setTotal(process_measure_checks.size());
-        return process_measure_checkPageVo;
     }
 
 

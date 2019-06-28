@@ -1,4 +1,4 @@
-package com.cskaoyan.service;
+package com.cskaoyan.service.quality;
 
 import com.cskaoyan.bean.Unqualify_apply;
 import com.cskaoyan.bean.Unqualify_applyExample;
@@ -8,7 +8,11 @@ import java.util.List;
 
 public interface Unqualify_applyService {
 
+    //查询出所有的不合格品
     List<Unqualify_apply> selectAll();
+
+    //根据名字模糊查询
+    List<Unqualify_apply> fuzzyquery(String pname);
 
     int countAll();
 

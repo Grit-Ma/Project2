@@ -1,4 +1,4 @@
-package com.cskaoyan.service;
+package com.cskaoyan.service.quality;
 
 import com.cskaoyan.bean.Process_count_check;
 import com.cskaoyan.bean.Process_count_checkExample;

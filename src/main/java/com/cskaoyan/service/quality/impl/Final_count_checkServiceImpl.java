@@ -1,12 +1,9 @@
-package com.cskaoyan.service.impl;
+package com.cskaoyan.service.quality.impl;
 
 import com.cskaoyan.bean.Final_count_check;
 import com.cskaoyan.bean.Final_count_checkExample;
-import com.cskaoyan.bean.Final_measuret_check;
-import com.cskaoyan.bean.Final_measuret_checkExample;
 import com.cskaoyan.mapper.Final_count_checkMapper;
-import com.cskaoyan.service.Final_count_checkService;
-import com.cskaoyan.service.Final_measuret_checkService;
+import com.cskaoyan.service.quality.Final_count_checkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

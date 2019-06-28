@@ -8,7 +8,11 @@ import java.util.List;
 
 public interface Unqualify_applyMapper {
 
+    //查询出所有的不合格品
     List<Unqualify_apply> selectAll();
+
+    //根据名字模糊查询
+    List<Unqualify_apply> fuzzyquery(@Param("pname") String pname);
 
     int countAll();
 
