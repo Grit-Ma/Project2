@@ -1,7 +1,7 @@
-package com.cskaoyan.mapper;
+package com.cskaoyan.mapper.material;
 
-import com.cskaoyan.bean.Material_receive;
-import com.cskaoyan.bean.Material_receiveExample;
+import com.cskaoyan.bean.material.Material_receive;
+import com.cskaoyan.bean.material.Material_receiveExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
@@ -29,4 +29,8 @@ public interface Material_receiveMapper {
     int updateByPrimaryKey(Material_receive record);
 
     List<Material_receive> selectForMaterialAndMaterialReceive();
+
+    List<Material_receive> getMaterialReceiveByReceiveId(@Param("searchValue") String searchValue);
+
+    List<Material_receive> getMaterialReceiveByMaterialId(@Param("searchValue") String searchValue);
 }

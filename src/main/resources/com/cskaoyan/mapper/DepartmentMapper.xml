@@ -12,10 +12,6 @@
 			    from department
     </select>
 
-    <!--查询员工总数-->
-    <select id="countNum" resultType="int">
-      select COUNT(*) from department
-    </select>
 
     <!--查询单个部门信息-->
     <select id="findOne" resultType="com.cskaoyan.bean.Department">
@@ -45,6 +41,25 @@
             #{id}
         </foreach>
     </delete>
+
+
+    <!--根据id模糊查询部门-->
+    <select id="selectById" resultType="com.cskaoyan.bean.Department">
+        select 	department_id as departmentId,
+	 		    department_name as departmentName,
+		 	    note
+			    from department
+			    where department_id like CONCAT(CONCAT('%',#{searchValue}),'%')
+    </select>
+
+    <!--根据name模糊查询部门-->
+    <select id="selectByName" resultType="com.cskaoyan.bean.Department">
+        select 	department_id as departmentId,
+	 		    department_name as departmentName,
+		 	    note
+			    from department
+			    where department_name like CONCAT(CONCAT('%',#{searchValue}),'%')
+    </select>
 
 </mapper>
 

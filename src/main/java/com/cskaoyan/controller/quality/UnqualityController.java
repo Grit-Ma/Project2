@@ -16,6 +16,11 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
 import java.util.List;
 
+
+/*
+    质量监控：不合格商品部分
+ */
+
 @Controller
 public class UnqualityController {
     @Autowired

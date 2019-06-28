@@ -23,56 +23,56 @@ public class Process_count_checkServiceImpl implements Process_count_checkServic
 
     @Override
     public long countByExample(Process_count_checkExample example) {
-        return 0;
+        return process_count_checkMapper.countByExample(example);
     }
 
     @Override
     public int deleteByExample(Process_count_checkExample example) {
-        return 0;
+        return process_count_checkMapper.deleteByExample(example);
     }
 
     @Override
     public int deleteByPrimaryKey(String pCountCheckId) {
-        return 0;
+        return process_count_checkMapper.deleteByPrimaryKey(pCountCheckId);
     }
 
     @Override
     public int insert(Process_count_check record) {
-        return 0;
+        return process_count_checkMapper.insert(record);
     }
 
     @Override
     public int insertSelective(Process_count_check record) {
-        return 0;
+        return process_count_checkMapper.insertSelective(record);
     }
 
     @Override
     public List<Process_count_check> selectByExample(Process_count_checkExample example) {
-        return null;
+        return process_count_checkMapper.selectByExample(example);
     }
 
     @Override
     public Process_count_check selectByPrimaryKey(String pCountCheckId) {
-        return null;
+        return process_count_checkMapper.selectByPrimaryKey(pCountCheckId);
     }
 
     @Override
     public int updateByExampleSelective(Process_count_check record, Process_count_checkExample example) {
-        return 0;
+        return process_count_checkMapper.updateByExampleSelective(record,example);
     }
 
     @Override
     public int updateByExample(Process_count_check record, Process_count_checkExample example) {
-        return 0;
+        return process_count_checkMapper.updateByExample(record,example);
     }
 
     @Override
     public int updateByPrimaryKeySelective(Process_count_check record) {
-        return 0;
+        return process_count_checkMapper.updateByPrimaryKeySelective(record);
     }
 
     @Override
     public int updateByPrimaryKey(Process_count_check record) {
-        return 0;
+        return process_count_checkMapper.updateByPrimaryKey(record);
     }
 }

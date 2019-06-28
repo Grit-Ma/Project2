@@ -1,5 +1,6 @@
 package com.cskaoyan.service.impl;
 
+import com.cskaoyan.bean.Department;
 import com.cskaoyan.bean.Employee;
 import com.cskaoyan.mapper.EmployeeMapper;
 import com.cskaoyan.service.EmployeeService;
@@ -51,5 +52,23 @@ public class EmployeeServiceImp implements EmployeeService {
 
         employeeMapper.delete_batch(ids);
 
+    }
+
+    @Override
+    //模糊查询根据员工编号
+    public List<Employee> selectById(String searchValue) {
+        return employeeMapper.selectById(searchValue);
+    }
+
+    @Override
+    //模糊查询根据员工名称
+    public List<Employee> selectByName(String searchValue) {
+        return employeeMapper.selectByName(searchValue);
+    }
+
+    @Override
+    //模糊查询根据部门名称
+    public List<Employee> selectByDepartmentName(String searchValue) {
+        return employeeMapper.selectByDepartmentName(searchValue);
     }
 }

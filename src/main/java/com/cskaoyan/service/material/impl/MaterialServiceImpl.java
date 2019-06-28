@@ -1,8 +1,8 @@
 package com.cskaoyan.service.material.impl;
 
-import com.cskaoyan.bean.Material;
-import com.cskaoyan.bean.MaterialExample;
-import com.cskaoyan.mapper.MaterialMapper;
+import com.cskaoyan.bean.material.Material;
+import com.cskaoyan.bean.material.MaterialExample;
+import com.cskaoyan.mapper.material.MaterialMapper;
 import com.cskaoyan.service.material.MaterialService;
 import com.cskaoyan.tool.PageTool;
 import com.cskaoyan.vo.PageVo;
@@ -121,6 +121,15 @@ public class MaterialServiceImpl implements MaterialService {
         List<Material> materials = getMaterialByMaterialType(searchValue);
         PageVo pages = PageTool.getPageVo(materials, page, rows);
         return pages;
+    }
+
+    @Override
+    public Material getAMaterialByMaterialId(String id) {
+        MaterialExample materialExample = new MaterialExample();
+        MaterialExample.Criteria criteria = materialExample.createCriteria();
+        criteria.andMaterialIdEqualTo(id);
+        List<Material> materials = materialMapper.selectByExample(materialExample);
+        return materials.get(0);
     }
 
 }

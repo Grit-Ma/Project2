@@ -1,6 +1,6 @@
 package com.cskaoyan.service.material;
 
-import com.cskaoyan.bean.Material;
+import com.cskaoyan.bean.material.Material;
 import com.cskaoyan.vo.PageVo;
 import com.cskaoyan.vo.ResponseVo;
 import org.apache.ibatis.annotations.Delete;
@@ -29,4 +29,6 @@ public interface MaterialService {
     PageVo searchMaterialByMaterialId(String searchValue, int page, int rows);
 
     PageVo searchMaterialByMaterialType(String searchValue, int page, int rows);
+
+    Material getAMaterialByMaterialId(String id);
 }

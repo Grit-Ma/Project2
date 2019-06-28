@@ -22,7 +22,7 @@ public class MeasureController {
     Final_measuret_checkService final_measuret_checkService;
 
     /*
-        成品计量检验部分
+       质量监控： 成品计量检验部分
      */
 
     @RequestMapping("measure/find")

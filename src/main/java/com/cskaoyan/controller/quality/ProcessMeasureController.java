@@ -15,7 +15,7 @@ import java.util.List;
 @Controller
 public class ProcessMeasureController {
      /*
-        工序计量检验部分
+        质量监控：工序计量检验部分
      */
      @Autowired
      Process_measure_checkService processMeasureCheckService;

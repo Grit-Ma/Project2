@@ -1,6 +1,6 @@
 package com.cskaoyan.service.material;
 
-import com.cskaoyan.bean.Material_receive;
+import com.cskaoyan.bean.material.Material_receive;
 import com.cskaoyan.vo.PageVo;
 import com.cskaoyan.vo.ResponseVo;
 import org.apache.ibatis.annotations.Delete;
@@ -10,10 +10,6 @@ import java.util.List;
 public interface MaterialReceiveService {
 
     List<Material_receive> getMaterialReceive();
-
-    List<Material_receive> getMaterialReceiveByReceiveId(String searchValue);
-
-    List<Material_receive> getMaterialReceiveByMaterialId(String searchValue);
 
     PageVo getPage(int page, int rows);
 
