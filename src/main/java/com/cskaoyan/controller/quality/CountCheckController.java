@@ -5,7 +5,6 @@ import com.cskaoyan.bean.Process_count_check;
 import com.cskaoyan.service.Final_count_checkService;
 import com.cskaoyan.service.Process_count_checkService;
 import com.cskaoyan.vo.PageVo;
-import com.cskaoyan.vo.ResponseVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,8 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -57,5 +54,7 @@ public class CountCheckController {
         process_count_checkPageVo.setTotal(process_count_checks.size());
         return process_count_checkPageVo;
     }
+
+
 
 }

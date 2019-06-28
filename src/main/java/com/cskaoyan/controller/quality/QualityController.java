@@ -1,10 +1,7 @@
 package com.cskaoyan.controller.quality;
 
-import com.cskaoyan.bean.Department;
-
 import com.cskaoyan.bean.Unqualify_apply;
 import com.cskaoyan.bean.Unqualify_applyExample;
-import com.cskaoyan.service.DepartmentService;
 import com.cskaoyan.service.Unqualify_applyService;
 import com.cskaoyan.tool.PageTool;
 import com.cskaoyan.vo.PageVo;
@@ -16,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -23,97 +21,128 @@ import java.util.List;
 public class QualityController {
     @Autowired
     Unqualify_applyService unqualify_applyService;
-    @Autowired
-    DepartmentService departmentService;
 
 
+    //查找不合格产品跳转页面
     @RequestMapping("unqualify/find")
-    public String findAllUnqualify(HttpServletRequest request){
+    public String findAllUnqualify(HttpServletRequest request) {
         return ("/WEB-INF/jsp/unqualify_list.jsp");
     }
 
-
+    //查询不合格产品，显示数据，返回为json类型
     @RequestMapping("unqualify/list")
     @ResponseBody
-    public PageVo checkUnqualify(@RequestParam("page")int page, @RequestParam("rows")int rows){
+    public PageVo checkUnqualify(@RequestParam("page") int page, @RequestParam("rows") int rows) {
         List<Unqualify_apply> unqualify_applies = unqualify_applyService.selectAll();
         PageVo pageVo = PageTool.getPageVo(unqualify_applies, page, rows);
         return pageVo;
     }
 
+    //点击删除
     @RequestMapping("unqualify/delete_judge")
     @ResponseBody
-    public void deleteUnqualify_Judge(){
+    public void deleteUnqualify_Judge() {
 
     }
 
+    //完成删除操作，并返回操作结果信息（成功与否）
     @RequestMapping("unqualify/delete_batch")
     @ResponseBody
-    public ResponseVo deleteBatch(@RequestParam("ids")String[] ids){
+    public ResponseVo deleteBatch(@RequestParam("ids") String[] ids) {
         ResponseVo responseVo = new ResponseVo();
         Unqualify_applyExample unqualify_applyExample = new Unqualify_applyExample();
         Unqualify_applyExample.Criteria criteria = unqualify_applyExample.createCriteria();
         criteria.andUnqualifyApplyIdIn(Arrays.asList(ids));
         int i = unqualify_applyService.deleteByExample(unqualify_applyExample);
-        if(i>=1) {
+        if (i >= 1) {
             responseVo.setMsg("ok");
             responseVo.setStatus(200);
         }
         return responseVo;
     }
 
+    // 点击添加不合格产品
     @RequestMapping("unqualify/add_judge")
     @ResponseBody
-    public void addJudge(){
+    public void addJudge() {
 
     }
 
-
+    //点击添加出现添加页面显示框
     @RequestMapping("unqualify/add")
-    public String addUnqualify(){
+    public String addUnqualify() {
         return ("/WEB-INF/jsp/unqualify_add.jsp");
     }
 
 
+    //提交添加操作，并返回操作结果状态信息
     @RequestMapping("unqualify/insert")
-    public ResponseVo insertUnqualify(Unqualify_apply unqualify_apply){
+    public ResponseVo insertUnqualify(Unqualify_apply unqualify_apply) {
         ResponseVo responseVo = new ResponseVo();
         int i = unqualify_applyService.insert(unqualify_apply);
-        if(i==1) {
+        if (i == 1) {
             responseVo.setMsg("ok");
             responseVo.setStatus(200);
         }
         return responseVo;
     }
 
-
+    //点击编辑
     @RequestMapping("unqualify/edit_judge")
     @ResponseBody
-    public void editJudge(){
+    public void editJudge() {
 
     }
 
+    //点击编辑后出现编辑页面框
     @RequestMapping("unqualify/edit")
-    public String editUnqualify(){
+    public String editUnqualify() {
         return ("/WEB-INF/jsp/unqualify_add.jsp");
     }
 
+
+    //提交编辑，进行更新操作并返回操作结果状态信息
     @RequestMapping("unqualify/update_all")
-    public ResponseVo updateUnqualify(Unqualify_apply unqualify_apply){
+    public ResponseVo updateUnqualify(Unqualify_apply unqualify_apply) {
         ResponseVo responseVo = new ResponseVo();
         int i = unqualify_applyService.updateByPrimaryKey(unqualify_apply);
-        if(i==1) {
+        if (i == 1) {
             responseVo.setMsg("ok");
             responseVo.setStatus(200);
         }
         return responseVo;
     }
 
-    @RequestMapping("department/get_data")
-    @ResponseBody
-    public List<Department> getData(){
-        List<Department> departments = departmentService.queryAllDepartments();
-        return departments;
+    @RequestMapping("unqualify/search_unqualify_by_unqualifyId")
+    public PageVo search_unqualify_by_unqualifyId(@RequestParam("page") int page, @RequestParam("rows") int rows,String searchValue){
+        Unqualify_applyExample example = new Unqualify_applyExample();
+        Unqualify_applyExample.Criteria criteria = example.createCriteria();
+        ArrayList<String> list = new ArrayList<>();
+        list.add(searchValue);
+        criteria.andUnqualifyApplyIdIn(list);
+//        criteria.andUnqualifyApplyIdLike("%"+searchValue+"%");
+        System.out.println(example);
+        List<Unqualify_apply> unqualify_applies = unqualify_applyService.selectByExample(example);
+        PageVo pageVo  =new PageVo();
+        if(unqualify_applies.size()!=0||!unqualify_applies.isEmpty()) {
+            pageVo = PageTool.getPageVo(unqualify_applies, page, rows);
+        }
+        return pageVo;
     }
+
+    @RequestMapping("search_unqualify_by_productName")
+    public PageVo search_unqualify_by_unqualifyName(@RequestParam("page") int page, @RequestParam("rows") int rows,String searchValue){
+        Unqualify_applyExample example = new Unqualify_applyExample();
+        Unqualify_applyExample.Criteria criteria = example.createCriteria();
+        criteria.andUnqualifyApplyIdLike("%"+searchValue+"%");
+        System.out.println(example);
+        List<Unqualify_apply> unqualify_applies = unqualify_applyService.selectByExample(example);
+        PageVo pageVo  =new PageVo();
+        if(unqualify_applies.size()!=0||!unqualify_applies.isEmpty()) {
+            pageVo = PageTool.getPageVo(unqualify_applies, page, rows);
+        }
+        return pageVo;
+    }
+
 
 }
