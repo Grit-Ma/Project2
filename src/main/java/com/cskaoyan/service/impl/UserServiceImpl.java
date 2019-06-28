@@ -10,6 +10,7 @@ import com.cskaoyan.vo.ResponseVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -80,6 +81,27 @@ public class UserServiceImpl implements UserService {
             responseVo.setStatus(500);
         }
         return responseVo;
+    }
+
+    @Override
+    public PageVo searchUserByUserId(String searchValue, int page, int rows) {
+        Sys_userExample example = new Sys_userExample();
+        Sys_userExample.Criteria criteria = example.createCriteria();
+        criteria.andIdLike("%"+searchValue+"%");
+        List<Sys_user> users = userMapper.selectByExample(example);
+        PageVo pageVo = PageTool.getPageVo(users, page, rows);
+        return pageVo;
+    }
+
+    //TODO 使用AOP重构
+    @Override
+    public PageVo searchUserByUserName(String searchValue, int page, int rows) {
+        Sys_userExample example = new Sys_userExample();
+        Sys_userExample.Criteria criteria = example.createCriteria();
+        criteria.andUsernameLike("%"+searchValue+"%");
+        List<Sys_user> users = userMapper.selectByExample(example);
+        PageVo pageVo = PageTool.getPageVo(users, page, rows);
+        return pageVo;
     }
 
 
