@@ -1,19 +1,9 @@
-package com.cskaoyan.bean;
+package com.cskaoyan.bean.quality;
 
 import java.util.Date;
 
 public class Unqualify_apply {
-    /*{"unqualifyApplyId":"123",
-    "productId":"00001",
-    "unqualifyItem":"123",
-    "unqualifyCount":123,
-    "assemblyDate":1561521600000,
-    "empId":"003",
-    "applyDate":1561521600000,
-    "note":"123",
-    "productName":"投影机",
-    "empName":"刘高升"}
-    */
+
     private String unqualifyApplyId;
 
     private String productId;

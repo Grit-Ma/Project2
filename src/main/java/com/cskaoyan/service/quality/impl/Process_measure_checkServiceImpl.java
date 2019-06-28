@@ -1,8 +1,8 @@
 package com.cskaoyan.service.quality.impl;
 
-import com.cskaoyan.bean.Process_measure_check;
-import com.cskaoyan.bean.Process_measure_checkExample;
-import com.cskaoyan.mapper.Process_measure_checkMapper;
+import com.cskaoyan.bean.quality.Process_measure_check;
+import com.cskaoyan.bean.quality.Process_measure_checkExample;
+import com.cskaoyan.mapper.quality.Process_measure_checkMapper;
 import com.cskaoyan.service.quality.Process_measure_checkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
