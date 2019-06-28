@@ -72,7 +72,7 @@ public class MeasureController {
     //点击编辑后出现编辑页面框
     @RequestMapping("measure/edit")
     public String editMeasure() {
-        return ("/WEB-INF/jsp/measurement_add.jsp");
+        return ("/WEB-INF/jsp/measurement_edit.jsp");
     }
 
 

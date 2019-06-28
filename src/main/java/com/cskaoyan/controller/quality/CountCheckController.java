@@ -105,7 +105,7 @@ Final_count_checkService final_count_checkService;
     //点击编辑后出现编辑页面框
     @RequestMapping("f_count_check/edit")
     public String editF_count_check() {
-        return ("/WEB-INF/jsp/f_count_check_add.jsp");
+        return ("/WEB-INF/jsp/f_count_check_edit.jsp");
     }
 
 

@@ -102,7 +102,7 @@ public class UnqualityController {
     //点击编辑后出现编辑页面框
     @RequestMapping("unqualify/edit")
     public String editUnqualify() {
-        return ("/WEB-INF/jsp/unqualify_add.jsp");
+        return ("/WEB-INF/jsp/unqualify_edit.jsp");
     }
 
 

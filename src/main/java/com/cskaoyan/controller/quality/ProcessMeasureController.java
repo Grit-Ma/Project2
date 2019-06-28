@@ -99,7 +99,7 @@ public class ProcessMeasureController {
     //点击编辑后出现编辑页面框
     @RequestMapping("p_measure_check/edit")
     public String editUnqualify() {
-        return ("/WEB-INF/jsp/p_measure_check_add.jsp");
+        return ("/WEB-INF/jsp/p_measure_check_edit.jsp");
     }
 
 
