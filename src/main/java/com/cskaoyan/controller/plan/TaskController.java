@@ -24,6 +24,13 @@ public class TaskController {
         return "/WEB-INF/jsp/task_list.jsp";
     }
 
+    @RequestMapping("task/list")
+    @ResponseBody
+    public PageVo list(int page, int rows){
+        PageVo pageVo = taskService.getPage(page, rows);
+        return pageVo;
+    }
+
     @RequestMapping("task/edit")
     public String edit(){
         return "/WEB-INF/jsp/task_edit.jsp";

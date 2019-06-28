@@ -9,6 +9,10 @@ import java.util.List;
 
 public interface TaskService {
 
+    List<Task> getTask();
+
+    PageVo getPage(int page, int rows);
+
     ResponseVo updateTask(Task task);
 
     ResponseVo insertTask(Task task);

@@ -19,6 +19,19 @@ public class TaskServiceImpl implements TaskService {
     TaskMapper taskMapper;
 
     @Override
+    public List<Task> getTask() {
+        List<Task> taskList = taskMapper.selectByExample(new TaskExample());
+        return taskList;
+    }
+
+    @Override
+    public PageVo getPage(int page, int rows) {
+        List<Task> materials = getTask();
+        PageVo pages = PageTool.getPageVo(materials, page, rows);
+        return pages;
+    }
+
+    @Override
     public ResponseVo updateTask(Task task) {
         ResponseVo responseVo = new ResponseVo();
         try{
