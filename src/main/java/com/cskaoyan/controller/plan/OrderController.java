@@ -1,6 +1,6 @@
 package com.cskaoyan.controller.plan;
 
-import com.cskaoyan.bean.C_order;
+import com.cskaoyan.bean.Order;
 import com.cskaoyan.service.OrderService;
 import com.cskaoyan.vo.ResponseVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +24,8 @@ public class OrderController {
 
     @RequestMapping("order/list")
     @ResponseBody
-    public List<C_order> orderList(int page, int rows) {
-        List<C_order> orderList = orderService.orderPage(page, rows);
+    public List<Order> orderList(int page, int rows) {
+        List<Order> orderList = orderService.orderPage(page, rows);
         return orderList;
     }
 
@@ -39,7 +39,7 @@ public class OrderController {
 
     @RequestMapping("order/insert")
     @ResponseBody
-    public ResponseVo orderInsert(C_order order) {
+    public ResponseVo orderInsert(Order order) {
         int i = orderService.orderAdd(order);
         if (i == 1) {
             return new ResponseVo(200, order, "ok");
@@ -57,7 +57,7 @@ public class OrderController {
 
     @RequestMapping("order/update_all")
     @ResponseBody
-    public ResponseVo orderUpdate(C_order order) {
+    public ResponseVo orderUpdate(Order order) {
         int i = orderService.orderUpdate(order);
         if (i == 1) {
             return new ResponseVo(200, order, "ok");
@@ -70,20 +70,20 @@ public class OrderController {
 
     @RequestMapping("order/search_order_by_orderId")
     @ResponseBody
-    public List<C_order> searchByOrderId(String searchValue, int page, int rows) {
-        List<C_order> orderList = orderService.searchByOrderId(searchValue, page, rows);
+    public List<Order> searchByOrderId(String searchValue, int page, int rows) {
+        List<Order> orderList = orderService.searchByOrderId(searchValue, page, rows);
         return orderList;
     }
 
     @RequestMapping("order/search_order_by_orderCustom")
     @ResponseBody
-    public List<C_order> searchByOrderCustom(String searchValue, int page, int rows) {
+    public List<Order> searchByOrderCustom(String searchValue, int page, int rows) {
         return null;
     }
 
     @RequestMapping("order/search_order_by_orderProduct")
     @ResponseBody
-    public List<C_order> searchByOrderProduct(String searchValue, int page, int rows) {
+    public List<Order> searchByOrderProduct(String searchValue, int page, int rows) {
         return null;
     }
 
@@ -103,8 +103,8 @@ public class OrderController {
 
     @RequestMapping("order/get_data")
     @ResponseBody
-    public List<C_order> orderGetData() {
-        List<C_order> orderList = orderService.orderGetData();
+    public List<Order> orderGetData() {
+        List<Order> orderList = orderService.orderGetData();
         return orderList;
     }
 }

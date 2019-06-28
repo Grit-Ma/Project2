@@ -24,4 +24,19 @@ public class WorkServiceImpl implements WorkService {
         List<Work> workList = workMapper.selectByExample(workExample);
         return workList;
     }
+
+    @Override
+    public List<Work> workGetData() {
+        WorkExample workExample = new WorkExample();
+        WorkExample.Criteria criteria = workExample.createCriteria();
+        criteria.andWorkIdIsNotNull();
+        List<Work> workList = workMapper.selectByExample(workExample);
+        return workList;
+    }
+
+    @Override
+    public Work workGet(String id) {
+        Work work = workMapper.selectByPrimaryKey(id);
+        return work;
+    }
 }

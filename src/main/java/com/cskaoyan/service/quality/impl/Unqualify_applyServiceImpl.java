@@ -25,6 +25,11 @@ public class Unqualify_applyServiceImpl implements Unqualify_applyService {
     }
 
     @Override
+    public List<Unqualify_apply> fuzzyqueryByPid(String pid) {
+        return unqualify_applyMapper.fuzzyqueryByPid(pid);
+    }
+
+    @Override
     public int countAll() {
         return unqualify_applyMapper.countAll();
     }

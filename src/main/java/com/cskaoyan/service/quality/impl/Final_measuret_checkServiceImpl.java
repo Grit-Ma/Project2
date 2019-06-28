@@ -22,6 +22,20 @@ public class Final_measuret_checkServiceImpl implements Final_measuret_checkServ
     }
 
     @Override
+    public List<Final_measuret_check> fuzzyQueryByPid(int page, int rows, String pid) {
+        int offset=(page-1)*rows;
+        int limit=rows;
+        return final_measuret_checkMapper.fuzzyQueryByPid(limit,offset,pid);
+    }
+
+    @Override
+    public List<Final_measuret_check> fuzzyQueryByOid(int page, int rows, String oid) {
+        int offset=(page-1)*rows;
+        int limit=rows;
+        return final_measuret_checkMapper.fuzzyQueryByOid(limit,offset,oid);
+    }
+
+    @Override
     public long countByExample(Final_measuret_checkExample example) {
         return final_measuret_checkMapper.countByExample(example);
     }

@@ -22,6 +22,13 @@ public class Process_count_checkServiceImpl implements Process_count_checkServic
     }
 
     @Override
+    public List<Process_count_check> fuzzyQueryByPCountCheckId(int page, int rows, String cid) {
+        int offset=(page-1)*rows;
+        int limit=rows;
+        return process_count_checkMapper.fuzzyQueryByPCountCheckId(limit,offset,cid);
+    }
+
+    @Override
     public long countByExample(Process_count_checkExample example) {
         return process_count_checkMapper.countByExample(example);
     }

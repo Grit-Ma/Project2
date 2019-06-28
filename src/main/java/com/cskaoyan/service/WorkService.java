@@ -6,4 +6,8 @@ import java.util.List;
 
 public interface WorkService {
     List<Work> workPage(int page, int rows);
+
+    List<Work> workGetData();
+
+    Work workGet(String id);
 }

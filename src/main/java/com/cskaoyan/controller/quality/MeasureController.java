@@ -121,13 +121,11 @@ public class MeasureController {
     @RequestMapping("measure/search_fMeasureCheck_by_fMeasureCheckId")
     @ResponseBody
     public PageVo search_measure_by_measureId(@RequestParam("page") int page, @RequestParam("rows") int rows,String searchValue){
-        Final_measuret_checkExample example = new Final_measuret_checkExample();
-        Final_measuret_checkExample.Criteria criteria = example.createCriteria();
-        criteria.andFMeasureCheckIdLike("%"+searchValue+"%");
-        List<Final_measuret_check> final_measuret_checks = final_measuret_checkService.selectByExample(example);
+        List<Final_measuret_check>  final_measuret_checks=final_measuret_checkService.fuzzyQueryByPid(page,rows,searchValue);
         PageVo pageVo  =new PageVo();
         try{
-            pageVo = PageTool.getPageVo(final_measuret_checks, page, rows);
+            pageVo.setRows(final_measuret_checks);
+            pageVo.setTotal(final_measuret_checks.size());
         }catch (Exception ex){
             ex.printStackTrace();
         }finally {
@@ -139,13 +137,11 @@ public class MeasureController {
     @RequestMapping("measure/search_fMeasureCheck_by_orderId")
     @ResponseBody
     public PageVo search_measure_by_measureName(@RequestParam("page") int page, @RequestParam("rows") int rows,String searchValue){
-        Final_measuret_checkExample example = new Final_measuret_checkExample();
-        Final_measuret_checkExample.Criteria criteria = example.createCriteria();
-        criteria.andOrderIdLike("%"+searchValue+"%");
-        List<Final_measuret_check> final_measuret_checks = final_measuret_checkService.selectByExample(example);
+        List<Final_measuret_check>  final_measuret_checks=final_measuret_checkService.fuzzyQueryByOid(page,rows,searchValue);
         PageVo pageVo  =new PageVo();
         try{
-            pageVo = PageTool.getPageVo(final_measuret_checks, page, rows);
+            pageVo.setRows(final_measuret_checks);
+            pageVo.setTotal(final_measuret_checks.size());
         }catch (Exception ex){
             ex.printStackTrace();
         }finally {

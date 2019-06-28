@@ -26,8 +26,8 @@ public class MaterialReceiveServiceImpl implements MaterialReceiveService {
 
     @Override
     public PageVo getPage(int page, int rows) {
-        List<Material_receive> materials = getMaterialReceive();
-        PageVo pages = PageTool.getPageVo(materials, page, rows);
+        List<Material_receive> materialReceives = getMaterialReceive();
+        PageVo pages = PageTool.getPageVo(materialReceives, page, rows);
         return pages;
     }
 

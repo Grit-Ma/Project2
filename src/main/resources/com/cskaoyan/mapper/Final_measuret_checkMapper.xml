@@ -83,6 +83,23 @@
     limit #{limit} offset #{offset}
   </select>
 
+  <select id="fuzzyQueryByPid" resultMap="BaseResultMap" >
+    select f.f_measure_check_id, f.order_id, f.check_item, f.cdate, f.measure_data, f.emp_id, f.result, f.note,e.emp_name
+    from final_measuret_check f
+    left join employee e
+    on e.emp_id=f.emp_id
+    where f.f_measure_check_id LIKE CONCAT ('%',#{pid},'%')
+    limit #{limit} offset #{offset}
+  </select>
+
+  <select id="fuzzyQueryByOid" resultMap="BaseResultMap" >
+    select f.f_measure_check_id, f.order_id, f.check_item, f.cdate, f.measure_data, f.emp_id, f.result, f.note,e.emp_name
+    from final_measuret_check f
+    left join employee e
+    on e.emp_id=f.emp_id
+    where f.order_id LIKE CONCAT ('%',#{oid},'%')
+    limit #{limit} offset #{offset}
+  </select>
 
   <select id="selectByExample" parameterType="com.cskaoyan.bean.Final_measuret_checkExample" resultMap="BaseResultMap">
     select

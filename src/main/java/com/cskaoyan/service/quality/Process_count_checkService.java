@@ -10,6 +10,8 @@ public interface Process_count_checkService {
 
     List<Process_count_check> selectByPage(int page, int rows);
 
+    List<Process_count_check> fuzzyQueryByPCountCheckId(int page, int rows,String cid);
+
     long countByExample(Process_count_checkExample example);
 
     int deleteByExample(Process_count_checkExample example);

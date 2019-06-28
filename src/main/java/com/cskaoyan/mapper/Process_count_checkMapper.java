@@ -9,6 +9,8 @@ public interface Process_count_checkMapper {
 
     List<Process_count_check> selectByPage(@Param("limit") int limit, @Param("offset") int offset);
 
+    List<Process_count_check> fuzzyQueryByPCountCheckId(@Param("limit") int limit, @Param("offset") int offset,@Param("cid") String cid);
+
     long countByExample(Process_count_checkExample example);
 
     int deleteByExample(Process_count_checkExample example);

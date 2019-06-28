@@ -1,6 +1,5 @@
 package com.cskaoyan.bean;
 
-import java.math.BigDecimal;
 import java.util.Date;
 
 public class Process_measure_check {
@@ -22,6 +21,7 @@ public class Process_measure_check {
 
     private String empName;
 
+
     public Process_measure_check() {
     }
 
@@ -37,12 +37,14 @@ public class Process_measure_check {
         this.empName = empName;
     }
 
+
     public String getpMeasureCheckId() {
         return pMeasureCheckId;
     }
 
     public void setpMeasureCheckId(String pMeasureCheckId) {
-        this.pMeasureCheckId = pMeasureCheckId;
+
+        this.pMeasureCheckId = pMeasureCheckId == null ? null : pMeasureCheckId.trim();
     }
 
     public String getProcessId() {
@@ -50,7 +52,7 @@ public class Process_measure_check {
     }
 
     public void setProcessId(String processId) {
-        this.processId = processId;
+        this.processId = processId == null ? null : processId.trim();
     }
 
     public String getCheckItem() {
@@ -58,7 +60,7 @@ public class Process_measure_check {
     }
 
     public void setCheckItem(String checkItem) {
-        this.checkItem = checkItem;
+        this.checkItem = checkItem == null ? null : checkItem.trim();
     }
 
     public Date getCdate() {
@@ -74,7 +76,8 @@ public class Process_measure_check {
     }
 
     public void setMeasureData(String measureData) {
-        this.measureData = measureData;
+
+        this.measureData = measureData == null ? null : measureData.trim();
     }
 
     public String getEmpId() {
@@ -82,7 +85,7 @@ public class Process_measure_check {
     }
 
     public void setEmpId(String empId) {
-        this.empId = empId;
+        this.empId = empId == null ? null : empId.trim();
     }
 
     public String getResult() {
@@ -90,7 +93,7 @@ public class Process_measure_check {
     }
 
     public void setResult(String result) {
-        this.result = result;
+        this.result = result == null ? null : result.trim();
     }
 
     public String getNote() {

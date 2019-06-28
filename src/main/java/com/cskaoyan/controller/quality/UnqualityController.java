@@ -123,10 +123,7 @@ public class UnqualityController {
     @RequestMapping("unqualify/search_unqualify_by_unqualifyId")
     @ResponseBody
     public PageVo search_unqualify_by_unqualifyId(@RequestParam("page") int page, @RequestParam("rows") int rows,String searchValue){
-        Unqualify_applyExample example = new Unqualify_applyExample();
-        Unqualify_applyExample.Criteria criteria = example.createCriteria();
-        criteria.andUnqualifyApplyIdLike("%"+searchValue+"%");
-        List<Unqualify_apply> unqualify_applies = unqualify_applyService.selectByExample(example);
+        List<Unqualify_apply> unqualify_applies =unqualify_applyService.fuzzyqueryByPid(searchValue);
         PageVo pageVo  =new PageVo();
         try{
             pageVo = PageTool.getPageVo(unqualify_applies, page, rows);

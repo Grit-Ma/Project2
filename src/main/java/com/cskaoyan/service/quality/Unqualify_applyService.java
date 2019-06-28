@@ -14,6 +14,9 @@ public interface Unqualify_applyService {
     //根据名字模糊查询
     List<Unqualify_apply> fuzzyqueryByPname(String pname);
 
+    //根据id模糊查询
+    List<Unqualify_apply> fuzzyqueryByPid(String pid);
+
     int countAll();
 
     long countByExample(Unqualify_applyExample example);

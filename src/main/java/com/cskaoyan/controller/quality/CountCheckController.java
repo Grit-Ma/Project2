@@ -126,15 +126,13 @@ Final_count_checkService final_count_checkService;
     @RequestMapping("f_count_check/search_fCountCheck_by_fCountCheckId")
     @ResponseBody
     public PageVo search_count_by_countId(@RequestParam("page") int page, @RequestParam("rows") int rows,String searchValue){
-        Final_count_checkExample example = new Final_count_checkExample();
-        Final_count_checkExample.Criteria criteria = example.createCriteria();
-        criteria.andFCountCheckIdLike("%"+searchValue+"%");
-        List<Final_count_check> final_count_checks = final_count_checkService.selectByExample(example);
-        PageVo pageVo  =new PageVo();
+        List<Final_count_check> final_count_checks =final_count_checkService.fuzzyQueryByCountCheckId(page,rows,searchValue);
+        PageVo<Final_count_check> pageVo = new PageVo<>();
         try{
-            pageVo = PageTool.getPageVo(final_count_checks, page, rows);
-        }catch (Exception ex){
-            ex.printStackTrace();
+            pageVo.setRows(final_count_checks);
+            pageVo.setTotal(final_count_checks.size());
+        }catch (Exception e){
+            e.printStackTrace();
         }finally {
             return pageVo;
         }
@@ -144,15 +142,13 @@ Final_count_checkService final_count_checkService;
     @RequestMapping("f_count_check/search_fCountCheck_by_orderId")
     @ResponseBody
     public PageVo search_count_by_countName(@RequestParam("page") int page, @RequestParam("rows") int rows,String searchValue){
-        Final_count_checkExample example = new Final_count_checkExample();
-        Final_count_checkExample.Criteria criteria = example.createCriteria();
-        criteria.andOrderIdLike("%"+searchValue+"%");
-        List<Final_count_check> final_count_checks = final_count_checkService.selectByExample(example);
-        PageVo pageVo  =new PageVo();
+        List<Final_count_check> final_count_checks =final_count_checkService.fuzzyQueryByCountOrderId(page,rows,searchValue);
+        PageVo<Final_count_check> pageVo = new PageVo<>();
         try{
-            pageVo = PageTool.getPageVo(final_count_checks, page, rows);
-        }catch (Exception ex){
-            ex.printStackTrace();
+            pageVo.setRows(final_count_checks);
+            pageVo.setTotal(final_count_checks.size());
+        }catch (Exception e){
+            e.printStackTrace();
         }finally {
             return pageVo;
         }

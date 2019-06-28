@@ -10,6 +10,10 @@ public interface Final_count_checkMapper {
 
     List<Final_count_check> selectByPage(@Param("limit") int limit, @Param("offset") int offset);
 
+    List<Final_count_check> fuzzyQueryByCountCheckId(@Param("limit") int limit, @Param("offset") int offset,@Param("cid")String cid);
+
+    List<Final_count_check> fuzzyQueryByCountOrderId(@Param("limit") int limit, @Param("offset") int offset,@Param("oid")String oid);
+
     long countByExample(Final_count_checkExample example);
 
     int deleteByExample(Final_count_checkExample example);

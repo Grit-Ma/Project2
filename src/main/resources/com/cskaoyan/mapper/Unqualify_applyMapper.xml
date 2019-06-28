@@ -101,6 +101,19 @@
     where p.product_name LIKE CONCAT ('%',#{pname},'%')
   </select>
 
+  <!--  根据不合格品的部分id字段模糊查询-->
+  <select id="fuzzyqueryByPid" resultMap="BaseResultMap" >
+    select
+    u.unqualify_apply_id, u.product_id, u.unqualify_item, u.unqualify_count, u.assembly_date, u.emp_id,
+    u.apply_date, u.note,p.product_name,e.emp_name
+    from unqualify_apply u
+    left join product p
+    on u.product_id=p.product_id
+    left join employee e
+    on e.emp_id=u.emp_id
+    where u.unqualify_apply_id LIKE CONCAT ('%',#{pid},'%')
+  </select>
+
   <select id="countAll" resultType="_int" >
     select count(*)
     from unqualify_apply

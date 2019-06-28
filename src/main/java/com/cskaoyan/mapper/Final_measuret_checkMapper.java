@@ -9,6 +9,10 @@ public interface Final_measuret_checkMapper {
 
     List<Final_measuret_check> selectByPage(@Param("limit") int limit,@Param("offset") int offset);
 
+    List<Final_measuret_check> fuzzyQueryByPid(@Param("limit") int limit,@Param("offset") int offset,@Param("pid")String pid);
+
+    List<Final_measuret_check> fuzzyQueryByOid(@Param("limit") int limit,@Param("offset") int offset,@Param("oid")String oid);
+
     long countByExample(Final_measuret_checkExample example);
 
     int deleteByExample(Final_measuret_checkExample example);

@@ -20,4 +20,6 @@ public interface ProductService {
     List<Product> searchByType(String type, int page, int rows);
 
     List<Product> productGetData();
+
+    Product productGet(String id);
 }

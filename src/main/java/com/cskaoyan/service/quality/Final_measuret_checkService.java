@@ -11,6 +11,12 @@ public interface Final_measuret_checkService {
 
     List<Final_measuret_check> selectByPage(int page, int rows);
 
+    List<Final_measuret_check> fuzzyQueryByPid(int page, int rows,String pid);
+
+    List<Final_measuret_check> fuzzyQueryByOid(int page, int rows,String oid);
+
+
+
     long countByExample(Final_measuret_checkExample example);
 
     int deleteByExample(Final_measuret_checkExample example);

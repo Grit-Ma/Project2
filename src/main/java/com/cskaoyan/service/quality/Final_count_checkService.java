@@ -10,6 +10,10 @@ public interface Final_count_checkService {
 
     List<Final_count_check> selectByPage(int page,int rows);
 
+    List<Final_count_check> fuzzyQueryByCountCheckId(int page,int rows,String cid);
+
+    List<Final_count_check> fuzzyQueryByCountOrderId(int page,int rows,String oid);
+
     long countByExample(Final_count_checkExample example);
 
     int deleteByExample(Final_count_checkExample example);

@@ -91,6 +91,28 @@
     offset #{offset}
   </select>
 
+    <select id="fuzzyQueryByCountCheckId" resultMap="BaseResultMap">
+    select f.f_count_check_id, f.order_id, f.check_item, f.sample, f.check_number, f.unqualify, f.qualify,
+    f.cdate, f.measure_data, f.emp_id, f.result, f.note,e.emp_name
+    from final_count_check f
+    left join employee e
+    on e.emp_id=f.emp_id
+    where f.f_count_check_id LIKE CONCAT ('%',#{cid},'%')
+    limit #{limit}
+    offset #{offset}
+  </select>
+
+    <select id="fuzzyQueryByCountOrderId" resultMap="BaseResultMap">
+    select f.f_count_check_id, f.order_id, f.check_item, f.sample, f.check_number, f.unqualify, f.qualify,
+    f.cdate, f.measure_data, f.emp_id, f.result, f.note,e.emp_name
+    from final_count_check f
+    left join employee e
+    on e.emp_id=f.emp_id
+    where f.order_id LIKE CONCAT ('%',#{oid},'%')
+    limit #{limit}
+    offset #{offset}
+  </select>
+
 
     <select id="selectByExample" parameterType="com.cskaoyan.bean.Final_count_checkExample" resultMap="BaseResultMap">
         select

@@ -3,7 +3,6 @@ package com.cskaoyan.controller.quality;
 import com.cskaoyan.bean.Process_count_check;
 import com.cskaoyan.bean.Process_count_checkExample;
 import com.cskaoyan.service.quality.Process_count_checkService;
-import com.cskaoyan.tool.PageTool;
 import com.cskaoyan.vo.PageVo;
 import com.cskaoyan.vo.ResponseVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,10 +35,10 @@ public class ProcessCountCheckController {
     @ResponseBody
     public PageVo pCountCheckList(@RequestParam("page") int page, @RequestParam("rows") int rows){
         List<Process_count_check> process_count_checks=process_count_checkService.selectByPage(page,rows);
-        PageVo<Process_count_check> process_count_checkPageVo = new PageVo<>();
-        process_count_checkPageVo.setRows(process_count_checks);
-        process_count_checkPageVo.setTotal(process_count_checks.size());
-        return process_count_checkPageVo;
+        PageVo<Process_count_check> pageVo = new PageVo<>();
+        pageVo.setRows(process_count_checks);
+        pageVo.setTotal(process_count_checks.size());
+        return pageVo;
     }
 
     //点击删除
@@ -54,10 +53,10 @@ public class ProcessCountCheckController {
     @ResponseBody
     public ResponseVo deleteBatch(@RequestParam("ids") String[] ids) {
         ResponseVo responseVo = new ResponseVo();
-        Process_count_checkExample process_count_checkExample = new Process_count_checkExample();
-        Process_count_checkExample.Criteria criteria = process_count_checkExample.createCriteria();
+        Process_count_checkExample example = new Process_count_checkExample();
+        Process_count_checkExample.Criteria criteria = example.createCriteria();
         criteria.andPCountCheckIdIn(Arrays.asList(ids));
-        int i = process_count_checkService.deleteByExample(process_count_checkExample);
+        int i = process_count_checkService.deleteByExample(example);
         if (i >= 1) {
             responseVo.setMsg("ok");
             responseVo.setStatus(200);
@@ -122,13 +121,10 @@ public class ProcessCountCheckController {
     @RequestMapping("p_count_check/search_pCountCheck_by_pCountCheckId")
     @ResponseBody
     public PageVo search_unqualify_by_unqualifyId(@RequestParam("page") int page, @RequestParam("rows") int rows,String searchValue){
-        Process_count_checkExample example = new Process_count_checkExample();
-        Process_count_checkExample.Criteria criteria = example.createCriteria();
-        criteria.andPCountCheckIdLike("%"+searchValue+"%");
-        List<Process_count_check> process_count_checks = process_count_checkService.selectByExample(example);
-        PageVo pageVo  =new PageVo();
+        List<Process_count_check> process_measure_checks = process_count_checkService.fuzzyQueryByPCountCheckId(page,rows,searchValue);
+        PageVo pageVo = new PageVo();
         try{
-            pageVo = PageTool.getPageVo(process_count_checks, page, rows);
+            pageVo.setRows(process_measure_checks);
         }catch (Exception ex){
             ex.printStackTrace();
         }finally {

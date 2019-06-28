@@ -14,6 +14,9 @@ public interface Unqualify_applyMapper {
     //根据名字模糊查询
     List<Unqualify_apply> fuzzyqueryByPname(@Param("pname") String pname);
 
+    //根据id模糊查询
+    List<Unqualify_apply> fuzzyqueryByPid(@Param("pid") String pid);
+
     int countAll();
 
     long countByExample(Unqualify_applyExample example);

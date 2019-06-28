@@ -23,6 +23,20 @@ public class Final_count_checkServiceImpl implements Final_count_checkService {
     }
 
     @Override
+    public List<Final_count_check> fuzzyQueryByCountCheckId(int page, int rows, String cid) {
+        int offset=(page-1)*rows;
+        int limit=rows;
+        return final_count_checkMapper.fuzzyQueryByCountCheckId(limit,offset,cid);
+    }
+
+    @Override
+    public List<Final_count_check> fuzzyQueryByCountOrderId(int page, int rows, String oid) {
+        int offset=(page-1)*rows;
+        int limit=rows;
+        return final_count_checkMapper.fuzzyQueryByCountOrderId(limit,offset,oid);
+    }
+
+    @Override
     public long countByExample(Final_count_checkExample example) {
         return final_count_checkMapper.countByExample(example);
     }
