@@ -27,4 +27,10 @@ public class ManufactureController {
         return manufactureList;
     }
 
+    @RequestMapping("manufacture/get/{id}")
+    @ResponseBody
+    public Manufacture manufactureGet(@PathVariable("id") String id) {
+        Manufacture manufacture = manufactureService.manufactureGet(id);
+        return manufacture;
+    }
 }

@@ -1,4 +1,4 @@
-package com.cskaoyan.mapper;
+package com.cskaoyan.service.quality;
 
 import com.cskaoyan.bean.Unqualify_apply;
 import com.cskaoyan.bean.Unqualify_applyExample;
@@ -6,16 +6,16 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-public interface Unqualify_applyMapper {
+public interface Unqualify_applyService {
 
     //查询出所有的不合格品
     List<Unqualify_apply> selectAll();
 
     //根据名字模糊查询
-    List<Unqualify_apply> fuzzyqueryByPname(@Param("pname") String pname);
+    List<Unqualify_apply> fuzzyqueryByPname(String pname);
 
     //根据id模糊查询
-    List<Unqualify_apply> fuzzyqueryByPid(@Param("pid") String pid);
+    List<Unqualify_apply> fuzzyqueryByPid(String pid);
 
     int countAll();
 

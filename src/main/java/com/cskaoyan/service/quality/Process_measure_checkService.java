@@ -1,15 +1,16 @@
-package com.cskaoyan.mapper;
+package com.cskaoyan.service.quality;
 
 import com.cskaoyan.bean.Process_measure_check;
 import com.cskaoyan.bean.Process_measure_checkExample;
 import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 
-public interface Process_measure_checkMapper {
+public interface Process_measure_checkService {
 
-    List<Process_measure_check> selectByPage(@Param("limit") int limit, @Param("offset") int offset);
+    List<Process_measure_check> selectByPage(int page, int rows);
 
-    List<Process_measure_check> fuzzyQueryByPMeasureCheckId(@Param("limit") int limit, @Param("offset") int offset,@Param("pid")String pid);
+    List<Process_measure_check> fuzzyQueryByPMeasureCheckId(int page, int rows,String pid);
 
     long countByExample(Process_measure_checkExample example);
 

@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface ManufactureService {
     List<Manufacture> manufacturePage(int page, int rows) ;
+
+    Manufacture manufactureGet(String id);
 }
