@@ -72,14 +72,14 @@ public class ManufactureController {
         return responseVo;
     }
 
-    @RequestMapping("task/delete_judge")
+    @RequestMapping("manufacture/delete_judge")
     @ResponseBody
     public String delete_judge(){
         return null;
     }
 
 
-    @RequestMapping("task/delete_batch")
+    @RequestMapping("gi/delete_batch")
     @ResponseBody
     public ResponseVo delete_batch(String[] ids){
         ResponseVo responseVo = manufactureService.batchDeleteManufactureByIds(Arrays.asList(ids));
