@@ -111,4 +111,6 @@
 				from employee left join department on employee.department_id = department.department_id
 				where employee.emp_id = #{id}
 	</select>
+
 </mapper>
+
