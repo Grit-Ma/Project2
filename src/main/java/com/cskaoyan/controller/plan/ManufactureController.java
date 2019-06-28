@@ -26,4 +26,11 @@ public class ManufactureController {
         List<Manufacture> manufactureList = manufactureService.manufacturePage(page, rows);
         return manufactureList;
     }
+
+    @RequestMapping("manufacture/get/{id}")
+    @ResponseBody
+    public Manufacture manufactureGet(@PathVariable("id") String id) {
+        Manufacture manufacture = manufactureService.manufactureGet(id);
+        return manufacture;
+    }
 }
