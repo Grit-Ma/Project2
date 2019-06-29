@@ -1,4 +1,4 @@
-package com.cskaoyan.bean;
+package com.cskaoyan.bean.quality;
 
 import java.util.Date;
 
@@ -18,6 +18,31 @@ public class Final_measuret_check {
     private String result;
 
     private String note;
+
+    private String empName;
+
+    public Final_measuret_check() {
+    }
+
+    public Final_measuret_check(String fMeasureCheckId, String orderId, String checkItem, Date cdate, String measureData, String empId, String result, String note, String empName) {
+        this.fMeasureCheckId = fMeasureCheckId;
+        this.orderId = orderId;
+        this.checkItem = checkItem;
+        this.cdate = cdate;
+        this.measureData = measureData;
+        this.empId = empId;
+        this.result = result;
+        this.note = note;
+        this.empName = empName;
+    }
+
+    public String getEmpName() {
+        return empName;
+    }
+
+    public void setEmpName(String empName) {
+        this.empName = empName;
+    }
 
     public String getfMeasureCheckId() {
         return fMeasureCheckId;

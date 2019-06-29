@@ -1,11 +1,21 @@
-package com.cskaoyan.mapper;
+package com.cskaoyan.service.quality;
 
-import com.cskaoyan.bean.Final_measuret_check;
-import com.cskaoyan.bean.Final_measuret_checkExample;
-import java.util.List;
+import com.cskaoyan.bean.quality.Final_measuret_check;
+import com.cskaoyan.bean.quality.Final_measuret_checkExample;
 import org.apache.ibatis.annotations.Param;
 
-public interface Final_measuret_checkMapper {
+import java.util.List;
+
+public interface Final_measuret_checkService {
+
+    List<Final_measuret_check> selectByPage(int page, int rows);
+
+    List<Final_measuret_check> fuzzyQueryByPid(int page, int rows,String pid);
+
+    List<Final_measuret_check> fuzzyQueryByOid(int page, int rows,String oid);
+
+
+
     long countByExample(Final_measuret_checkExample example);
 
     int deleteByExample(Final_measuret_checkExample example);

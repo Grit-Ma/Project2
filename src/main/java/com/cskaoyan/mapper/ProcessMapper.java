@@ -32,4 +32,10 @@ public interface ProcessMapper {
     List<Process> queyProcessByPageAndRows(@Param("number") int number, @Param("offset") int offset);
 
     int queryTotalProcess();
+
+    int deleteBatch(@Param("ids") String[] ids);
+
+    List<Process> searchByProcessIdOrName(@Param("search") String search, @Param("number") int number, @Param("offset") int offset, @Param("flag") String flag);
+
+    int searchByProcessTotal(@Param("search") String search, @Param("flag") String flag);
 }

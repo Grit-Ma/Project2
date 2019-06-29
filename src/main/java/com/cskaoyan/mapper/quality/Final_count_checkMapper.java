@@ -1,11 +1,19 @@
-package com.cskaoyan.mapper;
+package com.cskaoyan.mapper.quality;
 
-import com.cskaoyan.bean.Final_count_check;
-import com.cskaoyan.bean.Final_count_checkExample;
+import com.cskaoyan.bean.quality.Final_count_check;
+import com.cskaoyan.bean.quality.Final_count_checkExample;
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface Final_count_checkMapper {
+
+    List<Final_count_check> selectByPage(@Param("limit") int limit, @Param("offset") int offset);
+
+    List<Final_count_check> fuzzyQueryByCountCheckId(@Param("limit") int limit, @Param("offset") int offset,@Param("cid")String cid);
+
+    List<Final_count_check> fuzzyQueryByCountOrderId(@Param("limit") int limit, @Param("offset") int offset,@Param("oid")String oid);
+
     long countByExample(Final_count_checkExample example);
 
     int deleteByExample(Final_count_checkExample example);

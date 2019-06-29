@@ -18,4 +18,6 @@ public interface CustomService {
     List<Custom> searchByCustomName(String name, int page, int rows);
 
     List<Custom> customGetData();
+
+    Custom customGet(String id);
 }

@@ -5,6 +5,7 @@ import com.cskaoyan.service.technologyService.TechnologyService;
 import com.cskaoyan.vo.ResponseVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -76,13 +77,14 @@ public class TechnologyController {
         return "/WEB-INF/jsp/technology_edit.jsp";
     }
 
-    //technology/get_data
-    @RequestMapping("technology/get_data")
-    @ResponseBody
-    public List<Technology> techonlogyGetData(){
-        List<Technology> list = technologyService.queyAllTechnology();
-        return list;
-    }
+     //technology/get_data
+     @RequestMapping({"technology/get_data","technologyRequirement/get_data"})
+     @ResponseBody
+     public List<Technology> technologyGetData(){
+         List<Technology> list = technologyService.queyAllTechnology();
+         return list;
+     }
+
 
     //更新工艺管理
     @RequestMapping("technology/update_all")
@@ -119,11 +121,11 @@ public class TechnologyController {
     //搜索technology/search_technology_by_technologyId?searchValue=123&page=1&rows=30
     @RequestMapping("technology/search_technology_by_technologyId")
     @ResponseBody
-    public HashMap<String,Object> searchByTechnologyId(int searchValue,int page,int rows){
+    public HashMap<String,Object> searchByTechnologyId(String searchValue,int page,int rows){
         HashMap<String, Object> map = new HashMap<>();
         String flag = "TechnologyId";
-        List<Technology> list = technologyService.searchByTechnologyIdOrName(searchValue + "",page,rows,flag);
-        int total = technologyService.searchByTechnologyIdOrNameTotal(searchValue + "",flag);
+        List<Technology> list = technologyService.searchByTechnologyIdOrName(searchValue ,page,rows,flag);
+        int total = technologyService.searchByTechnologyIdOrNameTotal(searchValue,flag);
         map.put("rows",list);
         map.put("total",total);
         return map;
@@ -140,6 +142,15 @@ public class TechnologyController {
         map.put("rows",list);
         map.put("total",total);
         return map;
+    }
+
+
+    //technology/get/02
+    @RequestMapping("technology/get/{id}")
+    @ResponseBody
+    public Technology getTechnologyById(@PathVariable("id") String TechnologyId){
+        Technology technology = technologyService.queryTechnologyById(TechnologyId);
+        return technology;
     }
 
 

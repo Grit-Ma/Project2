@@ -1,11 +1,17 @@
-package com.cskaoyan.mapper;
+package com.cskaoyan.service.quality;
 
-import com.cskaoyan.bean.Process_count_check;
-import com.cskaoyan.bean.Process_count_checkExample;
-import java.util.List;
+import com.cskaoyan.bean.quality.Process_count_check;
+import com.cskaoyan.bean.quality.Process_count_checkExample;
 import org.apache.ibatis.annotations.Param;
 
-public interface Process_count_checkMapper {
+import java.util.List;
+
+public interface Process_count_checkService {
+
+    List<Process_count_check> selectByPage(int page, int rows);
+
+    List<Process_count_check> fuzzyQueryByPCountCheckId(int page, int rows,String cid);
+
     long countByExample(Process_count_checkExample example);
 
     int deleteByExample(Process_count_checkExample example);

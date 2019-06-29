@@ -494,7 +494,7 @@ function doSearch_work(value,name){ //用户输入用户名,点击搜素,触发�
             		onLoad :function(){
             			//回显数据
             			var data = $("#workList").datagrid("getSelections")[0];
-            			data.processId = data.process.processId; 
+            			data.processId = data.process.processId;
             			data.productId = data.product.productId;
             			data.deviceId = data.device.deviceId;
             			$("#workEditForm").form("load", data);

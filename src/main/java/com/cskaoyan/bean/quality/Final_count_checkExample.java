@@ -1,17 +1,18 @@
-package com.cskaoyan.bean;
+package com.cskaoyan.bean.quality;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Final_measuret_checkExample {
+public class Final_count_checkExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public Final_measuret_checkExample() {
+    public Final_count_checkExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -105,73 +106,73 @@ public class Final_measuret_checkExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
-        public Criteria andFMeasureCheckIdIsNull() {
-            addCriterion("f_measure_check_id is null");
+        public Criteria andFCountCheckIdIsNull() {
+            addCriterion("f_count_check_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andFMeasureCheckIdIsNotNull() {
-            addCriterion("f_measure_check_id is not null");
+        public Criteria andFCountCheckIdIsNotNull() {
+            addCriterion("f_count_check_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andFMeasureCheckIdEqualTo(String value) {
-            addCriterion("f_measure_check_id =", value, "fMeasureCheckId");
+        public Criteria andFCountCheckIdEqualTo(String value) {
+            addCriterion("f_count_check_id =", value, "fCountCheckId");
             return (Criteria) this;
         }
 
-        public Criteria andFMeasureCheckIdNotEqualTo(String value) {
-            addCriterion("f_measure_check_id <>", value, "fMeasureCheckId");
+        public Criteria andFCountCheckIdNotEqualTo(String value) {
+            addCriterion("f_count_check_id <>", value, "fCountCheckId");
             return (Criteria) this;
         }
 
-        public Criteria andFMeasureCheckIdGreaterThan(String value) {
-            addCriterion("f_measure_check_id >", value, "fMeasureCheckId");
+        public Criteria andFCountCheckIdGreaterThan(String value) {
+            addCriterion("f_count_check_id >", value, "fCountCheckId");
             return (Criteria) this;
         }
 
-        public Criteria andFMeasureCheckIdGreaterThanOrEqualTo(String value) {
-            addCriterion("f_measure_check_id >=", value, "fMeasureCheckId");
+        public Criteria andFCountCheckIdGreaterThanOrEqualTo(String value) {
+            addCriterion("f_count_check_id >=", value, "fCountCheckId");
             return (Criteria) this;
         }
 
-        public Criteria andFMeasureCheckIdLessThan(String value) {
-            addCriterion("f_measure_check_id <", value, "fMeasureCheckId");
+        public Criteria andFCountCheckIdLessThan(String value) {
+            addCriterion("f_count_check_id <", value, "fCountCheckId");
             return (Criteria) this;
         }
 
-        public Criteria andFMeasureCheckIdLessThanOrEqualTo(String value) {
-            addCriterion("f_measure_check_id <=", value, "fMeasureCheckId");
+        public Criteria andFCountCheckIdLessThanOrEqualTo(String value) {
+            addCriterion("f_count_check_id <=", value, "fCountCheckId");
             return (Criteria) this;
         }
 
-        public Criteria andFMeasureCheckIdLike(String value) {
-            addCriterion("f_measure_check_id like", value, "fMeasureCheckId");
+        public Criteria andFCountCheckIdLike(String value) {
+            addCriterion("f_count_check_id like", value, "fCountCheckId");
             return (Criteria) this;
         }
 
-        public Criteria andFMeasureCheckIdNotLike(String value) {
-            addCriterion("f_measure_check_id not like", value, "fMeasureCheckId");
+        public Criteria andFCountCheckIdNotLike(String value) {
+            addCriterion("f_count_check_id not like", value, "fCountCheckId");
             return (Criteria) this;
         }
 
-        public Criteria andFMeasureCheckIdIn(List<String> values) {
-            addCriterion("f_measure_check_id in", values, "fMeasureCheckId");
+        public Criteria andFCountCheckIdIn(List<String> values) {
+            addCriterion("f_count_check_id in", values, "fCountCheckId");
             return (Criteria) this;
         }
 
-        public Criteria andFMeasureCheckIdNotIn(List<String> values) {
-            addCriterion("f_measure_check_id not in", values, "fMeasureCheckId");
+        public Criteria andFCountCheckIdNotIn(List<String> values) {
+            addCriterion("f_count_check_id not in", values, "fCountCheckId");
             return (Criteria) this;
         }
 
-        public Criteria andFMeasureCheckIdBetween(String value1, String value2) {
-            addCriterion("f_measure_check_id between", value1, value2, "fMeasureCheckId");
+        public Criteria andFCountCheckIdBetween(String value1, String value2) {
+            addCriterion("f_count_check_id between", value1, value2, "fCountCheckId");
             return (Criteria) this;
         }
 
-        public Criteria andFMeasureCheckIdNotBetween(String value1, String value2) {
-            addCriterion("f_measure_check_id not between", value1, value2, "fMeasureCheckId");
+        public Criteria andFCountCheckIdNotBetween(String value1, String value2) {
+            addCriterion("f_count_check_id not between", value1, value2, "fCountCheckId");
             return (Criteria) this;
         }
 
@@ -312,6 +313,246 @@ public class Final_measuret_checkExample {
 
         public Criteria andCheckItemNotBetween(String value1, String value2) {
             addCriterion("check_item not between", value1, value2, "checkItem");
+            return (Criteria) this;
+        }
+
+        public Criteria andSampleIsNull() {
+            addCriterion("sample is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSampleIsNotNull() {
+            addCriterion("sample is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSampleEqualTo(Integer value) {
+            addCriterion("sample =", value, "sample");
+            return (Criteria) this;
+        }
+
+        public Criteria andSampleNotEqualTo(Integer value) {
+            addCriterion("sample <>", value, "sample");
+            return (Criteria) this;
+        }
+
+        public Criteria andSampleGreaterThan(Integer value) {
+            addCriterion("sample >", value, "sample");
+            return (Criteria) this;
+        }
+
+        public Criteria andSampleGreaterThanOrEqualTo(Integer value) {
+            addCriterion("sample >=", value, "sample");
+            return (Criteria) this;
+        }
+
+        public Criteria andSampleLessThan(Integer value) {
+            addCriterion("sample <", value, "sample");
+            return (Criteria) this;
+        }
+
+        public Criteria andSampleLessThanOrEqualTo(Integer value) {
+            addCriterion("sample <=", value, "sample");
+            return (Criteria) this;
+        }
+
+        public Criteria andSampleIn(List<Integer> values) {
+            addCriterion("sample in", values, "sample");
+            return (Criteria) this;
+        }
+
+        public Criteria andSampleNotIn(List<Integer> values) {
+            addCriterion("sample not in", values, "sample");
+            return (Criteria) this;
+        }
+
+        public Criteria andSampleBetween(Integer value1, Integer value2) {
+            addCriterion("sample between", value1, value2, "sample");
+            return (Criteria) this;
+        }
+
+        public Criteria andSampleNotBetween(Integer value1, Integer value2) {
+            addCriterion("sample not between", value1, value2, "sample");
+            return (Criteria) this;
+        }
+
+        public Criteria andCheckNumberIsNull() {
+            addCriterion("check_number is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCheckNumberIsNotNull() {
+            addCriterion("check_number is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCheckNumberEqualTo(Integer value) {
+            addCriterion("check_number =", value, "checkNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andCheckNumberNotEqualTo(Integer value) {
+            addCriterion("check_number <>", value, "checkNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andCheckNumberGreaterThan(Integer value) {
+            addCriterion("check_number >", value, "checkNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andCheckNumberGreaterThanOrEqualTo(Integer value) {
+            addCriterion("check_number >=", value, "checkNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andCheckNumberLessThan(Integer value) {
+            addCriterion("check_number <", value, "checkNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andCheckNumberLessThanOrEqualTo(Integer value) {
+            addCriterion("check_number <=", value, "checkNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andCheckNumberIn(List<Integer> values) {
+            addCriterion("check_number in", values, "checkNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andCheckNumberNotIn(List<Integer> values) {
+            addCriterion("check_number not in", values, "checkNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andCheckNumberBetween(Integer value1, Integer value2) {
+            addCriterion("check_number between", value1, value2, "checkNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andCheckNumberNotBetween(Integer value1, Integer value2) {
+            addCriterion("check_number not between", value1, value2, "checkNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andUnqualifyIsNull() {
+            addCriterion("unqualify is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUnqualifyIsNotNull() {
+            addCriterion("unqualify is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUnqualifyEqualTo(Integer value) {
+            addCriterion("unqualify =", value, "unqualify");
+            return (Criteria) this;
+        }
+
+        public Criteria andUnqualifyNotEqualTo(Integer value) {
+            addCriterion("unqualify <>", value, "unqualify");
+            return (Criteria) this;
+        }
+
+        public Criteria andUnqualifyGreaterThan(Integer value) {
+            addCriterion("unqualify >", value, "unqualify");
+            return (Criteria) this;
+        }
+
+        public Criteria andUnqualifyGreaterThanOrEqualTo(Integer value) {
+            addCriterion("unqualify >=", value, "unqualify");
+            return (Criteria) this;
+        }
+
+        public Criteria andUnqualifyLessThan(Integer value) {
+            addCriterion("unqualify <", value, "unqualify");
+            return (Criteria) this;
+        }
+
+        public Criteria andUnqualifyLessThanOrEqualTo(Integer value) {
+            addCriterion("unqualify <=", value, "unqualify");
+            return (Criteria) this;
+        }
+
+        public Criteria andUnqualifyIn(List<Integer> values) {
+            addCriterion("unqualify in", values, "unqualify");
+            return (Criteria) this;
+        }
+
+        public Criteria andUnqualifyNotIn(List<Integer> values) {
+            addCriterion("unqualify not in", values, "unqualify");
+            return (Criteria) this;
+        }
+
+        public Criteria andUnqualifyBetween(Integer value1, Integer value2) {
+            addCriterion("unqualify between", value1, value2, "unqualify");
+            return (Criteria) this;
+        }
+
+        public Criteria andUnqualifyNotBetween(Integer value1, Integer value2) {
+            addCriterion("unqualify not between", value1, value2, "unqualify");
+            return (Criteria) this;
+        }
+
+        public Criteria andQualifyIsNull() {
+            addCriterion("qualify is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andQualifyIsNotNull() {
+            addCriterion("qualify is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andQualifyEqualTo(BigDecimal value) {
+            addCriterion("qualify =", value, "qualify");
+            return (Criteria) this;
+        }
+
+        public Criteria andQualifyNotEqualTo(BigDecimal value) {
+            addCriterion("qualify <>", value, "qualify");
+            return (Criteria) this;
+        }
+
+        public Criteria andQualifyGreaterThan(BigDecimal value) {
+            addCriterion("qualify >", value, "qualify");
+            return (Criteria) this;
+        }
+
+        public Criteria andQualifyGreaterThanOrEqualTo(BigDecimal value) {
+            addCriterion("qualify >=", value, "qualify");
+            return (Criteria) this;
+        }
+
+        public Criteria andQualifyLessThan(BigDecimal value) {
+            addCriterion("qualify <", value, "qualify");
+            return (Criteria) this;
+        }
+
+        public Criteria andQualifyLessThanOrEqualTo(BigDecimal value) {
+            addCriterion("qualify <=", value, "qualify");
+            return (Criteria) this;
+        }
+
+        public Criteria andQualifyIn(List<BigDecimal> values) {
+            addCriterion("qualify in", values, "qualify");
+            return (Criteria) this;
+        }
+
+        public Criteria andQualifyNotIn(List<BigDecimal> values) {
+            addCriterion("qualify not in", values, "qualify");
+            return (Criteria) this;
+        }
+
+        public Criteria andQualifyBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("qualify between", value1, value2, "qualify");
+            return (Criteria) this;
+        }
+
+        public Criteria andQualifyNotBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("qualify not between", value1, value2, "qualify");
             return (Criteria) this;
         }
 

@@ -236,9 +236,9 @@ function doSearch_task(value,name){ //用户输入用户名,点击搜素,触发�
 		$("#taskWorkInfo").dialog({
     		onOpen :function(){
     			$.get("work/get/"+row.workId,'',function(data){
-  		    		data.processId = data.process.processId; 
+  		    		/*data.processId = data.process.processId;
   	        		data.productId = data.product.productId;
-  	        		data.deviceId = data.device.deviceId;
+  	        		data.deviceId = data.device.deviceId;*/
   		    		//回显数据
   		    		$("#taskWorkEditForm").form("load", data);
     	    	});
@@ -275,8 +275,8 @@ function doSearch_task(value,name){ //用户输入用户名,点击搜素,触发�
 		$("#taskManufactureInfo").dialog({
     		onOpen :function(){
     			$.get("manufacture/get/"+row.manufactureSn,'',function(data){
-    				data.orderId = data.cOrder.orderId; 
-        			data.technologyId = data.technology.technologyId; 
+    				data.orderId = data.cOrder.orderId;
+        			data.technologyId = data.technology.technologyId;
         			data.beginDate = TAOTAO.formatDateTime(data.beginDate);
            			data.endDate = TAOTAO.formatDateTime(data.endDate);
     		    	//回显数据

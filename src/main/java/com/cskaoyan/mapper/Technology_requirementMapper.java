@@ -34,4 +34,12 @@ public interface Technology_requirementMapper {
     int queryTotalTechnologyRequirement();
 
     List<Technology_requirement> queryTechnologyRequirementAll();
+
+    int deleteBatch(@Param("ids") String[] ids);
+
+    List<Technology_requirement> searchByTechnologyRequirementIdOrName(@Param("search") String search, @Param("number") int number, @Param("offset") int offset, @Param("flag") String flag);
+
+    int searchByTechnologyRequirementTotal(@Param("search") String search, @Param("flag") String flag);
+
+    int updateRequirementById(@Param("technologyRequirementId") String technologyRequirementId, @Param("requirement") String requirement);
 }

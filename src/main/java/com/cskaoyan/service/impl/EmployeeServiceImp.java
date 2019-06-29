@@ -2,7 +2,6 @@ package com.cskaoyan.service.impl;
 
 import com.cskaoyan.bean.Department;
 import com.cskaoyan.bean.Employee;
-import com.cskaoyan.mapper.DepartmentMapper;
 import com.cskaoyan.mapper.EmployeeMapper;
 import com.cskaoyan.service.EmployeeService;
 import org.apache.ibatis.session.SqlSession;

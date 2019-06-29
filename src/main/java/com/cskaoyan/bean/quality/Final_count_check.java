@@ -1,4 +1,4 @@
-package com.cskaoyan.bean;
+package com.cskaoyan.bean.quality;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -27,6 +27,35 @@ public class Final_count_check {
     private String result;
 
     private String note;
+
+    private String empName;
+
+    public Final_count_check() {
+    }
+
+    public String getEmpName() {
+        return empName;
+    }
+
+    public void setEmpName(String empName) {
+        this.empName = empName;
+    }
+
+    public Final_count_check(String fCountCheckId, String orderId, String checkItem, Integer sample, Integer checkNumber, Integer unqualify, BigDecimal qualify, Date cdate, String measureData, String empId, String result, String note, String empName) {
+        this.fCountCheckId = fCountCheckId;
+        this.orderId = orderId;
+        this.checkItem = checkItem;
+        this.sample = sample;
+        this.checkNumber = checkNumber;
+        this.unqualify = unqualify;
+        this.qualify = qualify;
+        this.cdate = cdate;
+        this.measureData = measureData;
+        this.empId = empId;
+        this.result = result;
+        this.note = note;
+        this.empName = empName;
+    }
 
     public String getfCountCheckId() {
         return fCountCheckId;

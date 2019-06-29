@@ -1,7 +1,5 @@
 package com.cskaoyan.bean.material;
 
-import com.cskaoyan.bean.Work;
-
 public class Material {
     private String materialId;
 
@@ -12,16 +10,6 @@ public class Material {
     private Integer remaining;
 
     private String note;
-
-    private Work workId;
-
-    public Work getWorkId() {
-        return workId;
-    }
-
-    public void setWorkId(Work workId) {
-        this.workId = workId;
-    }
 
     public String getMaterialId() {
         return materialId;
