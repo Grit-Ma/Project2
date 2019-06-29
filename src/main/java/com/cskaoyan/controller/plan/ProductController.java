@@ -2,6 +2,7 @@ package com.cskaoyan.controller.plan;
 
 import com.cskaoyan.bean.Product;
 import com.cskaoyan.service.ProductService;
+import com.cskaoyan.vo.PageVo;
 import com.cskaoyan.vo.ResponseVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,8 +25,8 @@ public class ProductController {
 
     @RequestMapping("product/list")
     @ResponseBody
-    public List<Product> productList(int page, int rows) {
-        List<Product> productList = productService.productPage(page, rows);
+    public PageVo productList(int page, int rows) {
+        PageVo productList = productService.productPage(page, rows);
         return productList;
     }
 

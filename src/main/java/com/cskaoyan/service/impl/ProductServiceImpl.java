@@ -4,6 +4,8 @@ import com.cskaoyan.bean.Product;
 import com.cskaoyan.bean.ProductExample;
 import com.cskaoyan.mapper.ProductMapper;
 import com.cskaoyan.service.ProductService;
+import com.cskaoyan.tool.PageTool;
+import com.cskaoyan.vo.PageVo;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,13 +17,10 @@ public class ProductServiceImpl implements ProductService {
     @Autowired
     ProductMapper productMapper;
     @Override
-    public List<Product> productPage(int page, int rows) {
-        ProductExample productExample = new ProductExample();
-        ProductExample.Criteria criteria = productExample.createCriteria();
-        criteria.andProductIdIsNotNull();
-        PageHelper.startPage(page, rows);
-        List<Product> productList = productMapper.selectByExample(productExample);
-        return productList;
+    public PageVo productPage(int page, int rows) {
+        List<Product> productList = productMapper.selectByExample(new ProductExample());
+        PageVo pages = PageTool.getPageVo(productList, page, rows);
+        return pages;
     }
 
     @Override
@@ -77,10 +76,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Product> productGetData() {
-        ProductExample productExample = new ProductExample();
-        ProductExample.Criteria criteria = productExample.createCriteria();
-        criteria.andProductIdIsNotNull();
-        List<Product> productList = productMapper.selectByExample(productExample);
+        List<Product> productList = productMapper.selectByExample(new ProductExample());
         return productList;
     }
 

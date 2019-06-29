@@ -4,8 +4,9 @@ import com.cskaoyan.bean.Manufacture;
 import com.cskaoyan.bean.ManufactureExample;
 import com.cskaoyan.mapper.ManufactureMapper;
 import com.cskaoyan.service.ManufactureService;
+import com.cskaoyan.tool.PageTool;
+import com.cskaoyan.vo.PageVo;
 import com.cskaoyan.vo.ResponseVo;
-import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,13 +18,10 @@ public class ManufactureServiceImpl implements ManufactureService {
     ManufactureMapper manufactureMapper;
 
     @Override
-    public List<Manufacture> manufacturePage(int page, int rows) {
-        ManufactureExample manufactureExample = new ManufactureExample();
-        ManufactureExample.Criteria criteria = manufactureExample.createCriteria();
-        criteria.andManufactureSnIsNotNull();
-        PageHelper.startPage(page, rows);
-        List<Manufacture> manufactureList = manufactureMapper.selectByExample(manufactureExample);
-        return manufactureList;
+    public PageVo manufacturePage(int page, int rows) {
+        List<Manufacture> manufactureList = manufactureMapper.selectByExample(new ManufactureExample());
+        PageVo pages = PageTool.getPageVo(manufactureList, page, rows);
+        return pages;
     }
 
     @Override
@@ -34,10 +32,7 @@ public class ManufactureServiceImpl implements ManufactureService {
 
     @Override
     public List<Manufacture> manufactureGetData() {
-        ManufactureExample manufactureExample = new ManufactureExample();
-        ManufactureExample.Criteria criteria = manufactureExample.createCriteria();
-        criteria.andManufactureSnIsNotNull();
-        List<Manufacture> manufactureList = manufactureMapper.selectByExample(manufactureExample);
+        List<Manufacture> manufactureList = manufactureMapper.selectByExample(new ManufactureExample());
         return manufactureList;
     }
 

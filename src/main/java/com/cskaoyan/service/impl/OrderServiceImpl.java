@@ -4,7 +4,8 @@ import com.cskaoyan.bean.Order;
 import com.cskaoyan.bean.OrderExample;
 import com.cskaoyan.mapper.OrderMapper;
 import com.cskaoyan.service.OrderService;
-import com.github.pagehelper.PageHelper;
+import com.cskaoyan.tool.PageTool;
+import com.cskaoyan.vo.PageVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,13 +17,10 @@ public class OrderServiceImpl implements OrderService {
     OrderMapper orderMapper;
 
     @Override
-    public List<Order> orderPage(int page, int rows) {
-        OrderExample OrderExample = new OrderExample();
-        OrderExample.Criteria criteria = OrderExample.createCriteria();
-        criteria.andOrderIdIsNotNull();
-        PageHelper.startPage(page, rows);
-        List<Order> orderList = orderMapper.selectByExample(OrderExample);
-        return orderList;
+    public PageVo orderPage(int page, int rows) {
+        List<Order> orderList = orderMapper.selectByExample(new OrderExample());
+        PageVo pages = PageTool.getPageVo(orderList, page, rows);
+        return pages;
     }
 
     @Override
@@ -69,10 +67,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<Order> orderGetData() {
-        OrderExample orderExample = new OrderExample();
-        OrderExample.Criteria criteria = orderExample.createCriteria();
-        criteria.andOrderIdIsNotNull();
-        List<Order> orderList = orderMapper.selectByExample(orderExample);
+        List<Order> orderList = orderMapper.selectByExample(new OrderExample());
         return orderList;
     }
 
