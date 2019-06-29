@@ -4,6 +4,7 @@ import com.cskaoyan.bean.Sys_user;
 import com.cskaoyan.bean.Sys_userExample;
 import com.cskaoyan.mapper.Sys_userMapper;
 import com.cskaoyan.service.UserService;
+import com.cskaoyan.tool.Cipher;
 import com.cskaoyan.tool.PageTool;
 import com.cskaoyan.vo.PageVo;
 import com.cskaoyan.vo.ResponseVo;
@@ -42,6 +43,7 @@ public class UserServiceImpl implements UserService {
     public ResponseVo updateUser(Sys_user user) {
         ResponseVo responseVo = new ResponseVo();
         try{
+            user.setPassword(Cipher.encode(user.getPassword()));
             int res = userMapper.updateByPrimaryKey(user);
             responseVo.setMsg("修改成功");
             responseVo.setStatus(200);
@@ -56,6 +58,7 @@ public class UserServiceImpl implements UserService {
     public ResponseVo insertUser(Sys_user user) {
         ResponseVo responseVo = new ResponseVo();
         try{
+            user.setPassword(Cipher.encode(user.getPassword()));
             int res = userMapper.insert(user);
             responseVo.setMsg("新增成功");
             responseVo.setStatus(200);
