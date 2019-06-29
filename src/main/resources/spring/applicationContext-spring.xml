@@ -25,11 +25,7 @@
             <array>
                 <bean class="com.github.pagehelper.PageHelper">
                     <property name="properties">
-<<<<<<< HEAD
                         <!--使用下面的方式配置参数，一行配置一个 -->
-=======
-
->>>>>>> 3ff4910a4e8e66a4b8c430d71851eb563468eace
                         <value>
                             reasonable=true
                         </value>
