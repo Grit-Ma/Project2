@@ -93,4 +93,28 @@ public class ManufactureController {
         ResponseVo responseVo = manufactureService.batchDeleteManufactureByIds(Arrays.asList(ids));
         return responseVo;
     }
+
+    //search_manufacture_by_manufactureSn
+    @RequestMapping("manufacture/search_manufacture_by_manufactureSn")
+    @ResponseBody
+    public PageVo search_manufacture_by_manufactureSn(String searchValue, int page, int rows){
+        PageVo pageVo = manufactureService.searchManufacturByManufactureSn(searchValue, page, rows);
+        return pageVo;
+    }
+
+    //search_manufacture_by_manufactureOrderId
+    @RequestMapping("manufacture/search_manufacture_by_manufactureOrderId")
+    @ResponseBody
+    public PageVo search_manufacture_by_manufactureOrderId(String searchValue, int page, int rows){
+        PageVo pageVo = manufactureService.searchManufacturByManufactureOrderId(searchValue, page, rows);
+        return pageVo;
+    }
+
+    //search_manufacture_by_manufactureTechnologyName
+    @RequestMapping("manufacture/search_manufacture_by_manufactureTechnologyName")
+    @ResponseBody
+    public PageVo search_manufacture_by_manufactureTechnologyName(String searchValue, int page, int rows){
+        PageVo pageVo = manufactureService.searchManufacturByManufactureTechnologyName(searchValue, page, rows);
+        return pageVo;
+    }
 }

@@ -16,9 +16,9 @@ public interface OrderService {
 
     List<Order> searchByOrderId(String id, int page, int rows);
 
-    List<Order> searchByOrderCustom(String custom, int page, int rows);
+    PageVo searchByOrderCustom(String custom, int page, int rows);
 
-    List<Order> searchByOrderProduct(String product, int page, int rows);
+    PageVo searchByOrderProduct(String product, int page, int rows);
 
     List<Order> orderGetData();
 

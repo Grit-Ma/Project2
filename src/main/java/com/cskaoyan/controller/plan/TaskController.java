@@ -80,4 +80,28 @@ public class TaskController {
         ResponseVo responseVo = taskService.batchDeleteTaskByIds(Arrays.asList(ids));
         return responseVo;
     }
+
+    //search_task_by_taskId
+    @RequestMapping("task/search_task_by_taskId")
+    @ResponseBody
+    public PageVo search_task_by_taskId(String searchValue, int page, int rows){
+        PageVo pageVo = taskService.searchTaskByTaskId(searchValue, page, rows);
+        return pageVo;
+    }
+
+    //search_task_by_taskWorkId
+    @RequestMapping("task/search_task_by_taskWorkId")
+    @ResponseBody
+    public PageVo search_task_by_taskWorkId(String searchValue, int page, int rows){
+        PageVo pageVo = taskService.searchTaskByTaskWorkId(searchValue, page, rows);
+        return pageVo;
+    }
+    //search_task_by_taskManufactureSn
+    @RequestMapping("task/search_task_by_taskManufactureSn")
+    @ResponseBody
+    public PageVo search_task_by_taskManufactureSn(String searchValue, int page, int rows){
+        PageVo pageVo = taskService.searchTaskByTaskManufactureSn(searchValue, page, rows);
+        return pageVo;
+    }
 }
+

@@ -27,4 +27,14 @@ public interface WorkMapper {
     int updateByPrimaryKeySelective(Work record);
 
     int updateByPrimaryKey(Work record);
+
+    List<Work> getWorkByWorkId(String searchValue);
+
+    List<Work> selectForWorkAndProductAndProcessAndDevice();
+
+    List<Work> getWorkByProduct(String searchValue);
+
+    List<Work> getWorkByDevice(String searchValue);
+
+    List<Work> getWorkByProcess(String searchValue);
 }

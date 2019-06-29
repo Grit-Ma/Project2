@@ -19,7 +19,7 @@ public class ManufactureServiceImpl implements ManufactureService {
 
     @Override
     public PageVo manufacturePage(int page, int rows) {
-        List<Manufacture> manufactureList = manufactureMapper.selectByExample(new ManufactureExample());
+        List<Manufacture> manufactureList = manufactureMapper.selectForManufactureAndCorderAndTechnology();
         PageVo pages = PageTool.getPageVo(manufactureList, page, rows);
         return pages;
     }
@@ -79,5 +79,29 @@ public class ManufactureServiceImpl implements ManufactureService {
             responseVo.setStatus(500);
         }
         return responseVo;
+    }
+
+    @Override
+    public PageVo searchManufacturByManufactureSn(String searchValue, int page, int rows) {
+        searchValue = "%" + searchValue + "%";
+        List<Manufacture> manufactures = manufactureMapper.getManufacturByManufactureSn(searchValue);
+        PageVo pages = PageTool.getPageVo(manufactures, page, rows);
+        return pages;
+    }
+
+    @Override
+    public PageVo searchManufacturByManufactureOrderId(String searchValue, int page, int rows) {
+        searchValue = "%" + searchValue + "%";
+        List<Manufacture> manufactures = manufactureMapper.getManufacturByOrderId(searchValue);
+        PageVo pages = PageTool.getPageVo(manufactures, page, rows);
+        return pages;
+    }
+
+    @Override
+    public PageVo searchManufacturByManufactureTechnologyName(String searchValue, int page, int rows) {
+        searchValue = "%" + searchValue + "%";
+        List<Manufacture> manufactures = manufactureMapper.searchManufacturTechnologyName(searchValue);
+        PageVo pages = PageTool.getPageVo(manufactures, page, rows);
+        return pages;
     }
 }

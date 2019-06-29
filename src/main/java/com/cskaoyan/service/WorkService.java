@@ -20,4 +20,12 @@ public interface WorkService {
 
     @Delete("delete from ")
     ResponseVo batchDeleteWorkByIds(List<String> asList);
+
+    PageVo searchWorkByWorkId(String searchValue, int page, int rows);
+
+    PageVo searchWorkByWorkProduct(String searchValue, int page, int rows);
+
+    PageVo searchWorkByWorkDevice(String searchValue, int page, int rows);
+
+    PageVo searchWorkByWorkProcess(String searchValue, int page, int rows);
 }

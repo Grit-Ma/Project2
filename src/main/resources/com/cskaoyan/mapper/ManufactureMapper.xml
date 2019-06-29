@@ -8,31 +8,6 @@
     <result column="launch_quantity" jdbcType="INTEGER" property="launchQuantity" />
     <result column="begin_date" jdbcType="TIMESTAMP" property="beginDate" />
     <result column="end_date" jdbcType="TIMESTAMP" property="endDate" />
-    <association property="cOrder" javaType="com.cskaoyan.bean.C_order">
-      <id column="order_id" jdbcType="VARCHAR" property="orderId" />
-      <result column="custom_id" jdbcType="VARCHAR" property="customId" />
-      <result column="product_id" jdbcType="VARCHAR" property="productId" />
-      <result column="order_date" jdbcType="TIMESTAMP" property="orderDate" />
-      <result column="request_date" jdbcType="TIMESTAMP" property="requestDate" />
-      <result column="note" jdbcType="VARCHAR" property="note" />
-      <result column="quantity" jdbcType="INTEGER" property="quantity" />
-      <result column="unit_price" jdbcType="DECIMAL" property="unitPrice" />
-      <result column="unit" jdbcType="VARCHAR" property="unit" />
-      <result column="image" jdbcType="VARCHAR" property="image" />
-      <result column="file" jdbcType="VARCHAR" property="file" />
-      <result column="status" jdbcType="INTEGER" property="status" />
-    </association>
-    <association property="technology" javaType="com.cskaoyan.bean.Technology">
-      <id column="technology_id" jdbcType="VARCHAR" property="technologyId" />
-      <result column="technology_name" jdbcType="VARCHAR" property="technologyName" />
-      <result column="price" jdbcType="DECIMAL" property="price" />
-      <result column="vital_process_period" jdbcType="VARCHAR" property="vitalProcessPeriod" />
-      <result column="standard_capacity" jdbcType="INTEGER" property="standardCapacity" />
-      <result column="overtime_standard_capacity" jdbcType="INTEGER" property="overtimeStandardCapacity" />
-      <result column="overtime_overfulfil_capacity" jdbcType="INTEGER" property="overtimeOverfulfilCapacity" />
-      <result column="double_capacity" jdbcType="INTEGER" property="doubleCapacity" />
-      <result column="overfulfil_capacity" jdbcType="INTEGER" property="overfulfilCapacity" />
-    </association>
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -93,10 +68,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    manufacture_sn, order_id, manufacture.technology_id, launch_quantity, begin_date, end_date
-  </sql>
-  <sql id="Base_Column_List_e">
-    manufacture_sn, order_id, manufacture.technology_id, launch_quantity, begin_date, end_date, technology_name
+    manufacture_sn, order_id, technology_id, launch_quantity, begin_date, end_date
   </sql>
   <select id="selectByExample" parameterType="com.cskaoyan.bean.ManufactureExample" resultMap="BaseResultMap">
     select
@@ -104,8 +76,8 @@
       distinct
     </if>
     'true' as QUERYID,
-    <include refid="Base_Column_List_e" />
-    from manufacture left join technology on manufacture.technology_id = technology.technology_id
+    <include refid="Base_Column_List" />
+    from manufacture
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -254,4 +226,117 @@
       end_date = #{endDate,jdbcType=TIMESTAMP}
     where manufacture_sn = #{manufactureSn,jdbcType=VARCHAR}
   </update>
+
+  <!--自己写的-->
+  <resultMap id="BaseResultMap_new" type="com.cskaoyan.bean.Manufacture">
+    <id column="manufacture_sn" jdbcType="VARCHAR" property="manufactureSn" />
+    <result column="order_id2" jdbcType="VARCHAR" property="orderId" />
+    <result column="technology_id2" jdbcType="VARCHAR" property="technologyId" />
+    <result column="launch_quantity" jdbcType="INTEGER" property="launchQuantity" />
+    <result column="begin_date" jdbcType="TIMESTAMP" property="beginDate" />
+    <result column="end_date" jdbcType="TIMESTAMP" property="endDate" />
+
+    <association property="cOrder" javaType="com.cskaoyan.bean.C_order">
+      <id column="order_id1" jdbcType="VARCHAR" property="orderId" />
+      <result column="custom_id" jdbcType="VARCHAR" property="customId" />
+      <result column="product_id" jdbcType="VARCHAR" property="productId" />
+      <result column="order_date" jdbcType="TIMESTAMP" property="orderDate" />
+      <result column="request_date" jdbcType="TIMESTAMP" property="requestDate" />
+      <result column="note" jdbcType="VARCHAR" property="note" />
+      <result column="quantity" jdbcType="INTEGER" property="quantity" />
+      <result column="unit_price" jdbcType="DECIMAL" property="unitPrice" />
+      <result column="unit" jdbcType="VARCHAR" property="unit" />
+      <result column="image" jdbcType="VARCHAR" property="image" />
+      <result column="file" jdbcType="VARCHAR" property="file" />
+      <result column="status" jdbcType="INTEGER" property="status" />
+    </association>
+
+    <association property="technology" javaType="com.cskaoyan.bean.Technology">
+      <id column="technology_id1" jdbcType="VARCHAR" property="technologyId" />
+      <result column="technology_name" jdbcType="VARCHAR" property="technologyName" />
+      <result column="price" jdbcType="DECIMAL" property="price" />
+      <result column="vital_process_period" jdbcType="VARCHAR" property="vitalProcessPeriod" />
+      <result column="standard_capacity" jdbcType="INTEGER" property="standardCapacity" />
+      <result column="overtime_standard_capacity" jdbcType="INTEGER" property="overtimeStandardCapacity" />
+      <result column="overtime_overfulfil_capacity" jdbcType="INTEGER" property="overtimeOverfulfilCapacity" />
+      <result column="double_capacity" jdbcType="INTEGER" property="doubleCapacity" />
+      <result column="overfulfil_capacity" jdbcType="INTEGER" property="overfulfilCapacity" />
+    </association>
+  </resultMap>
+
+
+  <sql id="Base_Column_List_New">
+    select
+        m.manufacture_sn,
+        m.order_id as order_id2,
+        m.technology_id as technology_id2,
+        m.launch_quantity,
+        m.begin_date,
+        m.end_date,
+
+        o.order_id as order_id1,
+        o.custom_id,
+        o.product_id,
+        o.order_date,
+        o.request_date,
+        o.note,
+        o.quantity,
+        o.unit_price,
+        o.unit,
+        o.image,
+        o.file,
+        o.status,
+
+        t.technology_id as technology_id1,
+        t.technology_name,
+        t.price,
+        t.vital_process_period,
+        t.standard_capacity,
+        t.overtime_standard_capacity,
+        t.overtime_overfulfil_capacity,
+        t.double_capacity,
+        t.overfulfil_capacity
+  </sql>
+  <sql id="Table_Form_Manufacture_C_order_Technology">
+    from
+        manufacture m,
+        c_order o,
+        technology t
+  </sql>
+  <sql id="Where_Form_Manufacture_C_order_Technology">
+    where
+        m.order_id = o.order_id
+    and
+        m.technology_id = t.technology_id
+  </sql>
+
+  <select id="selectForManufactureAndCorderAndTechnology" resultMap="BaseResultMap_new">
+    <include refid="Base_Column_List_New"/>
+    <include refid="Table_Form_Manufacture_C_order_Technology"/>
+    <include refid="Where_Form_Manufacture_C_order_Technology"/>
+  </select>
+
+  <select id="getManufacturByManufactureSn" resultMap="BaseResultMap_new">
+    <include refid="Base_Column_List_New"/>
+    <include refid="Table_Form_Manufacture_C_order_Technology"/>
+    <include refid="Where_Form_Manufacture_C_order_Technology"/>
+    and
+        m.manufacture_sn like #{searchValue}
+  </select>
+
+  <select id="getManufacturByOrderId" resultMap="BaseResultMap_new">
+    <include refid="Base_Column_List_New"/>
+    <include refid="Table_Form_Manufacture_C_order_Technology"/>
+    <include refid="Where_Form_Manufacture_C_order_Technology"/>
+    and
+        m.order_id like #{searchValue}
+  </select>
+
+  <select id="searchManufacturTechnologyName" resultMap="BaseResultMap_new">
+    <include refid="Base_Column_List_New"/>
+    <include refid="Table_Form_Manufacture_C_order_Technology"/>
+    <include refid="Where_Form_Manufacture_C_order_Technology"/>
+    and
+        t.technology_name like #{searchValue}
+  </select>
 </mapper>

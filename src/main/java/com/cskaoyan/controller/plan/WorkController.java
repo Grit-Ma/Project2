@@ -92,4 +92,32 @@ public class WorkController {
         ResponseVo responseVo = workService.batchDeleteWorkByIds(Arrays.asList(ids));
         return responseVo;
     }
+
+    @RequestMapping("work/search_work_by_workId")
+    @ResponseBody
+    public PageVo search_work_by_workId(String searchValue, int page, int rows){
+        PageVo pageVo = workService.searchWorkByWorkId(searchValue, page, rows);
+        return pageVo;
+    }
+
+    @RequestMapping("work/search_work_by_workProduct")
+    @ResponseBody
+    public PageVo search_work_by_workProduct(String searchValue, int page, int rows){
+        PageVo pageVo = workService.searchWorkByWorkProduct(searchValue, page, rows);
+        return pageVo;
+    }
+
+    @RequestMapping("work/search_work_by_workDevice")
+    @ResponseBody
+    public PageVo search_work_by_workDevice(String searchValue, int page, int rows){
+        PageVo pageVo = workService.searchWorkByWorkDevice(searchValue, page, rows);
+        return pageVo;
+    }
+
+    @RequestMapping("work/search_work_by_workProcess")
+    @ResponseBody
+    public PageVo search_work_by_workProcess(String searchValue, int page, int rows){
+        PageVo pageVo = workService.searchWorkByWorkProcess(searchValue, page, rows);
+        return pageVo;
+    }
 }

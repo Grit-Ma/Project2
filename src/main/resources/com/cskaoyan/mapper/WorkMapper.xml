@@ -8,33 +8,6 @@
     <result column="process_id" jdbcType="VARCHAR" property="processId" />
     <result column="device_id" jdbcType="VARCHAR" property="deviceId" />
     <result column="rating" jdbcType="INTEGER" property="rating" />
-    <association property="product" javaType="com.cskaoyan.bean.Product">
-      <result column="product_id" jdbcType="VARCHAR" property="productId" />
-      <result column="product_name" jdbcType="VARCHAR" property="productName" />
-      <result column="product_type" jdbcType="VARCHAR" property="productType" />
-      <result column="image" jdbcType="VARCHAR" property="image" />
-      <result column="note" jdbcType="VARCHAR" property="note" />
-      <result column="status" jdbcType="INTEGER" property="status" />
-    </association>
-    <association property="process" javaType="com.cskaoyan.bean.Process">
-      <result column="process_id" jdbcType="VARCHAR" property="processId" />
-      <result column="technology_plan_id" jdbcType="VARCHAR" property="technologyPlanId" />
-      <result column="sequence" jdbcType="INTEGER" property="sequence" />
-      <result column="quota" jdbcType="INTEGER" property="quota" />
-    </association>
-    <association property="device" javaType="com.cskaoyan.bean.Device">
-      <result column="device_id" jdbcType="VARCHAR" property="deviceId" />
-      <result column="device_name" jdbcType="VARCHAR" property="deviceName" />
-      <result column="device_type_id" jdbcType="VARCHAR" property="deviceTypeId" />
-      <result column="device_status_id" jdbcType="VARCHAR" property="deviceStatusId" />
-      <result column="device_status" jdbcType="VARCHAR" property="deviceStatus" />
-      <result column="device_purchase_date" jdbcType="TIMESTAMP" property="devicePurchaseDate" />
-      <result column="device_purchase_price" jdbcType="DECIMAL" property="devicePurchasePrice" />
-      <result column="device_manufacture_date" jdbcType="TIMESTAMP" property="deviceManufactureDate" />
-      <result column="device_service_life" jdbcType="TIMESTAMP" property="deviceServiceLife" />
-      <result column="device_keeper_id" jdbcType="VARCHAR" property="deviceKeeperId" />
-      <result column="note" jdbcType="VARCHAR" property="note" />
-    </association>
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -97,17 +70,14 @@
   <sql id="Base_Column_List">
     work_id, process_number, product_id, process_id, device_id, rating
   </sql>
-  <sql id="Base_Column_List_e">
-    work_id, process_number, work.product_id, work.process_id, work.device_id, rating, product_name, device_name
-  </sql>
   <select id="selectByExample" parameterType="com.cskaoyan.bean.WorkExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     'true' as QUERYID,
-    <include refid="Base_Column_List_e" />
-    from work join product join device on work.product_id = product.product_id and work.device_id = device.device_id
+    <include refid="Base_Column_List" />
+    from work
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -256,4 +226,131 @@
       rating = #{rating,jdbcType=INTEGER}
     where work_id = #{workId,jdbcType=VARCHAR}
   </update>
+
+
+  <!--自己写的部分-->
+  <resultMap id="BaseResultMap_new" type="com.cskaoyan.bean.Work">
+    <id column="work_id" jdbcType="VARCHAR" property="workId" />
+    <result column="process_number" jdbcType="VARCHAR" property="processNumber"/>
+    <result column="product_id2" jdbcType="VARCHAR" property="productId" />
+    <result column="process_id2" jdbcType="VARCHAR" property="processId" />
+    <result column="device_id2" jdbcType="VARCHAR" property="deviceId" />
+    <result column="rating" jdbcType="INTEGER" property="rating" />
+
+    <association property="product" javaType="com.cskaoyan.bean.Product">
+      <result column="product_id1" jdbcType="VARCHAR" property="productId" />
+      <result column="product_name" jdbcType="VARCHAR" property="productName" />
+      <result column="product_type" jdbcType="VARCHAR" property="productType" />
+      <result column="image" jdbcType="VARCHAR" property="image" />
+      <result column="note2" jdbcType="VARCHAR" property="note" />
+      <result column="status" jdbcType="INTEGER" property="status" />
+    </association>
+
+    <association property="process" javaType="com.cskaoyan.bean.Process">
+      <result column="process_id1" jdbcType="VARCHAR" property="processId" />
+      <result column="technology_plan_id" jdbcType="VARCHAR" property="technologyPlanId" />
+      <result column="sequence" jdbcType="INTEGER" property="sequence" />
+      <result column="quota" jdbcType="INTEGER" property="quota" />
+    </association>
+
+    <association property="device" javaType="com.cskaoyan.bean.Device">
+      <result column="device_id1" jdbcType="VARCHAR" property="deviceId" />
+      <result column="device_name" jdbcType="VARCHAR" property="deviceName" />
+      <result column="device_type_id" jdbcType="VARCHAR" property="deviceTypeId"/>
+      <result column="device_status_id" jdbcType="VARCHAR" property="deviceStatusId" />
+      <result column="device_status" jdbcType="VARCHAR" property="deviceStatus"/>
+      <result column="device_purchase_date" jdbcType="TIMESTAMP" property="devicePurchaseDate" />
+      <result column="device_purchase_price" jdbcType="DECIMAL" property="devicePurchasePrice" />
+      <result column="device_manufacture_date" jdbcType="TIMESTAMP" property="deviceManufactureDate" />
+      <result column="device_service_life" jdbcType="TIMESTAMP" property="deviceServiceLife" />
+      <result column="device_keeper_id" jdbcType="VARCHAR" property="deviceKeeperId" />
+      <result column="note1" jdbcType="VARCHAR" property="note" />
+    </association>
+  </resultMap>
+
+  <sql id="Base_Column_List_New">
+    select
+        w.work_id,
+        w.process_number,
+        w.product_id as product_id2,
+        w.process_id as process_id2,
+        w.device_id as device_id2,
+        w.rating,
+
+        p1.product_id as product_id1,
+        p1.product_name,
+        p1.product_type,
+        p1.image,
+        p1.note as note2,
+        p1.status,
+
+        p2.process_id as process_id1,
+        p2.technology_plan_id,
+        p2.sequence,
+        p2.quota,
+
+        d.device_id as device_id1,
+        d.device_name,
+        d.device_type_id,
+        d.device_status_id,
+        d.device_status,
+        d.device_purchase_date,
+        d.device_purchase_price,
+        d.device_manufacture_date,
+        d.device_service_life,
+        d.device_keeper_id,
+        d.note as note1
+  </sql>
+  <sql id="Table_Form_Work_Product_Process_Device">
+    from
+        `work` w,
+        product p1,
+        process p2,
+        device d
+  </sql>
+  <sql id="Where_Form_Work_Product_Process_Device">
+    where
+        w.product_id = p1.product_id
+    and
+        w.process_id = p2.process_id
+    and
+        w.device_id = d.device_id
+  </sql>
+  <select id="selectForWorkAndProductAndProcessAndDevice" resultMap="BaseResultMap_new">
+    <include refid="Base_Column_List_New"/>
+    <include refid="Table_Form_Work_Product_Process_Device"/>
+    <include refid="Where_Form_Work_Product_Process_Device"/>
+  </select>
+
+  <select id="getWorkByWorkId" resultMap="BaseResultMap_new">
+    <include refid="Base_Column_List_New"/>
+    <include refid="Table_Form_Work_Product_Process_Device"/>
+    <include refid="Where_Form_Work_Product_Process_Device"/>
+    and
+        w.work_id like #{searchValue}
+  </select>
+
+  <select id="getWorkByProduct" resultMap="BaseResultMap_new">
+    <include refid="Base_Column_List_New"/>
+    <include refid="Table_Form_Work_Product_Process_Device"/>
+    <include refid="Where_Form_Work_Product_Process_Device"/>
+    and
+    p1.product_name like #{searchValue}
+  </select>
+
+  <select id="getWorkByDevice" resultMap="BaseResultMap_new">
+    <include refid="Base_Column_List_New"/>
+    <include refid="Table_Form_Work_Product_Process_Device"/>
+    <include refid="Where_Form_Work_Product_Process_Device"/>
+    and
+    d.device_name like #{searchValue}
+  </select>
+
+  <select id="getWorkByProcess" resultMap="BaseResultMap_new">
+    <include refid="Base_Column_List_New"/>
+    <include refid="Table_Form_Work_Product_Process_Device"/>
+    <include refid="Where_Form_Work_Product_Process_Device"/>
+    and
+    p2.process_id like #{searchValue}
+  </select>
 </mapper>
