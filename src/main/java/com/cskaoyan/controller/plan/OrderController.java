@@ -2,6 +2,7 @@ package com.cskaoyan.controller.plan;
 
 import com.cskaoyan.bean.Order;
 import com.cskaoyan.service.OrderService;
+import com.cskaoyan.vo.PageVo;
 import com.cskaoyan.vo.ResponseVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,8 +25,8 @@ public class OrderController {
 
     @RequestMapping("order/list")
     @ResponseBody
-    public List<Order> orderList(int page, int rows) {
-        List<Order> orderList = orderService.orderPage(page, rows);
+    public PageVo orderList(int page, int rows) {
+        PageVo orderList = orderService.orderPage(page, rows);
         return orderList;
     }
 

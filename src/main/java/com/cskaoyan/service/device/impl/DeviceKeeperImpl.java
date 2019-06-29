@@ -1,9 +1,8 @@
-package com.cskaoyan.service.impl;
+package com.cskaoyan.service.device.impl;
 
 import com.cskaoyan.bean.Employee;
-import com.cskaoyan.bean.EmployeeExample;
 import com.cskaoyan.mapper.EmployeeMapper;
-import com.cskaoyan.service.DeviceKeeperService;
+import com.cskaoyan.service.device.DeviceKeeperService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

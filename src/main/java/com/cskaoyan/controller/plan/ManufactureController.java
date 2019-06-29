@@ -2,6 +2,7 @@ package com.cskaoyan.controller.plan;
 
 import com.cskaoyan.bean.Manufacture;
 import com.cskaoyan.service.ManufactureService;
+import com.cskaoyan.vo.PageVo;
 import com.cskaoyan.vo.ResponseVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,8 +25,8 @@ public class ManufactureController {
 
     @RequestMapping("manufacture/list")
     @ResponseBody
-    public List<Manufacture> manufacturePage(int page, int rows) {
-        List<Manufacture> manufactureList = manufactureService.manufacturePage(page, rows);
+    public PageVo manufacturePage(int page, int rows) {
+        PageVo manufactureList = manufactureService.manufacturePage(page, rows);
         return manufactureList;
     }
 
@@ -49,7 +50,7 @@ public class ManufactureController {
         return "/WEB-INF/jsp/manufacture_edit.jsp";
     }
 
-    @RequestMapping("manufacture/manufacture_judge")
+    @RequestMapping("manufacture/edit_judge")
     @ResponseBody
     public String edit_judge(){
         return null;
@@ -85,7 +86,6 @@ public class ManufactureController {
     public String delete_judge(){
         return null;
     }
-
 
     @RequestMapping("manufacture/delete_batch")
     @ResponseBody

@@ -68,7 +68,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    device_check_id, device_id, device_check_emp_id, device_check_date, device_check_result, 
+    device_check_id, device_id, device_check_emp_id, device_check_date, device_check_result,
     device_check_fault_id
   </sql>
   <select id="selectByExample" parameterType="com.cskaoyan.bean.Device_checkExample" resultMap="BaseResultMap">
@@ -103,10 +103,10 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.cskaoyan.bean.Device_check">
-    insert into device_check (device_check_id, device_id, device_check_emp_id, 
+    insert into device_check (device_check_id, device_id, device_check_emp_id,
       device_check_date, device_check_result, device_check_fault_id
       )
-    values (#{deviceCheckId,jdbcType=VARCHAR}, #{deviceId,jdbcType=VARCHAR}, #{deviceCheckEmpId,jdbcType=VARCHAR}, 
+    values (#{deviceCheckId,jdbcType=VARCHAR}, #{deviceId,jdbcType=VARCHAR}, #{deviceCheckEmpId,jdbcType=VARCHAR},
       #{deviceCheckDate,jdbcType=TIMESTAMP}, #{deviceCheckResult,jdbcType=VARCHAR}, #{deviceCheckFaultId,jdbcType=VARCHAR}
       )
   </insert>
@@ -227,4 +227,49 @@
       device_check_fault_id = #{deviceCheckFaultId,jdbcType=VARCHAR}
     where device_check_id = #{deviceCheckId,jdbcType=VARCHAR}
   </update>
+
+
+  <select id="selectAllCheck" resultType="com.cskaoyan.bean.Device_check">
+    select
+            device_check.device_check_id as deviceCheckId,
+            device_check.device_id as deviceId,
+            device_check.device_check_emp_id as deviceCheckEmpId,
+            device_check.device_check_date as viceCheckDate,
+            device_check.device_check_result as deviceCheckResult,
+            device_check.device_check_fault_id as deviceCheckFaultId,
+            device.device_name as deviceName,
+			employee.emp_name as deviceCheckEmp
+			from device_check left join device on device_check.device_id = device.device_id
+			left join employee on device_check.device_check_emp_id = employee.emp_id
+  </select>
+
+  <select id="selectByName" resultType="com.cskaoyan.bean.Device_check">
+    select
+            device_check.device_check_id as deviceCheckId,
+            device_check.device_id as deviceId,
+            device_check.device_check_emp_id as deviceCheckEmpId,
+            device_check.device_check_date as viceCheckDate,
+            device_check.device_check_result as deviceCheckResult,
+            device_check.device_check_fault_id as deviceCheckFaultId,
+            device.device_name as deviceName,
+			employee.emp_name as deviceCheckEmp
+			from device_check left join device on device_check.device_id = device.device_id
+			left join employee on device_check.device_check_emp_id = employee.emp_id
+			where device_name like CONCAT(CONCAT('%',#{searchValue}),'%')
+  </select>
+
+  <select id="selectByCheckId" resultType="com.cskaoyan.bean.Device_check">
+    select
+            device_check.device_check_id as deviceCheckId,
+            device_check.device_id as deviceId,
+            device_check.device_check_emp_id as deviceCheckEmpId,
+            device_check.device_check_date as viceCheckDate,
+            device_check.device_check_result as deviceCheckResult,
+            device_check.device_check_fault_id as deviceCheckFaultId,
+            device.device_name as deviceName,
+			employee.emp_name as deviceCheckEmp
+			from device_check left join device on device_check.device_id = device.device_id
+			left join employee on device_check.device_check_emp_id = employee.emp_id
+			where device_check_id like CONCAT(CONCAT('%',#{searchValue}),'%')
+  </select>
 </mapper>

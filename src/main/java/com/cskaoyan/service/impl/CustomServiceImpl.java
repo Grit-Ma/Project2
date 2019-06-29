@@ -2,9 +2,10 @@ package com.cskaoyan.service.impl;
 
 import com.cskaoyan.bean.Custom;
 import com.cskaoyan.bean.CustomExample;
-import com.cskaoyan.bean.Product;
 import com.cskaoyan.mapper.CustomMapper;
 import com.cskaoyan.service.CustomService;
+import com.cskaoyan.tool.PageTool;
+import com.cskaoyan.vo.PageVo;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,13 +18,10 @@ public class CustomServiceImpl implements CustomService {
     CustomMapper customMapper;
 
     @Override
-    public List<Custom> customPage(int page, int rows) {
-        CustomExample customExample = new CustomExample();
-        CustomExample.Criteria criteria = customExample.createCriteria();
-        criteria.andCustomIdIsNotNull();
-        PageHelper.startPage(page, rows);
-        List<Custom> customList = customMapper.selectByExample(customExample);
-        return customList;
+    public PageVo customPage(int page, int rows) {
+        List<Custom> customList = customMapper.selectByExample(new CustomExample());
+        PageVo pages = PageTool.getPageVo(customList, page, rows);
+        return pages;
     }
 
     @Override
@@ -69,10 +67,7 @@ public class CustomServiceImpl implements CustomService {
 
     @Override
     public List<Custom> customGetData() {
-        CustomExample customExample = new CustomExample();
-        CustomExample.Criteria criteria = customExample.createCriteria();
-        criteria.andCustomIdIsNotNull();
-        List<Custom> customList = customMapper.selectByExample(customExample);
+        List<Custom> customList = customMapper.selectByExample(new CustomExample());
         return customList;
     }
 
