@@ -93,4 +93,20 @@ public class DeviceCheckServiceImpl implements DeviceCheckService {
         PageVo pages = PageTool.getPageVo(devicePluses, page, rows);
         return pages;
     }
+
+    @Override
+    public ResponseVo updateNote(Device_check device_check) {
+        Device_check device_check1 = device_checkMapper.selectByPrimaryKey(device_check.getDeviceCheckId());
+        device_check1.setDeviceCheckResult(device_check.getDeviceCheckResult());
+        ResponseVo responseVo = new ResponseVo();
+        try{
+            device_checkMapper.updateByPrimaryKey(device_check1);
+            responseVo.setMsg("修改成功");
+            responseVo.setStatus(200);
+        }catch (Exception e){
+            responseVo.setMsg("修改失败:"+e.getMessage());
+            responseVo.setStatus(500);
+        }
+        return responseVo;
+    }
 }

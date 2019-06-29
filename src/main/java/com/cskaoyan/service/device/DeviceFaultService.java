@@ -25,4 +25,8 @@ public interface DeviceFaultService {
     PageVo selectByName(String searchValue, int page, int rows);
 
     PageVo selectByFaultId(String searchValue, int page, int rows);
+
+    Device_fault selectById(String faultId);
+
+    ResponseVo updateNote(Device_fault device_fault);
 }

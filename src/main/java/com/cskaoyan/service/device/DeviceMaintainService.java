@@ -26,4 +26,8 @@ public interface DeviceMaintainService {
     PageVo selectByFaultId(String searchValue, int page, int rows);
 
     PageVo selectByMaintianId(String searchValue, int page, int rows);
+
+    ResponseVo updateNote(Device_maintain device_maintain);
+
+    Device_maintain selectByPrimaryKey(String deviceMaintainId);
 }

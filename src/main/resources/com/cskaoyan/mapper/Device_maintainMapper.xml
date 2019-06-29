@@ -244,4 +244,46 @@
       note = #{note,jdbcType=VARCHAR}
     where device_maintain_id = #{deviceMaintainId,jdbcType=VARCHAR}
   </update>
+
+  <select id="selectAllMaintain" resultType="com.cskaoyan.bean.Device_maintain">
+    select
+          device_maintain.device_fault_id as deviceFaultId,
+          device_maintain.device_maintain_cost as deviceMaintainCost,
+          device_maintain.device_maintain_date as deviceMaintainDate,
+          device_maintain.device_maintain_emp_id as deviceMaintainEmpId,
+          device_maintain.device_maintain_id as deviceMaintainId,
+          device_maintain.device_maintain_result as deviceMaintainResult,
+          note,
+          employee.emp_name as deviceMaintainEmp
+          from device_maintain left join employee on device_maintain.device_maintain_emp_id = employee.emp_id
+  </select>
+
+
+  <select id="selectByMaintainId" resultType="com.cskaoyan.bean.Device_maintain">
+    select
+          device_maintain.device_fault_id as deviceFaultId,
+          device_maintain.device_maintain_cost as deviceMaintainCost,
+          device_maintain.device_maintain_date as deviceMaintainDate,
+          device_maintain.device_maintain_emp_id as deviceMaintainEmpId,
+          device_maintain.device_maintain_id as deviceMaintainId,
+          device_maintain.device_maintain_result as deviceMaintainResult,
+          note,
+          employee.emp_name as deviceMaintainEmp
+          from device_maintain left join employee on device_maintain.device_maintain_emp_id = employee.emp_id
+          where device_maintain_id like CONCAT(CONCAT('%',#{searchValue}),'%')
+  </select>
+
+  <select id="selectByFaultId" resultType="com.cskaoyan.bean.Device_maintain">
+    select
+          device_maintain.device_fault_id as deviceFaultId,
+          device_maintain.device_maintain_cost as deviceMaintainCost,
+          device_maintain.device_maintain_date as deviceMaintainDate,
+          device_maintain.device_maintain_emp_id as deviceMaintainEmpId,
+          device_maintain.device_maintain_id as deviceMaintainId,
+          device_maintain.device_maintain_result as deviceMaintainResult,
+          note,
+          employee.emp_name as deviceMaintainEmp
+          from device_maintain left join employee on device_maintain.device_maintain_emp_id = employee.emp_id
+          where device_fault_id like CONCAT(CONCAT('%',#{searchValue}),'%')
+  </select>
 </mapper>

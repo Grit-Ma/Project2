@@ -2,6 +2,7 @@ package com.cskaoyan.controller.device;
 
 import com.cskaoyan.bean.Device_check;
 import com.cskaoyan.bean.Device_fault;
+import com.cskaoyan.bean.Device_maintain;
 import com.cskaoyan.service.device.DeviceFaultService;
 import com.cskaoyan.vo.PageVo;
 import com.cskaoyan.vo.ResponseVo;
@@ -105,5 +106,19 @@ public class DeviceFaultController {
     public PageVo searchFaultByCheckId(String searchValue, int page,int rows) {
         PageVo pageVo = deviceFaultService.selectByFaultId(searchValue, page ,rows);
         return pageVo;
+    }
+
+    @ResponseBody
+    @RequestMapping("deviceFault/update_all")
+    public ResponseVo updateFaultAll(Device_fault device_fault){
+        ResponseVo responseVo = deviceFaultService.updateFault(device_fault);
+        return responseVo;
+    }
+
+    @ResponseBody
+    @RequestMapping("deviceFault/update_note")
+    public ResponseVo update_note(Device_fault device_fault){
+        ResponseVo responseVo = deviceFaultService.updateNote(device_fault);
+        return responseVo;
     }
 }

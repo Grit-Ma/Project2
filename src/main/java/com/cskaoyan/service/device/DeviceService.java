@@ -30,4 +30,6 @@ public interface DeviceService {
     PageVo selectByTypeName(String searchValue,int page, int rows);
 
     Device selectDeviceById(String Id);
+
+    ResponseVo updateNote(Device device);
 }

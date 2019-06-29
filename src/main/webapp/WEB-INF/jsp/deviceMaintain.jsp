@@ -364,7 +364,7 @@ function doSearch_deviceMaintain(value,name){ //用户输入用户名,点击搜�
 			},
 			onBeforeClose: function (event, ui) {
 				// 关闭Dialog前移除编辑器
-			   	KindEditor.remove("#deviceMaintainNoteForm [name=deviceMaintainNote]");
+			   	KindEditor.remove("#deviceMaintainNoteForm [name=note]");
 			}
 		}).dialog("open");
 	};

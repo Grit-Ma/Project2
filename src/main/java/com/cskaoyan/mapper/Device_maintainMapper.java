@@ -1,5 +1,6 @@
 package com.cskaoyan.mapper;
 
+
 import com.cskaoyan.bean.Device_maintain;
 import com.cskaoyan.bean.Device_maintainExample;
 import java.util.List;
@@ -17,6 +18,12 @@ public interface Device_maintainMapper {
     int insertSelective(Device_maintain record);
 
     List<Device_maintain> selectByExample(Device_maintainExample example);
+
+    List<Device_maintain> selectAllMaintain();
+
+    List<Device_maintain>selectByMaintainId(String searchValue);
+
+    List<Device_maintain>selectByFaultId(String searchValue);
 
     Device_maintain selectByPrimaryKey(String deviceMaintainId);
 

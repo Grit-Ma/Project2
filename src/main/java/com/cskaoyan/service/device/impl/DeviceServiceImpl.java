@@ -105,4 +105,20 @@ public class DeviceServiceImpl implements DeviceService {
     public Device selectDeviceById(String Id) {
         return deviceMapper.selectByPrimaryKey(Id);
     }
+
+    @Override
+    public ResponseVo updateNote(Device device) {
+        Device device1 = deviceMapper.selectByPrimaryKey(device.getDeviceId());
+        device1.setNote(device.getNote());
+        ResponseVo responseVo = new ResponseVo();
+        try{
+            deviceMapper.updateByPrimaryKey(device1);
+            responseVo.setMsg("修改成功");
+            responseVo.setStatus(200);
+        }catch (Exception e){
+            responseVo.setMsg("修改失败:"+e.getMessage());
+            responseVo.setStatus(500);
+        }
+        return responseVo;
+    }
 }

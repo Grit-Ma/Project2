@@ -1,5 +1,6 @@
 package com.cskaoyan.service.device.impl;
 
+
 import com.cskaoyan.bean.Device_maintain;
 import com.cskaoyan.bean.Device_maintainExample;
 import com.cskaoyan.mapper.Device_maintainMapper;
@@ -31,32 +32,87 @@ public class DeviceMaintainServiceImpl implements DeviceMaintainService {
 
     @Override
     public List<Device_maintain> selectAllMaintain() {
-        List<Device_maintain> device_maintains= device_maintainMapper.selectByExample(new Device_maintainExample());
+        List<Device_maintain> device_maintains= device_maintainMapper.selectAllMaintain();
         return device_maintains;
     }
 
     @Override
     public ResponseVo insertMaintain(Device_maintain device_maintain) {
-        return null;
+        ResponseVo responseVo = new ResponseVo();
+        try{
+            device_maintainMapper.insert(device_maintain);
+            responseVo.setMsg("新增成功");
+            responseVo.setStatus(200);
+        }catch (Exception e){
+            responseVo.setMsg("新增失败:"+e.getMessage());
+            responseVo.setStatus(500);
+        }
+        return responseVo;
     }
 
     @Override
     public ResponseVo updateMaintain(Device_maintain device_maintain) {
-        return null;
+        ResponseVo responseVo = new ResponseVo();
+        try{
+            device_maintainMapper.updateByPrimaryKey(device_maintain);
+            responseVo.setMsg("修改成功");
+            responseVo.setStatus(200);
+        }catch (Exception e){
+            responseVo.setMsg("修改失败:"+e.getMessage());
+            responseVo.setStatus(500);
+        }
+        return responseVo;
     }
 
     @Override
     public ResponseVo deleteMaintain(List<String> ids) {
-        return null;
+        ResponseVo responseVo = new ResponseVo();
+        Device_maintainExample example = new Device_maintainExample();
+        Device_maintainExample.Criteria criteria = example.createCriteria();
+        criteria.andDeviceFaultIdIn(ids);
+        try{
+            device_maintainMapper.deleteByExample(example);
+            responseVo.setMsg("删除成功");
+            responseVo.setStatus(200);
+        }catch (Exception e){
+            responseVo.setMsg("删除失败");
+            responseVo.setStatus(500);
+        }
+        return responseVo;
     }
 
     @Override
     public PageVo selectByFaultId(String searchValue, int page, int rows) {
-        return null;
+        List<Device_maintain> device_maintains = device_maintainMapper.selectByFaultId(searchValue);
+        PageVo pages = PageTool.getPageVo(device_maintains, page, rows);
+        return pages;
     }
 
     @Override
     public PageVo selectByMaintianId(String searchValue, int page, int rows) {
-        return null;
+        List<Device_maintain> device_faults = device_maintainMapper.selectByMaintainId(searchValue);
+        PageVo pages = PageTool.getPageVo(device_faults, page, rows);
+        return pages;
+    }
+
+    @Override
+    public ResponseVo updateNote(Device_maintain device_maintain) {
+        Device_maintain device_maintain1 = device_maintainMapper.selectByPrimaryKey(device_maintain.getDeviceMaintainId());
+        device_maintain1.setNote(device_maintain.getNote());
+        ResponseVo responseVo = new ResponseVo();
+        try{
+            device_maintainMapper.updateByPrimaryKey(device_maintain1);
+            responseVo.setMsg("修改成功");
+            responseVo.setStatus(200);
+        }catch (Exception e){
+            responseVo.setMsg("修改失败:"+e.getMessage());
+            responseVo.setStatus(500);
+        }
+        return responseVo;
+    }
+
+    @Override
+    public Device_maintain selectByPrimaryKey(String deviceMaintainId){
+        return device_maintainMapper.selectByPrimaryKey(deviceMaintainId);
     }
 }

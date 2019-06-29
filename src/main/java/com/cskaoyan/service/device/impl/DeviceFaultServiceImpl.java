@@ -3,6 +3,7 @@ package com.cskaoyan.service.device.impl;
 
 import com.cskaoyan.bean.Device_fault;
 import com.cskaoyan.bean.Device_faultExample;
+import com.cskaoyan.bean.Device_maintain;
 import com.cskaoyan.mapper.Device_faultMapper;
 import com.cskaoyan.service.device.DeviceFaultService;
 import com.cskaoyan.tool.PageTool;
@@ -93,5 +94,26 @@ public class DeviceFaultServiceImpl implements DeviceFaultService {
         List<Device_fault> device_faults = device_faultMapper.selectByFaultId(searchValue);
         PageVo pages = PageTool.getPageVo(device_faults, page, rows);
         return pages;
+    }
+
+    @Override
+    public Device_fault selectById(String faultId){
+        return device_faultMapper.selectByPrimaryKey(faultId);
+    }
+
+    @Override
+    public ResponseVo updateNote(Device_fault device_fault) {
+        Device_fault device_fault1 = device_faultMapper.selectByPrimaryKey(device_fault.getDeviceFaultId());
+        device_fault1.setDeviceFaultDetail(device_fault.getDeviceFaultDetail());
+        ResponseVo responseVo = new ResponseVo();
+        try{
+            device_faultMapper.updateByPrimaryKey(device_fault1);
+            responseVo.setMsg("修改成功");
+            responseVo.setStatus(200);
+        }catch (Exception e){
+            responseVo.setMsg("修改失败:"+e.getMessage());
+            responseVo.setStatus(500);
+        }
+        return responseVo;
     }
 }

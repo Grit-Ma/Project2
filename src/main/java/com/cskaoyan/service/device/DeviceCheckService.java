@@ -26,5 +26,7 @@ public interface DeviceCheckService {
 
     PageVo selectByName(String searchValue,int page, int rows);
 
+    ResponseVo updateNote(Device_check device_check);
+
 
 }

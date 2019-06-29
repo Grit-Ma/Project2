@@ -1,7 +1,9 @@
 package com.cskaoyan.controller.device;
 
 import com.cskaoyan.bean.Device;
+import com.cskaoyan.bean.DevicePlus;
 import com.cskaoyan.bean.Device_check;
+import com.cskaoyan.bean.Device_maintain;
 import com.cskaoyan.service.device.DeviceCheckService;
 import com.cskaoyan.service.device.DeviceService;
 import com.cskaoyan.vo.PageVo;
@@ -111,6 +113,20 @@ public class DeviceCheckController {
     public PageVo searchCheckByCheckId(String searchValue, int page,int rows) {
         PageVo pageVo = deviceCheckService.selectByCheckId(searchValue, page ,rows);
         return pageVo;
+    }
+
+    @ResponseBody
+    @RequestMapping("deviceList/update_all")
+    public ResponseVo updateDeviceAll(DevicePlus devicePlus){
+        ResponseVo responseVo = deviceService.updateDevice(devicePlus);
+        return responseVo;
+    }
+
+    @ResponseBody
+    @RequestMapping("deviceCheck/update_note")
+    public ResponseVo update_note(Device_check device_check){
+        ResponseVo responseVo = deviceCheckService.updateNote(device_check);
+        return responseVo;
     }
 
 }

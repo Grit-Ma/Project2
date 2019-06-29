@@ -190,4 +190,11 @@ public class DeviceController {
         PageVo pageVo = deviceService.selectByTypeName(searchValue, page ,rows);
         return pageVo;
     }
+
+    @ResponseBody
+    @RequestMapping("deviceList/update_note")
+    public ResponseVo update_note(Device device){
+        ResponseVo responseVo = deviceService.updateNote(device);
+        return responseVo;
+    }
 }
