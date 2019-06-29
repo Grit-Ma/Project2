@@ -78,14 +78,16 @@ public class OrderController {
 
     @RequestMapping("order/search_order_by_orderCustom")
     @ResponseBody
-    public List<Order> searchByOrderCustom(String searchValue, int page, int rows) {
-        return null;
+    public PageVo searchByOrderCustom(String searchValue, int page, int rows) {
+        PageVo pageVo = orderService.searchByOrderCustom(searchValue, page, rows);
+        return pageVo;
     }
 
     @RequestMapping("order/search_order_by_orderProduct")
     @ResponseBody
-    public List<Order> searchByOrderProduct(String searchValue, int page, int rows) {
-        return null;
+    public PageVo searchByOrderProduct(String searchValue, int page, int rows) {
+        PageVo pageVo = orderService.searchByOrderProduct(searchValue, page, rows);
+        return pageVo;
     }
 
     @RequestMapping("order/delete_batch")

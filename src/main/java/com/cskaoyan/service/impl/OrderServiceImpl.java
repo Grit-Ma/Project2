@@ -54,15 +54,19 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<Order> searchByOrderCustom(String custom, int page, int rows) {
-        // c_order left join custom
-        return null;
+    public PageVo searchByOrderCustom(String custom, int page, int rows) {
+        String customName = "%" + custom + "%";
+        List<Order> orderList = orderMapper.selectByCustomName(customName);
+        PageVo pages = PageTool.getPageVo(orderList, page, rows);
+        return pages;
     }
 
     @Override
-    public List<Order> searchByOrderProduct(String product, int page, int rows) {
-        // c_order  left join product
-        return null;
+    public PageVo searchByOrderProduct(String product, int page, int rows) {
+        String productName = "%" + product + "%";
+        List<Order> orderList = orderMapper.selectByProductName(productName);
+        PageVo pages = PageTool.getPageVo(orderList, page, rows);
+        return pages;
     }
 
     @Override
