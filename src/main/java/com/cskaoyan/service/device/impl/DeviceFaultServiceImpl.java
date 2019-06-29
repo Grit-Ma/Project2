@@ -1,7 +1,6 @@
 package com.cskaoyan.service.device.impl;
 
-import com.cskaoyan.bean.Device_check;
-import com.cskaoyan.bean.Device_checkExample;
+
 import com.cskaoyan.bean.Device_fault;
 import com.cskaoyan.bean.Device_faultExample;
 import com.cskaoyan.mapper.Device_faultMapper;
