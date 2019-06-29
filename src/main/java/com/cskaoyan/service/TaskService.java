@@ -19,4 +19,10 @@ public interface TaskService {
 
     @Delete("delete from ")
     ResponseVo batchDeleteTaskByIds(List<String> ids);
+
+    PageVo searchTaskByTaskId(String searchValue, int page, int rows);
+
+    PageVo searchTaskByTaskWorkId(String searchValue, int page, int rows);
+
+    PageVo searchTaskByTaskManufactureSn(String searchValue, int page, int rows);
 }

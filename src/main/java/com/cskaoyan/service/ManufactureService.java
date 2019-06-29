@@ -20,4 +20,10 @@ public interface ManufactureService {
 
     @Delete("delete from ")
     ResponseVo batchDeleteManufactureByIds(List<String> ids);
+
+    PageVo searchManufacturByManufactureSn(String searchValue, int page, int rows);
+
+    PageVo searchManufacturByManufactureOrderId(String searchValue, int page, int rows);
+
+    PageVo searchManufacturByManufactureTechnologyName(String searchValue, int page, int rows);
 }

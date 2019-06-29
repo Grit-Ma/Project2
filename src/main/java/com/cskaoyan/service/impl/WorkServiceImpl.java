@@ -19,10 +19,7 @@ public class WorkServiceImpl implements WorkService {
 
     @Override
     public PageVo workPage(int page, int rows) {
-        WorkExample workExample = new WorkExample();
-        WorkExample.Criteria criteria = workExample.createCriteria();
-        criteria.andWorkIdIsNotNull();
-        List<Work> workList = workMapper.selectByExample(workExample);
+        List<Work> workList = workMapper.selectForWorkAndProductAndProcessAndDevice();
         PageVo pages = PageTool.getPageVo(workList, page, rows);
         return pages;
     }
@@ -82,5 +79,37 @@ public class WorkServiceImpl implements WorkService {
             responseVo.setStatus(500);
         }
         return responseVo;
+    }
+
+    @Override
+    public PageVo searchWorkByWorkId(String searchValue, int page, int rows) {
+        searchValue = "%" + searchValue + "%";
+        List<Work> material_receives = workMapper.getWorkByWorkId(searchValue);
+        PageVo pages = PageTool.getPageVo(material_receives, page, rows);
+        return pages;
+    }
+
+    @Override
+    public PageVo searchWorkByWorkProduct(String searchValue, int page, int rows) {
+        searchValue = "%" + searchValue + "%";
+        List<Work> material_receives = workMapper.getWorkByProduct(searchValue);
+        PageVo pages = PageTool.getPageVo(material_receives, page, rows);
+        return pages;
+    }
+
+    @Override
+    public PageVo searchWorkByWorkDevice(String searchValue, int page, int rows) {
+        searchValue = "%" + searchValue + "%";
+        List<Work> material_receives = workMapper.getWorkByDevice(searchValue);
+        PageVo pages = PageTool.getPageVo(material_receives, page, rows);
+        return pages;
+    }
+
+    @Override
+    public PageVo searchWorkByWorkProcess(String searchValue, int page, int rows) {
+        searchValue = "%" + searchValue + "%";
+        List<Work> material_receives = workMapper.getWorkByProcess(searchValue);
+        PageVo pages = PageTool.getPageVo(material_receives, page, rows);
+        return pages;
     }
 }

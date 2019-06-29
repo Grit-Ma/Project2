@@ -75,4 +75,37 @@ public class TaskServiceImpl implements TaskService {
         }
         return responseVo;
     }
+
+    @Override
+    public PageVo searchTaskByTaskId(String searchValue, int page, int rows) {
+        searchValue = "%" + searchValue + "%";
+        TaskExample taskExample = new TaskExample();
+        TaskExample.Criteria criteria = taskExample.createCriteria();
+        criteria.andTaskIdLike(searchValue);
+        List<Task> tasks = taskMapper.selectByExample(taskExample);
+        PageVo pages = PageTool.getPageVo(tasks, page, rows);
+        return pages;
+    }
+
+    @Override
+    public PageVo searchTaskByTaskWorkId(String searchValue, int page, int rows) {
+        searchValue = "%" + searchValue + "%";
+        TaskExample taskExample = new TaskExample();
+        TaskExample.Criteria criteria = taskExample.createCriteria();
+        criteria.andWorkIdLike(searchValue);
+        List<Task> tasks = taskMapper.selectByExample(taskExample);
+        PageVo pages = PageTool.getPageVo(tasks, page, rows);
+        return pages;
+    }
+
+    @Override
+    public PageVo searchTaskByTaskManufactureSn(String searchValue, int page, int rows) {
+        searchValue = "%" + searchValue + "%";
+        TaskExample taskExample = new TaskExample();
+        TaskExample.Criteria criteria = taskExample.createCriteria();
+        criteria.andManufactureSnLike(searchValue);
+        List<Task> tasks = taskMapper.selectByExample(taskExample);
+        PageVo pages = PageTool.getPageVo(tasks, page, rows);
+        return pages;
+    }
 }
