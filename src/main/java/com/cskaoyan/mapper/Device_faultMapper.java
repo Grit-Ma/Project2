@@ -20,6 +20,10 @@ public interface Device_faultMapper {
 
     List<Device_fault> selectByExample(Device_faultExample example);
 
+    List<Device_fault>selectByName(String searchValue);
+
+    List<Device_fault>selectByFaultId(String searchValue);
+
     Device_fault selectByPrimaryKey(String deviceFaultId);
 
     int updateByExampleSelective(@Param("record") Device_fault record, @Param("example") Device_faultExample example);

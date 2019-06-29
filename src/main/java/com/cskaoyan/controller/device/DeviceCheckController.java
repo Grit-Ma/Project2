@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -82,6 +83,19 @@ public class DeviceCheckController {
     @RequestMapping("deviceCheck/update")
     public ResponseVo updateCheck(Device_check device_check) {
         ResponseVo responseVo = deviceCheckService.updateCheck(device_check);
+        return responseVo;
+    }
+
+    @ResponseBody
+    @RequestMapping("deviceCheck/delete_judge")
+    public String gotoDeleteJudge() {
+        return null;
+    }
+
+    @ResponseBody
+    @RequestMapping("deviceCheck/delete_batch")
+    public ResponseVo deleteCheck(String[] ids) {
+        ResponseVo responseVo = deviceCheckService.deleteCheck(Arrays.asList(ids));
         return responseVo;
     }
 
