@@ -227,4 +227,16 @@
       device_fault_maintenance = #{deviceFaultMaintenance,jdbcType=VARCHAR}
     where device_fault_id = #{deviceFaultId,jdbcType=VARCHAR}
   </update>
+
+
+  <select id="selectAllFault" resultType="com.cskaoyan.bean.Device_fault">
+    select
+          device_fault.device_fault_id as deviceFaultId,
+          device_fault.device_fault_cause as deviceFaultCause,
+          device_fault.device_fault_detail as deviceFaultDetail,
+          device_fault.device_fault_date as deviceFaultDate,
+          device_fault.device_fault_maintenance as deviceFaultMaintenance,
+          device.device_name as deviceName
+    from device_fault left join  device on device_fault.device_id = device.device_id
+  </select>
 </mapper>
