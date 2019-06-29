@@ -28,4 +28,8 @@ public interface OrderMapper {
     int updateByPrimaryKeySelective(Order record);
 
     int updateByPrimaryKey(Order record);
+
+    List<Order> selectByCustomName(@Param("customName") String customName);
+
+    List<Order> selectByProductName(@Param("productName") String productName);
 }

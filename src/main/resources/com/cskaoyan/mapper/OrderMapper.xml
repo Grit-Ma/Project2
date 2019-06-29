@@ -118,6 +118,18 @@
       order by ${orderByClause}
     </if>
   </select>
+  <select id="selectByCustomName" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List_e" />
+    from c_order join custom join product on c_order.custom_id = custom.custom_id and c_order.product_id = product.product_id
+   where custom.custom_name like #{customName}
+  </select>
+  <select id="selectByProductName" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List_e" />
+    from c_order join custom join product on c_order.custom_id = custom.custom_id and c_order.product_id = product.product_id
+    where product.product_name like #{productName}
+  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 'true' as QUERYID,
     <include refid="Base_Column_List" />
