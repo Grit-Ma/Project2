@@ -251,7 +251,7 @@
           device_fault.device_id as deviceId,
           device.device_name as deviceName
     from device_fault left join  device on device_fault.device_id = device.device_id
-    where device_name = #{deviceCheckId,jdbcType=VARCHAR}
+    where device_name like CONCAT(CONCAT('%',#{searchValue}),'%')
   </select>
 
   <select id="selectByFaultId" resultType="com.cskaoyan.bean.Device_fault">
@@ -264,6 +264,6 @@
           device_fault.device_id as deviceId,
           device.device_name as deviceName
     from device_fault left join  device on device_fault.device_id = device.device_id
-    where device_fault_id = #{deviceCheckId,jdbcType=VARCHAR}
+    where  device_fault_id like CONCAT(CONCAT('%',#{searchValue}),'%')
   </select>
 </mapper>
