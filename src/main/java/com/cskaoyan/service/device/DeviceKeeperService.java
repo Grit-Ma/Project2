@@ -1,4 +1,4 @@
-package com.cskaoyan.service;
+package com.cskaoyan.service.device;
 
 import com.cskaoyan.bean.Employee;
 

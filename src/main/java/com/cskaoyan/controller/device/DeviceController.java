@@ -1,10 +1,10 @@
-package com.cskaoyan.controller;
+package com.cskaoyan.controller.device;
 
 import com.cskaoyan.bean.*;
 import com.cskaoyan.service.DepartmentService;
-import com.cskaoyan.service.DeviceKeeperService;
-import com.cskaoyan.service.DeviceService;
-import com.cskaoyan.service.DeviceTypeService;
+import com.cskaoyan.service.device.DeviceKeeperService;
+import com.cskaoyan.service.device.DeviceService;
+import com.cskaoyan.service.device.DeviceTypeService;
 import com.cskaoyan.vo.PageVo;
 import com.cskaoyan.vo.ResponseVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -78,8 +79,10 @@ public class DeviceController {
 
     @ResponseBody
     @RequestMapping("deviceType/list")
-    public List<Device_type> selectAllType() {
-        return deviceTypeService.selectAllType();
+    public PageVo selectAllType(int page, int rows) {
+        List<Device_type> device_types = deviceTypeService.selectAllType();
+        PageVo pageVo = deviceTypeService.getPage(page, rows, device_types);
+        return pageVo;
     }
 
     @ResponseBody
@@ -136,4 +139,55 @@ public class DeviceController {
         return deviceService.selectAllDevice();
     }
 
+    @ResponseBody
+    @RequestMapping("deviceList/edit_judge")
+    public String gotoEditJudge() {
+        return null;
+    }
+
+    @RequestMapping("deviceList/edit")
+    public String gotoEdit() {
+        return "/WEB-INF/jsp/deviceList_edit.jsp";
+    }
+
+    @ResponseBody
+    @RequestMapping("deviceList/update")
+    public ResponseVo updateDevice(DevicePlus devicePlus) {
+        ResponseVo responseVo = deviceService.updateDevice(devicePlus);
+        return responseVo;
+    }
+
+    @ResponseBody
+    @RequestMapping("deviceList/delete_judge")
+    public String gotoDeleteJudge() {
+        return null;
+    }
+
+    @ResponseBody
+    @RequestMapping("deviceList/delete_batch")
+    public ResponseVo deleteDevice(String[] ids) {
+        ResponseVo responseVo = deviceService.deleteDevice(Arrays.asList(ids));
+        return responseVo;
+    }
+
+    @ResponseBody
+    @RequestMapping("deviceList/search_device_by_deviceId")
+    public PageVo searchDeviceByDeviceId(String searchValue, int page,int rows) {
+        PageVo pageVo = deviceService.selectById(searchValue, page ,rows);
+        return pageVo;
+    }
+
+    @ResponseBody
+    @RequestMapping("deviceList/search_device_by_deviceName")
+    public PageVo searchDeviceByDeviceName(String searchValue, int page,int rows) {
+        PageVo pageVo = deviceService.selectByName(searchValue, page ,rows);
+        return pageVo;
+    }
+
+    @ResponseBody
+    @RequestMapping("deviceList/search_device_by_deviceTypeName")
+    public PageVo searchDeviceByDeviceTypeName(String searchValue, int page,int rows) {
+        PageVo pageVo = deviceService.selectByTypeName(searchValue, page ,rows);
+        return pageVo;
+    }
 }

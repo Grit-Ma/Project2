@@ -1,4 +1,4 @@
-package com.cskaoyan.service;
+package com.cskaoyan.service.device;
 
 import com.cskaoyan.bean.Device;
 import com.cskaoyan.bean.DevicePlus;
@@ -15,11 +15,19 @@ public interface DeviceService {
 
     List<Device> selectAllDevice();
 
-//    List<Department> selectAllDepartment();
-
-//    Department selectDepartmentById(String departmentId);
-
     PageVo getPage(int page, int rows, List<DevicePlus> devicePluses);
 
     ResponseVo insertDevice(DevicePlus devicePlus);
+
+    ResponseVo updateDevice(DevicePlus devicePlus);
+
+    ResponseVo deleteDevice(List<String> ids);
+
+    PageVo selectById(String searchValue,int page, int rows);
+
+    PageVo selectByName(String searchValue,int page, int rows);
+
+    PageVo selectByTypeName(String searchValue,int page, int rows);
+
+    Device selectDeviceById(String Id);
 }

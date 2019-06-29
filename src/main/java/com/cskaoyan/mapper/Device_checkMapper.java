@@ -18,7 +18,13 @@ public interface Device_checkMapper {
 
     List<Device_check> selectByExample(Device_checkExample example);
 
+    List<Device_check> selectAllCheck();
+
     Device_check selectByPrimaryKey(String deviceCheckId);
+
+    List<Device_check>selectByName(String searchValue);
+
+    List<Device_check>selectByCheckId(String seatchValue);
 
     int updateByExampleSelective(@Param("record") Device_check record, @Param("example") Device_checkExample example);
 

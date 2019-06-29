@@ -313,4 +313,83 @@
       note = #{note,jdbcType=VARCHAR}
     where device_id = #{deviceId,jdbcType=VARCHAR}
   </update>
+
+
+  <!--<resultMap id="selectById" type="com.cskaoyan.bean.Device">-->
+  <!--<result column="device_id" jdbcType="VARCHAR" property="deviceId"/>-->
+  <!--<result column="device_name" jdbcType="VARCHAR" property="deviceName" />-->
+  <!--<result column="device_type_id" jdbcType="VARCHAR" property="deviceTypeId" />-->
+  <!--<result column="device_status_id" jdbcType="VARCHAR" property="deviceStatusId" />-->
+  <!--<result column="device_status" jdbcType="VARCHAR" property="deviceStatus" />-->
+  <!--<result column="device_purchase_date" jdbcType="TIMESTAMP" property="devicePurchaseDate" />-->
+  <!--<result column="device_purchase_price" jdbcType="DECIMAL" property="devicePurchasePrice" />-->
+  <!--<result column="device_manufacture_date" jdbcType="TIMESTAMP" property="deviceManufactureDate" />-->
+  <!--<result column="device_service_life" jdbcType="TIMESTAMP" property="deviceServiceLife" />-->
+  <!--<result column="device_keeper_id" jdbcType="VARCHAR" property="deviceKeeperId" />-->
+  <!--<result column="note" jdbcType="VARCHAR" property="note" />-->
+  <!--<association property="device_type" javaType="com.cskaoyan.bean.DeviceType">-->
+    <!--<result column="device_type_id" property="deviceTypeId"/>-->
+    <!--<result column="device_type_name" property="deviceTypeName"/>-->
+  <!--</association>-->
+  <!--<association property="employee" javaType="com.cskaoyan.bean.Employee">-->
+    <!--<result column="emp_id" property="empId" />-->
+    <!--<result column="emp_name" property="empName" />-->
+  <!--</association>-->
+  <!--</resultMap>-->
+  <select id="selectById" resultType="com.cskaoyan.bean.DevicePlus">
+  select device.device_id as deviceId,
+  device.device_name as deviceName,
+  device.device_type_id as deviceTypeId,
+  device.device_status_id as deviceStatusId,
+  device.device_status as deviceStatus,
+  device.device_purchase_price as devicePurchasePrice,
+  device.device_manufacture_date as deviceManufactureDate,
+  device.device_purchase_date as devicePurchaseDate,
+  device.device_service_life as deviceServiceLife,
+  device.device_keeper_id as deviceKeeperId,
+  device.note,
+  device_type.device_type_name as deviceTypeName,
+  employee.emp_name as deviceKeeper
+  from device left join device_type on device.device_type_id = device_type.device_type_id
+  left join employee on device.device_keeper_id = employee.emp_id
+  where device_id like CONCAT(CONCAT('%',#{searchValue}),'%')
+  </select>
+
+  <select id="selectByName" resultType="com.cskaoyan.bean.DevicePlus">
+  select device.device_id as deviceId,
+  device.device_name as deviceName,
+  device.device_type_id as deviceTypeId,
+  device.device_status_id as deviceStatusId,
+  device.device_status as deviceStatus,
+  device.device_purchase_price as devicePurchasePrice,
+  device.device_manufacture_date as deviceManufactureDate,
+  device.device_purchase_date as devicePurchaseDate,
+  device.device_service_life as deviceServiceLife,
+  device.device_keeper_id as deviceKeeperId,
+  device.note,
+  device_type.device_type_name as deviceTypeName,
+  employee.emp_name as deviceKeeper
+  from device left join device_type on device.device_type_id = device_type.device_type_id
+  left join employee on device.device_keeper_id = employee.emp_id
+  where device_name like CONCAT(CONCAT('%',#{searchValue}),'%')
+  </select>
+
+  <select id="selectByTypeName" resultType="com.cskaoyan.bean.DevicePlus">
+  select device.device_id as deviceId,
+  device.device_name as deviceName,
+  device.device_type_id as deviceTypeId,
+  device.device_status_id as deviceStatusId,
+  device.device_status as deviceStatus,
+  device.device_purchase_price as devicePurchasePrice,
+  device.device_manufacture_date as deviceManufactureDate,
+  device.device_purchase_date as devicePurchaseDate,
+  device.device_service_life as deviceServiceLife,
+  device.device_keeper_id as deviceKeeperId,
+  device.note,
+  device_type.device_type_name as deviceTypeName,
+  employee.emp_name as deviceKeeper
+  from device left join device_type on device.device_type_id = device_type.device_type_id
+  left join employee on device.device_keeper_id = employee.emp_id
+  where device_type_name like CONCAT(CONCAT('%',#{searchValue}),'%')
+  </select>
 </mapper>
