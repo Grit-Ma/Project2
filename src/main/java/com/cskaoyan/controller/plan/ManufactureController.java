@@ -2,6 +2,7 @@ package com.cskaoyan.controller.plan;
 
 import com.cskaoyan.bean.Manufacture;
 import com.cskaoyan.service.ManufactureService;
+import com.cskaoyan.vo.PageVo;
 import com.cskaoyan.vo.ResponseVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,8 +25,8 @@ public class ManufactureController {
 
     @RequestMapping("manufacture/list")
     @ResponseBody
-    public List<Manufacture> manufacturePage(int page, int rows) {
-        List<Manufacture> manufactureList = manufactureService.manufacturePage(page, rows);
+    public PageVo manufacturePage(int page, int rows) {
+        PageVo manufactureList = manufactureService.manufacturePage(page, rows);
         return manufactureList;
     }
 

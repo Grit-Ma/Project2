@@ -1,8 +1,8 @@
 package com.cskaoyan.controller.plan;
 
 import com.cskaoyan.bean.Custom;
-import com.cskaoyan.bean.Product;
 import com.cskaoyan.service.CustomService;
+import com.cskaoyan.vo.PageVo;
 import com.cskaoyan.vo.ResponseVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,8 +25,8 @@ public class CustomController {
 
     @RequestMapping("custom/list")
     @ResponseBody
-    public List<Custom> customList(int page, int rows) {
-        List<Custom> customList = customService.customPage(page, rows);
+    public PageVo customList(int page, int rows) {
+        PageVo customList = customService.customPage(page, rows);
         return customList;
     }
 

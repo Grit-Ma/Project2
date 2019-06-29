@@ -2,6 +2,7 @@ package com.cskaoyan.controller.plan;
 
 import com.cskaoyan.bean.Work;
 import com.cskaoyan.service.WorkService;
+import com.cskaoyan.vo.PageVo;
 import com.cskaoyan.vo.ResponseVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,8 +25,8 @@ public class WorkController {
 
     @RequestMapping("work/list")
     @ResponseBody
-    public List<Work> workPage(int page, int rows) {
-        List<Work> workList = workService.workPage(page, rows);
+    public PageVo workPage(int page, int rows) {
+        PageVo workList = workService.workPage(page, rows);
         return workList;
     }
 

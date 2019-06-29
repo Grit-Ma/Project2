@@ -4,8 +4,9 @@ import com.cskaoyan.bean.Work;
 import com.cskaoyan.bean.WorkExample;
 import com.cskaoyan.mapper.WorkMapper;
 import com.cskaoyan.service.WorkService;
+import com.cskaoyan.tool.PageTool;
+import com.cskaoyan.vo.PageVo;
 import com.cskaoyan.vo.ResponseVo;
-import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,21 +18,18 @@ public class WorkServiceImpl implements WorkService {
     WorkMapper workMapper;
 
     @Override
-    public List<Work> workPage(int page, int rows) {
+    public PageVo workPage(int page, int rows) {
         WorkExample workExample = new WorkExample();
         WorkExample.Criteria criteria = workExample.createCriteria();
         criteria.andWorkIdIsNotNull();
-        PageHelper.startPage(page, rows);
         List<Work> workList = workMapper.selectByExample(workExample);
-        return workList;
+        PageVo pages = PageTool.getPageVo(workList, page, rows);
+        return pages;
     }
 
     @Override
     public List<Work> workGetData() {
-        WorkExample workExample = new WorkExample();
-        WorkExample.Criteria criteria = workExample.createCriteria();
-        criteria.andWorkIdIsNotNull();
-        List<Work> workList = workMapper.selectByExample(workExample);
+        List<Work> workList = workMapper.selectByExample(new WorkExample());
         return workList;
     }
 
