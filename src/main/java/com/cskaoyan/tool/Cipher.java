@@ -9,9 +9,9 @@ public class Cipher {
 
     //数据库密码字段最长32位
     public static String encode(String str){
-        String md5 = encode(str, "MD5");
-        String sha1 = encode(md5 + SALT, "SHA1");
-        return sha1.substring(0,31);
+        String sha1 = encode(str + SALT, "SHA1");
+        String md5 = encode(sha1, "MD5");
+        return md5;
     }
 
     private static String encode(String pwd,String algorithm){
