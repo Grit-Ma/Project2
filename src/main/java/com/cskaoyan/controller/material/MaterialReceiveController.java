@@ -1,7 +1,7 @@
 package com.cskaoyan.controller.material;
 
 import com.cskaoyan.bean.material.Material;
-import com.cskaoyan.bean.material.Material_receive;
+import com.cskaoyan.bean.material.MaterialReceive;
 import com.cskaoyan.service.material.MaterialReceiveService;
 import com.cskaoyan.service.material.MaterialService;
 import com.cskaoyan.vo.PageVo;
@@ -63,7 +63,7 @@ public class MaterialReceiveController {
 
     @RequestMapping("materialReceive/update_all")
     @ResponseBody
-    public ResponseVo update_all(Material_receive material_receive){
+    public ResponseVo update_all(MaterialReceive material_receive){
         ResponseVo responseVo = materialReceiveService.updateMaterialReceive(material_receive);
         return responseVo;
     }
@@ -85,7 +85,7 @@ public class MaterialReceiveController {
 
     @RequestMapping("materialReceive/update_note")
     @ResponseBody
-    public ResponseVo update_note(Material_receive material_receive){
+    public ResponseVo update_note(MaterialReceive material_receive){
         ResponseVo responseVo = materialReceiveService.updateMaterialReceiveNote(material_receive);
         return responseVo;
     }
@@ -103,7 +103,7 @@ public class MaterialReceiveController {
 
     @RequestMapping("materialReceive/insert")
     @ResponseBody
-    public ResponseVo insert(Material_receive material_receive){
+    public ResponseVo insert(MaterialReceive material_receive){
         ResponseVo responseVo = materialReceiveService.insertMaterialReceive(material_receive);
         return responseVo;
     }

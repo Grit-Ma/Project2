@@ -1,7 +1,7 @@
 package com.cskaoyan.service.device;
 
-import com.cskaoyan.bean.Device;
-import com.cskaoyan.bean.DevicePlus;
+import com.cskaoyan.bean.device.Device;
+import com.cskaoyan.bean.device.DevicePlus;
 import com.cskaoyan.vo.PageVo;
 import com.cskaoyan.vo.ResponseVo;
 

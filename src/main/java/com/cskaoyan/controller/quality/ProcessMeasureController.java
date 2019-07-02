@@ -1,8 +1,8 @@
 package com.cskaoyan.controller.quality;
 
-import com.cskaoyan.bean.quality.Process_measure_check;
-import com.cskaoyan.bean.quality.Process_measure_checkExample;
-import com.cskaoyan.service.quality.Process_measure_checkService;
+import com.cskaoyan.bean.quality.ProcessMeasureCheck;
+import com.cskaoyan.bean.quality.ProcessMeasureCheckExample;
+import com.cskaoyan.service.quality.ProcessMeasureCheckService;
 import com.cskaoyan.vo.PageVo;
 import com.cskaoyan.vo.ResponseVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ public class ProcessMeasureController {
         质量监控：工序计量检验部分
      */
      @Autowired
-     Process_measure_checkService processMeasureCheckService;
+     ProcessMeasureCheckService processMeasureCheckService;
 
 
     @RequestMapping("p_measure_check/find")
@@ -33,10 +33,10 @@ public class ProcessMeasureController {
     @RequestMapping("p_measure_check/list")
     @ResponseBody
     public PageVo pmeasureCheckList(@RequestParam("page") int page, @RequestParam("rows") int rows){
-        List<Process_measure_check> process_measure_checks = processMeasureCheckService.selectByPage(page, rows);
-        PageVo<Process_measure_check> pageVo = new PageVo<>();
-        pageVo.setRows(process_measure_checks);
-        pageVo.setTotal(process_measure_checks.size());
+        List<ProcessMeasureCheck> process_measureChecks = processMeasureCheckService.selectByPage(page, rows);
+        PageVo<ProcessMeasureCheck> pageVo = new PageVo<>();
+        pageVo.setRows(process_measureChecks);
+        pageVo.setTotal(process_measureChecks.size());
         return pageVo;
     }
 
@@ -52,8 +52,8 @@ public class ProcessMeasureController {
     @ResponseBody
     public ResponseVo deleteBatch(@RequestParam("ids") String[] ids) {
         ResponseVo responseVo = new ResponseVo();
-        Process_measure_checkExample example = new Process_measure_checkExample();
-        Process_measure_checkExample.Criteria criteria = example.createCriteria();
+        ProcessMeasureCheckExample example = new ProcessMeasureCheckExample();
+        ProcessMeasureCheckExample.Criteria criteria = example.createCriteria();
         criteria.andPMeasureCheckIdIn(Arrays.asList(ids));
         int i = processMeasureCheckService.deleteByExample(example);
         if (i >= 1) {
@@ -79,8 +79,8 @@ public class ProcessMeasureController {
     //add返回确认信息
     @RequestMapping("p_measure_check/insert")
     @ResponseBody
-    public ResponseVo insertPcount(Process_measure_check process_measure_check){
-        int i = processMeasureCheckService.insert(process_measure_check);
+    public ResponseVo insertPcount(ProcessMeasureCheck process_measureCheck){
+        int i = processMeasureCheckService.insert(process_measureCheck);
         ResponseVo responseVo = new ResponseVo();
         if (i == 1) {
             responseVo.setMsg("ok");
@@ -106,9 +106,9 @@ public class ProcessMeasureController {
     //提交编辑，进行更新操作并返回操作结果状态信息
     @RequestMapping("p_measure_check/update_all")
     @ResponseBody
-    public ResponseVo updateUnqualify(Process_measure_check process_measure_check) {
+    public ResponseVo updateUnqualify(ProcessMeasureCheck process_measureCheck) {
         ResponseVo responseVo = new ResponseVo();
-        int i = processMeasureCheckService.updateByPrimaryKey(process_measure_check);
+        int i = processMeasureCheckService.updateByPrimaryKey(process_measureCheck);
         if (i == 1) {
             responseVo.setMsg("ok");
             responseVo.setStatus(200);
@@ -120,10 +120,10 @@ public class ProcessMeasureController {
     @RequestMapping("p_measure_check/search_pMeasureCheck_by_pMeasureCheckId")
     @ResponseBody
     public PageVo search_unqualify_by_unqualifyId(@RequestParam("page") int page, @RequestParam("rows") int rows,String searchValue){
-        List<Process_measure_check> process_measure_checks = processMeasureCheckService.fuzzyQueryByPMeasureCheckId(page,rows,searchValue);
+        List<ProcessMeasureCheck> process_measureChecks = processMeasureCheckService.fuzzyQueryByPMeasureCheckId(page,rows,searchValue);
         PageVo pageVo = new PageVo();
         try{
-            pageVo.setRows(process_measure_checks);
+            pageVo.setRows(process_measureChecks);
         }catch (Exception ex){
             ex.printStackTrace();
         }finally {
@@ -136,9 +136,9 @@ public class ProcessMeasureController {
     @RequestMapping("p_measure_check/update_note")
     @ResponseBody
     public ResponseVo update_note(@RequestParam("pMeasureCheckId")String pCountCheckId,@RequestParam("note")String note){
-        Process_measure_check process_measure_check = processMeasureCheckService.selectByPrimaryKey(pCountCheckId);
-        process_measure_check.setNote(note);
-        int i = processMeasureCheckService.updateByPrimaryKey(process_measure_check);
+        ProcessMeasureCheck process_measureCheck = processMeasureCheckService.selectByPrimaryKey(pCountCheckId);
+        process_measureCheck.setNote(note);
+        int i = processMeasureCheckService.updateByPrimaryKey(process_measureCheck);
         ResponseVo responseVo = new ResponseVo();
         if (i == 1) {
             responseVo.setMsg("ok");

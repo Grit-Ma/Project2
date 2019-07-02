@@ -1,9 +1,7 @@
 package com.cskaoyan.controller.device;
 
-import com.cskaoyan.bean.Device;
-import com.cskaoyan.bean.Device_fault;
-import com.cskaoyan.bean.Device_maintain;
-import com.cskaoyan.bean.quality.Final_measuret_check;
+import com.cskaoyan.bean.device.DeviceFault;
+import com.cskaoyan.bean.device.DeviceMaintain;
 import com.cskaoyan.service.device.DeviceFaultService;
 import com.cskaoyan.service.device.DeviceMaintainService;
 import com.cskaoyan.vo.PageVo;
@@ -12,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Arrays;
@@ -40,14 +37,14 @@ public class DeviceMaintainController {
     @ResponseBody
     @RequestMapping("deviceMaintain/list")
     public PageVo selectAllMaintain(int page, int rows){
-        List<Device_maintain> device_maintains = deviceMaintainService.selectAllMaintain();
+        List<DeviceMaintain> device_maintains = deviceMaintainService.selectAllMaintain();
         PageVo pageVo = deviceMaintainService.getPage(page, rows, device_maintains);
         return pageVo;
     }
 
     @ResponseBody
     @RequestMapping("deviceFault/get/{Id}")
-    public Device_fault searchFaultInfo(@PathVariable("Id") String Id)
+    public DeviceFault searchFaultInfo(@PathVariable("Id") String Id)
     {
         return deviceFaultService.selectById(Id);
     }
@@ -65,7 +62,7 @@ public class DeviceMaintainController {
 
     @ResponseBody
     @RequestMapping("deviceMaintain/insert")
-    public ResponseVo insertMaintain(Device_maintain device_maintain) {
+    public ResponseVo insertMaintain(DeviceMaintain device_maintain) {
         ResponseVo responseVo = deviceMaintainService.insertMaintain(device_maintain);
         return responseVo;
     }
@@ -83,7 +80,7 @@ public class DeviceMaintainController {
 
     @ResponseBody
     @RequestMapping("deviceMaintain/update")
-    public ResponseVo updateMaintain(Device_maintain device_maintain) {
+    public ResponseVo updateMaintain(DeviceMaintain device_maintain) {
         ResponseVo responseVo = deviceMaintainService.updateMaintain(device_maintain);
         return responseVo;
     }
@@ -117,7 +114,7 @@ public class DeviceMaintainController {
 
     @ResponseBody
     @RequestMapping("deviceMaintain/update_note")
-    public ResponseVo update_note(Device_maintain device_maintain){
+    public ResponseVo update_note(DeviceMaintain device_maintain){
         ResponseVo responseVo = deviceMaintainService.updateNote(device_maintain);
         return responseVo;
     }

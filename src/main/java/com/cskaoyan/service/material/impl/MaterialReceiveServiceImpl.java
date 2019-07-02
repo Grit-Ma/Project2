@@ -1,8 +1,8 @@
 package com.cskaoyan.service.material.impl;
 
-import com.cskaoyan.bean.material.Material_receive;
-import com.cskaoyan.bean.material.Material_receiveExample;
-import com.cskaoyan.mapper.material.Material_receiveMapper;
+import com.cskaoyan.bean.material.MaterialReceive;
+import com.cskaoyan.bean.material.MaterialReceiveExample;
+import com.cskaoyan.mapper.material.MaterialReceiveMapper;
 import com.cskaoyan.service.material.MaterialReceiveService;
 import com.cskaoyan.tool.PageTool;
 import com.cskaoyan.vo.PageVo;
@@ -16,23 +16,23 @@ import java.util.List;
 public class MaterialReceiveServiceImpl implements MaterialReceiveService {
 
     @Autowired
-    Material_receiveMapper material_receiveMapper;
+    MaterialReceiveMapper material_receiveMapper;
 
     @Override
-    public List<Material_receive> getMaterialReceive() {
-        List<Material_receive> material_receiveList = material_receiveMapper.selectForMaterialAndMaterialReceive();
+    public List<MaterialReceive> getMaterialReceive() {
+        List<MaterialReceive> material_receiveList = material_receiveMapper.selectForMaterialAndMaterialReceive();
         return material_receiveList;
     }
 
     @Override
     public PageVo getPage(int page, int rows) {
-        List<Material_receive> materialReceives = getMaterialReceive();
+        List<MaterialReceive> materialReceives = getMaterialReceive();
         PageVo pages = PageTool.getPageVo(materialReceives, page, rows);
         return pages;
     }
 
     @Override
-    public ResponseVo updateMaterialReceive(Material_receive material_receive) {
+    public ResponseVo updateMaterialReceive(MaterialReceive material_receive) {
         ResponseVo responseVo = new ResponseVo();
         try{
             material_receiveMapper.updateByPrimaryKey(material_receive);
@@ -46,7 +46,7 @@ public class MaterialReceiveServiceImpl implements MaterialReceiveService {
     }
 
     @Override
-    public ResponseVo insertMaterialReceive(Material_receive material_receive) {
+    public ResponseVo insertMaterialReceive(MaterialReceive material_receive) {
         ResponseVo responseVo = new ResponseVo();
         try{
             material_receiveMapper.insert(material_receive);
@@ -62,8 +62,8 @@ public class MaterialReceiveServiceImpl implements MaterialReceiveService {
     @Override
     public ResponseVo batchDeleteMaterialReceiveByIds(List<String> ids) {
         ResponseVo responseVo = new ResponseVo();
-        Material_receiveExample example = new Material_receiveExample();
-        Material_receiveExample.Criteria criteria = example.createCriteria();
+        MaterialReceiveExample example = new MaterialReceiveExample();
+        MaterialReceiveExample.Criteria criteria = example.createCriteria();
         criteria.andReceiveIdIn(ids);
         try{
             material_receiveMapper.deleteByExample(example);
@@ -77,8 +77,8 @@ public class MaterialReceiveServiceImpl implements MaterialReceiveService {
     }
 
     @Override
-    public ResponseVo updateMaterialReceiveNote(Material_receive material_receive) {
-        Material_receive material_receive1 = material_receiveMapper.selectByPrimaryKey(material_receive.getReceiveId());
+    public ResponseVo updateMaterialReceiveNote(MaterialReceive material_receive) {
+        MaterialReceive material_receive1 = material_receiveMapper.selectByPrimaryKey(material_receive.getReceiveId());
         material_receive1.setNote(material_receive.getNote());
         ResponseVo responseVo = new ResponseVo();
         try{
@@ -95,7 +95,7 @@ public class MaterialReceiveServiceImpl implements MaterialReceiveService {
     @Override
     public PageVo searchMaterialReceiveByReceiveId(String searchValue, int page, int rows) {
         searchValue = "%" + searchValue + "%";
-        List<Material_receive> material_receives = material_receiveMapper.getMaterialReceiveByReceiveId(searchValue);
+        List<MaterialReceive> material_receives = material_receiveMapper.getMaterialReceiveByReceiveId(searchValue);
         PageVo pages = PageTool.getPageVo(material_receives, page, rows);
         return pages;
     }
@@ -103,7 +103,7 @@ public class MaterialReceiveServiceImpl implements MaterialReceiveService {
     @Override
     public PageVo searchMaterialReceiveByMaterialId(String searchValue, int page, int rows) {
         searchValue = "%" + searchValue + "%";
-        List<Material_receive> material_receives = material_receiveMapper.getMaterialReceiveByMaterialId(searchValue);
+        List<MaterialReceive> material_receives = material_receiveMapper.getMaterialReceiveByMaterialId(searchValue);
         PageVo pages = PageTool.getPageVo(material_receives, page, rows);
         return pages;
     }

@@ -1,6 +1,6 @@
 package com.cskaoyan.service.material;
 
-import com.cskaoyan.bean.material.Material_consume;
+import com.cskaoyan.bean.material.MaterialConsume;
 import com.cskaoyan.vo.PageVo;
 import com.cskaoyan.vo.ResponseVo;
 
@@ -8,15 +8,15 @@ import java.util.List;
 
 public interface MaterialConsumeService {
 
-    List<Material_consume> getMaterialConsume();
+    List<MaterialConsume> getMaterialConsume();
 
     PageVo getPage(int page, int rows);
 
-    ResponseVo updateMaterialConsume(Material_consume material_consume);
+    ResponseVo updateMaterialConsume(MaterialConsume material_consume);
 
-    ResponseVo updateMaterialConsumeNote(Material_consume material_consume);
+    ResponseVo updateMaterialConsumeNote(MaterialConsume material_consume);
 
-    ResponseVo insertMaterialConsume(Material_consume material_consume);
+    ResponseVo insertMaterialConsume(MaterialConsume material_consume);
 
     ResponseVo batchDeleteMaterialConsumeByIds(List<String> ids);
 

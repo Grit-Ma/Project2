@@ -1,7 +1,7 @@
 package com.cskaoyan.controller.plan;
 
-import com.cskaoyan.bean.Product;
-import com.cskaoyan.service.ProductService;
+import com.cskaoyan.bean.plan.Product;
+import com.cskaoyan.service.plan.ProductService;
 import com.cskaoyan.vo.PageVo;
 import com.cskaoyan.vo.ResponseVo;
 import org.springframework.beans.factory.annotation.Autowired;

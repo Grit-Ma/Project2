@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cskaoyan.mapper.employee.DepartmentMapper">
+
+
+
+    <!--查询全部部门，返回集合-->
+    <select id="selectAll" resultType="com.cskaoyan.bean.employee.Department">
+      select 	department_id as departmentId,
+	 		    department_name as departmentName,
+		 	    note
+			    from department
+    </select>
+
+
+    <!--查询单个部门信息-->
+    <select id="findOne" resultType="com.cskaoyan.bean.employee.Department">
+       select 	department_id as departmentId,
+	 		    department_name as departmentName,
+		 	    note
+			    from department
+			    where department_id = #{id}
+    </select>
+
+    <!--添加部门-->
+    <insert id="addDepartment">
+        insert into department value(#{departmentId},#{departmentName},#{note})
+    </insert>
+
+
+    <!--编辑部门-->
+    <update id="updateDepartment">
+		update department set department_name = #{departmentName},note = #{note} where department_id = #{departmentId}
+	</update>
+
+
+    <!--删除部门-->
+    <delete id="delete_batch">
+        delete from department where department_id in
+        <foreach collection="array" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+
+    <!--根据id模糊查询部门-->
+    <select id="selectById" resultType="com.cskaoyan.bean.employee.Department">
+        select 	department_id as departmentId,
+	 		    department_name as departmentName,
+		 	    note
+			    from department
+			    where department_id like CONCAT(CONCAT('%',#{searchValue}),'%')
+    </select>
+
+    <!--根据name模糊查询部门-->
+    <select id="selectByName" resultType="com.cskaoyan.bean.employee.Department">
+        select 	department_id as departmentId,
+	 		    department_name as departmentName,
+		 	    note
+			    from department
+			    where department_name like CONCAT(CONCAT('%',#{searchValue}),'%')
+    </select>
+
+</mapper>
+

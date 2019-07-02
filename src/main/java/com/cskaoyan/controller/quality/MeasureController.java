@@ -1,8 +1,8 @@
 package com.cskaoyan.controller.quality;
 
-import com.cskaoyan.bean.quality.Final_measuret_check;
-import com.cskaoyan.bean.quality.Final_measuret_checkExample;
-import com.cskaoyan.service.quality.Final_measuret_checkService;
+import com.cskaoyan.bean.quality.FinalMeasuretCheck;
+import com.cskaoyan.bean.quality.FinalMeasuretCheckExample;
+import com.cskaoyan.service.quality.FinalMeasuretCheckService;
 import com.cskaoyan.vo.PageVo;
 import com.cskaoyan.vo.ResponseVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ import java.util.List;
 @Controller
 public class MeasureController {
     @Autowired
-    Final_measuret_checkService final_measuret_checkService;
+    FinalMeasuretCheckService final_measuretCheckService;
 
     /*
        质量监控： 成品计量检验部分
@@ -32,8 +32,8 @@ public class MeasureController {
     @RequestMapping("measure/list")
     @ResponseBody
     public PageVo checkMeasure(@RequestParam("page") int page, @RequestParam("rows") int rows) {
-        List<Final_measuret_check> final_measuret_checks = final_measuret_checkService.selectByPage(page,rows);
-        PageVo<Final_measuret_check> objectPageVo = new PageVo(final_measuret_checks.size(), final_measuret_checks);
+        List<FinalMeasuretCheck> final_measuretChecks = final_measuretCheckService.selectByPage(page,rows);
+        PageVo<FinalMeasuretCheck> objectPageVo = new PageVo(final_measuretChecks.size(), final_measuretChecks);
         return objectPageVo;
     }
 
@@ -49,10 +49,10 @@ public class MeasureController {
     @ResponseBody
     public ResponseVo deletefMeasureBatch(@RequestParam("ids") String[] ids) {
         ResponseVo responseVo = new ResponseVo();
-        Final_measuret_checkExample final_measuret_checkExample = new Final_measuret_checkExample();
-        Final_measuret_checkExample.Criteria criteria = final_measuret_checkExample.createCriteria();
+        FinalMeasuretCheckExample final_measuretCheckExample = new FinalMeasuretCheckExample();
+        FinalMeasuretCheckExample.Criteria criteria = final_measuretCheckExample.createCriteria();
         criteria.andFMeasureCheckIdIn(Arrays.asList(ids));
-        int i = final_measuret_checkService.deleteByExample(final_measuret_checkExample);
+        int i = final_measuretCheckService.deleteByExample(final_measuretCheckExample);
         if (i >= 1) {
             responseVo.setMsg("ok");
             responseVo.setStatus(200);
@@ -78,9 +78,9 @@ public class MeasureController {
     //提交编辑，进行更新操作并返回操作结果状态信息
     @RequestMapping("measure/update_all")
     @ResponseBody
-    public ResponseVo updateMeasure(Final_measuret_check final_measuret_check) {
+    public ResponseVo updateMeasure(FinalMeasuretCheck final_measuretCheck) {
         ResponseVo responseVo = new ResponseVo();
-        int i = final_measuret_checkService.updateByPrimaryKey(final_measuret_check);
+        int i = final_measuretCheckService.updateByPrimaryKey(final_measuretCheck);
         if (i == 1) {
             responseVo.setMsg("ok");
             responseVo.setStatus(200);
@@ -106,9 +106,9 @@ public class MeasureController {
     //提交添加操作，并返回操作结果状态信息
     @RequestMapping("measure/insert")
     @ResponseBody
-    public ResponseVo insertMeasure(Final_measuret_check final_measuret_check) {
+    public ResponseVo insertMeasure(FinalMeasuretCheck final_measuretCheck) {
         ResponseVo responseVo = new ResponseVo();
-        int i = final_measuret_checkService.insert(final_measuret_check);
+        int i = final_measuretCheckService.insert(final_measuretCheck);
         if (i == 1) {
             responseVo.setMsg("ok");
             responseVo.setStatus(200);
@@ -120,11 +120,11 @@ public class MeasureController {
     @RequestMapping("measure/search_fMeasureCheck_by_fMeasureCheckId")
     @ResponseBody
     public PageVo search_measure_by_measureId(@RequestParam("page") int page, @RequestParam("rows") int rows,String searchValue){
-        List<Final_measuret_check>  final_measuret_checks=final_measuret_checkService.fuzzyQueryByPid(page,rows,searchValue);
+        List<FinalMeasuretCheck> final_measuretChecks = final_measuretCheckService.fuzzyQueryByPid(page,rows,searchValue);
         PageVo pageVo  =new PageVo();
         try{
-            pageVo.setRows(final_measuret_checks);
-            pageVo.setTotal(final_measuret_checks.size());
+            pageVo.setRows(final_measuretChecks);
+            pageVo.setTotal(final_measuretChecks.size());
         }catch (Exception ex){
             ex.printStackTrace();
         }finally {
@@ -136,11 +136,11 @@ public class MeasureController {
     @RequestMapping("measure/search_fMeasureCheck_by_orderId")
     @ResponseBody
     public PageVo search_measure_by_measureName(@RequestParam("page") int page, @RequestParam("rows") int rows,String searchValue){
-        List<Final_measuret_check>  final_measuret_checks=final_measuret_checkService.fuzzyQueryByOid(page,rows,searchValue);
+        List<FinalMeasuretCheck> final_measuretChecks = final_measuretCheckService.fuzzyQueryByOid(page,rows,searchValue);
         PageVo pageVo  =new PageVo();
         try{
-            pageVo.setRows(final_measuret_checks);
-            pageVo.setTotal(final_measuret_checks.size());
+            pageVo.setRows(final_measuretChecks);
+            pageVo.setTotal(final_measuretChecks.size());
         }catch (Exception ex){
             ex.printStackTrace();
         }finally {
@@ -152,9 +152,9 @@ public class MeasureController {
     @RequestMapping("measure/update_note")
     @ResponseBody
     public ResponseVo update_note(@RequestParam("fMeasureCheckId") String pCountCheckId, @RequestParam("note") String note) {
-        Final_measuret_check final_measuret_check = final_measuret_checkService.selectByPrimaryKey(pCountCheckId);
-        final_measuret_check.setNote(note);
-        int i = final_measuret_checkService.updateByPrimaryKey(final_measuret_check);
+        FinalMeasuretCheck final_measuretCheck = final_measuretCheckService.selectByPrimaryKey(pCountCheckId);
+        final_measuretCheck.setNote(note);
+        int i = final_measuretCheckService.updateByPrimaryKey(final_measuretCheck);
         ResponseVo responseVo = new ResponseVo();
         if (i == 1) {
             responseVo.setMsg("ok");

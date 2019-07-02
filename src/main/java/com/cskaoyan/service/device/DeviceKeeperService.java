@@ -1,6 +1,6 @@
 package com.cskaoyan.service.device;
 
-import com.cskaoyan.bean.Employee;
+import com.cskaoyan.bean.employee.Employee;
 
 import java.util.List;
 

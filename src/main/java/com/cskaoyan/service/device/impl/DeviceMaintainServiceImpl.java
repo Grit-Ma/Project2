@@ -1,9 +1,9 @@
 package com.cskaoyan.service.device.impl;
 
 
-import com.cskaoyan.bean.Device_maintain;
-import com.cskaoyan.bean.Device_maintainExample;
-import com.cskaoyan.mapper.Device_maintainMapper;
+import com.cskaoyan.bean.device.DeviceMaintain;
+import com.cskaoyan.bean.device.DeviceMaintainExample;
+import com.cskaoyan.mapper.device.DeviceMaintainMapper;
 import com.cskaoyan.service.device.DeviceMaintainService;
 import com.cskaoyan.tool.PageTool;
 import com.cskaoyan.vo.PageVo;
@@ -22,22 +22,22 @@ import java.util.List;
 public class DeviceMaintainServiceImpl implements DeviceMaintainService {
 
     @Autowired
-    Device_maintainMapper device_maintainMapper;
+    DeviceMaintainMapper device_maintainMapper;
 
     @Override
-    public PageVo getPage(int page, int rows, List<Device_maintain> device_maintains) {
+    public PageVo getPage(int page, int rows, List<DeviceMaintain> device_maintains) {
         PageVo pages = PageTool.getPageVo(device_maintains, page, rows);
         return pages;
     }
 
     @Override
-    public List<Device_maintain> selectAllMaintain() {
-        List<Device_maintain> device_maintains= device_maintainMapper.selectAllMaintain();
+    public List<DeviceMaintain> selectAllMaintain() {
+        List<DeviceMaintain> device_maintains= device_maintainMapper.selectAllMaintain();
         return device_maintains;
     }
 
     @Override
-    public ResponseVo insertMaintain(Device_maintain device_maintain) {
+    public ResponseVo insertMaintain(DeviceMaintain device_maintain) {
         ResponseVo responseVo = new ResponseVo();
         try{
             device_maintainMapper.insert(device_maintain);
@@ -51,7 +51,7 @@ public class DeviceMaintainServiceImpl implements DeviceMaintainService {
     }
 
     @Override
-    public ResponseVo updateMaintain(Device_maintain device_maintain) {
+    public ResponseVo updateMaintain(DeviceMaintain device_maintain) {
         ResponseVo responseVo = new ResponseVo();
         try{
             device_maintainMapper.updateByPrimaryKey(device_maintain);
@@ -67,8 +67,8 @@ public class DeviceMaintainServiceImpl implements DeviceMaintainService {
     @Override
     public ResponseVo deleteMaintain(List<String> ids) {
         ResponseVo responseVo = new ResponseVo();
-        Device_maintainExample example = new Device_maintainExample();
-        Device_maintainExample.Criteria criteria = example.createCriteria();
+        DeviceMaintainExample example = new DeviceMaintainExample();
+        DeviceMaintainExample.Criteria criteria = example.createCriteria();
         criteria.andDeviceFaultIdIn(ids);
         try{
             device_maintainMapper.deleteByExample(example);
@@ -83,21 +83,21 @@ public class DeviceMaintainServiceImpl implements DeviceMaintainService {
 
     @Override
     public PageVo selectByFaultId(String searchValue, int page, int rows) {
-        List<Device_maintain> device_maintains = device_maintainMapper.selectByFaultId(searchValue);
+        List<DeviceMaintain> device_maintains = device_maintainMapper.selectByFaultId(searchValue);
         PageVo pages = PageTool.getPageVo(device_maintains, page, rows);
         return pages;
     }
 
     @Override
     public PageVo selectByMaintianId(String searchValue, int page, int rows) {
-        List<Device_maintain> device_faults = device_maintainMapper.selectByMaintainId(searchValue);
+        List<DeviceMaintain> device_faults = device_maintainMapper.selectByMaintainId(searchValue);
         PageVo pages = PageTool.getPageVo(device_faults, page, rows);
         return pages;
     }
 
     @Override
-    public ResponseVo updateNote(Device_maintain device_maintain) {
-        Device_maintain device_maintain1 = device_maintainMapper.selectByPrimaryKey(device_maintain.getDeviceMaintainId());
+    public ResponseVo updateNote(DeviceMaintain device_maintain) {
+        DeviceMaintain device_maintain1 = device_maintainMapper.selectByPrimaryKey(device_maintain.getDeviceMaintainId());
         device_maintain1.setNote(device_maintain.getNote());
         ResponseVo responseVo = new ResponseVo();
         try{
@@ -112,7 +112,7 @@ public class DeviceMaintainServiceImpl implements DeviceMaintainService {
     }
 
     @Override
-    public Device_maintain selectByPrimaryKey(String deviceMaintainId){
+    public DeviceMaintain selectByPrimaryKey(String deviceMaintainId){
         return device_maintainMapper.selectByPrimaryKey(deviceMaintainId);
     }
 }

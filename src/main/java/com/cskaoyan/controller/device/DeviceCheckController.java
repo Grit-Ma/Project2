@@ -1,9 +1,8 @@
 package com.cskaoyan.controller.device;
 
-import com.cskaoyan.bean.Device;
-import com.cskaoyan.bean.DevicePlus;
-import com.cskaoyan.bean.Device_check;
-import com.cskaoyan.bean.Device_maintain;
+import com.cskaoyan.bean.device.Device;
+import com.cskaoyan.bean.device.DevicePlus;
+import com.cskaoyan.bean.device.DeviceCheck;
 import com.cskaoyan.service.device.DeviceCheckService;
 import com.cskaoyan.service.device.DeviceService;
 import com.cskaoyan.vo.PageVo;
@@ -39,7 +38,7 @@ public class DeviceCheckController {
     @ResponseBody
     @RequestMapping("deviceCheck/list")
     public PageVo selectAllCheck(int page, int rows){
-        List<Device_check> device_checks = deviceCheckService.selectAllCheck();
+        List<DeviceCheck> device_checks = deviceCheckService.selectAllCheck();
         PageVo pageVo = deviceCheckService.getPage(page, rows, device_checks);
         return pageVo;
     }
@@ -65,7 +64,7 @@ public class DeviceCheckController {
 
     @ResponseBody
     @RequestMapping("deviceCheck/insert")
-    public ResponseVo insertCheck(Device_check device_check) {
+    public ResponseVo insertCheck(DeviceCheck device_check) {
         ResponseVo responseVo = deviceCheckService.insertCheck(device_check);
         return responseVo;
     }
@@ -83,7 +82,7 @@ public class DeviceCheckController {
 
     @ResponseBody
     @RequestMapping("deviceCheck/update")
-    public ResponseVo updateCheck(Device_check device_check) {
+    public ResponseVo updateCheck(DeviceCheck device_check) {
         ResponseVo responseVo = deviceCheckService.updateCheck(device_check);
         return responseVo;
     }
@@ -124,7 +123,7 @@ public class DeviceCheckController {
 
     @ResponseBody
     @RequestMapping("deviceCheck/update_note")
-    public ResponseVo update_note(Device_check device_check){
+    public ResponseVo update_note(DeviceCheck device_check){
         ResponseVo responseVo = deviceCheckService.updateNote(device_check);
         return responseVo;
     }

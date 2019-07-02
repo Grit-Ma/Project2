@@ -1,7 +1,6 @@
 package com.cskaoyan.service.device;
 
-import com.cskaoyan.bean.Device_fault;
-import com.cskaoyan.bean.Device_maintain;
+import com.cskaoyan.bean.device.DeviceMaintain;
 import com.cskaoyan.vo.PageVo;
 import com.cskaoyan.vo.ResponseVo;
 
@@ -13,13 +12,13 @@ import java.util.List;
  */
 public interface DeviceMaintainService {
 
-    PageVo getPage(int page, int rows, List<Device_maintain> device_maintains);
+    PageVo getPage(int page, int rows, List<DeviceMaintain> device_maintains);
 
-    List<Device_maintain> selectAllMaintain();
+    List<DeviceMaintain> selectAllMaintain();
 
-    ResponseVo insertMaintain(Device_maintain device_maintain);
+    ResponseVo insertMaintain(DeviceMaintain device_maintain);
 
-    ResponseVo updateMaintain(Device_maintain device_maintain);
+    ResponseVo updateMaintain(DeviceMaintain device_maintain);
 
     ResponseVo deleteMaintain(List<String> ids);
 
@@ -27,7 +26,7 @@ public interface DeviceMaintainService {
 
     PageVo selectByMaintianId(String searchValue, int page, int rows);
 
-    ResponseVo updateNote(Device_maintain device_maintain);
+    ResponseVo updateNote(DeviceMaintain device_maintain);
 
-    Device_maintain selectByPrimaryKey(String deviceMaintainId);
+    DeviceMaintain selectByPrimaryKey(String deviceMaintainId);
 }

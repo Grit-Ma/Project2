@@ -1,6 +1,6 @@
 package com.cskaoyan.controller.device;
 
-import com.cskaoyan.bean.Device_type;
+import com.cskaoyan.bean.device.DeviceType;
 import com.cskaoyan.service.device.DeviceTypeService;
 import com.cskaoyan.vo.PageVo;
 import com.cskaoyan.vo.ResponseVo;
@@ -34,7 +34,7 @@ public class DeviceTypeController {
 
     @ResponseBody
     @RequestMapping("deviceType/insert")
-    public ResponseVo insertType(Device_type device_type){
+    public ResponseVo insertType(DeviceType device_type){
         ResponseVo responseVo = deviceTypeService.insertType(device_type);
         return responseVo;
     }
@@ -52,14 +52,14 @@ public class DeviceTypeController {
 
     @ResponseBody
     @RequestMapping("deviceType/update")
-    public ResponseVo updateType(Device_type device_type){
+    public ResponseVo updateType(DeviceType device_type){
         ResponseVo responseVo = deviceTypeService.updateType(device_type);
         return responseVo;
     }
 
     @ResponseBody
     @RequestMapping("deviceType/update_all")
-    public ResponseVo updateTypeAll(Device_type device_type){
+    public ResponseVo updateTypeAll(DeviceType device_type){
         ResponseVo responseVo = deviceTypeService.updateType(device_type);
         return responseVo;
     }

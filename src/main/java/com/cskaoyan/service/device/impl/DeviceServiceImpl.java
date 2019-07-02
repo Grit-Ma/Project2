@@ -1,7 +1,9 @@
 package com.cskaoyan.service.device.impl;
 
-import com.cskaoyan.bean.*;
-import com.cskaoyan.mapper.DeviceMapper;
+import com.cskaoyan.bean.device.Device;
+import com.cskaoyan.bean.device.DeviceExample;
+import com.cskaoyan.bean.device.DevicePlus;
+import com.cskaoyan.mapper.device.DeviceMapper;
 import com.cskaoyan.service.device.DeviceService;
 import com.cskaoyan.tool.PageTool;
 import com.cskaoyan.vo.PageVo;

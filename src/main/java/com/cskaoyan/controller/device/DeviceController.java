@@ -1,7 +1,10 @@
 package com.cskaoyan.controller.device;
 
-import com.cskaoyan.bean.*;
-import com.cskaoyan.service.DepartmentService;
+import com.cskaoyan.bean.device.Device;
+import com.cskaoyan.bean.device.DevicePlus;
+import com.cskaoyan.bean.device.DeviceType;
+import com.cskaoyan.bean.employee.Employee;
+import com.cskaoyan.service.employee.DepartmentService;
 import com.cskaoyan.service.device.DeviceKeeperService;
 import com.cskaoyan.service.device.DeviceService;
 import com.cskaoyan.service.device.DeviceTypeService;
@@ -80,14 +83,14 @@ public class DeviceController {
     @ResponseBody
     @RequestMapping("deviceType/list")
     public PageVo selectAllType(int page, int rows) {
-        List<Device_type> device_types = deviceTypeService.selectAllType();
+        List<DeviceType> device_types = deviceTypeService.selectAllType();
         PageVo pageVo = deviceTypeService.getPage(page, rows, device_types);
         return pageVo;
     }
 
     @ResponseBody
     @RequestMapping("deviceType/get/{TypeId}")
-    public Device_type searchTypeInfo(@PathVariable("TypeId") String TypeId)
+    public DeviceType searchTypeInfo(@PathVariable("TypeId") String TypeId)
     {
         return deviceTypeService.selectTypeById(TypeId);
     }
@@ -114,7 +117,7 @@ public class DeviceController {
 
     @ResponseBody
     @RequestMapping("deviceType/get_data")
-    public List<Device_type> selectAllDeviceType() {
+    public List<DeviceType> selectAllDeviceType() {
         return deviceTypeService.selectAllType();
     }
 

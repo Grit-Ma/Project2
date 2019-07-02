@@ -1,10 +1,9 @@
 package com.cskaoyan.service.device.impl;
 
 
-import com.cskaoyan.bean.Device_fault;
-import com.cskaoyan.bean.Device_faultExample;
-import com.cskaoyan.bean.Device_maintain;
-import com.cskaoyan.mapper.Device_faultMapper;
+import com.cskaoyan.bean.device.DeviceFault;
+import com.cskaoyan.bean.device.DeviceFaultExample;
+import com.cskaoyan.mapper.device.DeviceFaultMapper;
 import com.cskaoyan.service.device.DeviceFaultService;
 import com.cskaoyan.tool.PageTool;
 import com.cskaoyan.vo.PageVo;
@@ -23,22 +22,22 @@ import java.util.List;
 public class DeviceFaultServiceImpl implements DeviceFaultService {
 
     @Autowired
-    Device_faultMapper device_faultMapper;
+    DeviceFaultMapper device_faultMapper;
 
     @Override
-    public PageVo getPage(int page, int rows, List<Device_fault> device_faults){
+    public PageVo getPage(int page, int rows, List<DeviceFault> device_faults){
         PageVo pages = PageTool.getPageVo(device_faults, page, rows);
         return pages;
     }
 
     @Override
-    public List<Device_fault> selectAllFault(){
-        List<Device_fault> device_faults = device_faultMapper.selectAllFault();
+    public List<DeviceFault> selectAllFault(){
+        List<DeviceFault> device_faults = device_faultMapper.selectAllFault();
         return device_faults;
     }
 
     @Override
-    public ResponseVo insertFault(Device_fault device_fault) {
+    public ResponseVo insertFault(DeviceFault device_fault) {
         ResponseVo responseVo = new ResponseVo();
         try{
             device_faultMapper.insert(device_fault);
@@ -52,7 +51,7 @@ public class DeviceFaultServiceImpl implements DeviceFaultService {
     }
 
     @Override
-    public ResponseVo updateFault(Device_fault device_fault) {
+    public ResponseVo updateFault(DeviceFault device_fault) {
         ResponseVo responseVo = new ResponseVo();
         try{
             device_faultMapper.updateByPrimaryKey(device_fault);
@@ -68,8 +67,8 @@ public class DeviceFaultServiceImpl implements DeviceFaultService {
     @Override
     public ResponseVo deleteFault(List<String> ids) {
         ResponseVo responseVo = new ResponseVo();
-        Device_faultExample example = new Device_faultExample();
-        Device_faultExample.Criteria criteria = example.createCriteria();
+        DeviceFaultExample example = new DeviceFaultExample();
+        DeviceFaultExample.Criteria criteria = example.createCriteria();
         criteria.andDeviceFaultIdIn(ids);
         try{
             device_faultMapper.deleteByExample(example);
@@ -84,26 +83,26 @@ public class DeviceFaultServiceImpl implements DeviceFaultService {
 
     @Override
     public PageVo selectByName(String searchValue, int page, int rows) {
-        List<Device_fault> device_faults = device_faultMapper.selectByName(searchValue);
+        List<DeviceFault> device_faults = device_faultMapper.selectByName(searchValue);
         PageVo pages = PageTool.getPageVo(device_faults, page, rows);
         return pages;
     }
 
     @Override
     public PageVo selectByFaultId(String searchValue, int page, int rows) {
-        List<Device_fault> device_faults = device_faultMapper.selectByFaultId(searchValue);
+        List<DeviceFault> device_faults = device_faultMapper.selectByFaultId(searchValue);
         PageVo pages = PageTool.getPageVo(device_faults, page, rows);
         return pages;
     }
 
     @Override
-    public Device_fault selectById(String faultId){
+    public DeviceFault selectById(String faultId){
         return device_faultMapper.selectByPrimaryKey(faultId);
     }
 
     @Override
-    public ResponseVo updateNote(Device_fault device_fault) {
-        Device_fault device_fault1 = device_faultMapper.selectByPrimaryKey(device_fault.getDeviceFaultId());
+    public ResponseVo updateNote(DeviceFault device_fault) {
+        DeviceFault device_fault1 = device_faultMapper.selectByPrimaryKey(device_fault.getDeviceFaultId());
         device_fault1.setDeviceFaultDetail(device_fault.getDeviceFaultDetail());
         ResponseVo responseVo = new ResponseVo();
         try{

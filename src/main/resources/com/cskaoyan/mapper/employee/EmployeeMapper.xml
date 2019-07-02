@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cskaoyan.mapper.employee.EmployeeMapper">
+  
+
+
+
+  	<!--查询全部员工，返回集合-->
+	<resultMap id="selectAll" type="com.cskaoyan.bean.employee.Employee"	>
+		<result column="emp_id" property="empId" />
+		<result column="emp_name" property="empName" />
+		<result column="sex" property="sex" />
+		<result column="id_code" property="idCode" />
+		<result column="birthday" property="birthday" />
+		<result column="join_date" property="joinDate" />
+		<result column="status" property="status" />
+		<result column="education" property="education" />
+		<result column="degree" property="degree" />
+		<result column="major" property="major" />
+		<result column="graduate_school" property="graduateSchool" />
+		<result column="education_form" property="educationForm" />
+		<association property="department" javaType="com.cskaoyan.bean.employee.Department">
+			<result column="department_id" property="departmentId"/>
+			<result column="department_name" property="departmentName"/>
+			<result column="note" property="note"/>
+		</association>
+	</resultMap>
+    <select id="selectAll" resultMap="selectAll">
+    	select 	employee.emp_id,
+				employee.emp_name,
+				employee.sex,
+				employee.id_code,
+				employee.birthday,
+				employee.join_date,
+				employee.status,
+				employee.education,
+				employee.degree,
+				employee.major,
+				employee.graduate_school,
+				employee.education_form,
+				department.department_id,
+				department.department_name,
+				department.note
+				from employee left join department on employee.department_id = department.department_id
+	</select>
+
+
+
+    <!--查询员工总数-->
+    <select id="countNum" resultType="int">
+  	  select COUNT(*) from employee
+    </select>
+
+
+
+	<!--增加一个员工-->
+	<insert id="addEmployee">
+		insert into employee(emp_id,emp_name,sex,department_id,id_code,education,degree,major,education_form,birthday,join_date,status) value(#{empId},#{empName},#{sex},#{departmentId},#{idCode},#{education},#{degree},#{major},#{educationForm},#{birthday},#{joinDate},#{status})
+	</insert>
+
+
+	<!--编辑员工-->
+	<update id="updateEmployee">
+		update employee set emp_name=#{empName},sex=#{sex},department_id=#{departmentId},id_code=#{idCode},education=#{education},degree=#{degree},major=#{major},education_form=#{educationForm},birthday=#{birthday},join_date=#{joinDate},status=#{status} where emp_id = #{empId}
+	</update>
+
+	<!--删除员工-->
+	<delete id="delete_batch">
+		delete from employee where emp_id in
+		<foreach collection="array" item="id" separator="," open="(" close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+	<!--根据id查询员工-->
+	<resultMap id="selectByPrimaryKey" type="com.cskaoyan.bean.employee.Employee">
+		<result column="emp_id" property="empId" />
+		<result column="emp_name" property="empName" />
+		<result column="sex" property="sex" />
+		<result column="id_code" property="idCode" />
+		<result column="birthday" property="birthday" />
+		<result column="join_date" property="joinDate" />
+		<result column="status" property="status" />
+		<result column="education" property="education" />
+		<result column="degree" property="degree" />
+		<result column="major" property="major" />
+		<result column="graduate_school" property="graduateSchool" />
+		<result column="education_form" property="educationForm" />
+		<association property="department" javaType="com.cskaoyan.bean.employee.Department">
+			<result column="department_id" property="departmentId"/>
+			<result column="department_name" property="departmentName"/>
+			<result column="note" property="note"/>
+		</association>
+	</resultMap>
+	<select id="selectByPrimaryKey" resultMap="selectByPrimaryKey">
+		select 	employee.emp_id,
+				employee.emp_name,
+				employee.sex,
+				employee.id_code,
+				employee.birthday,
+				employee.join_date,
+				employee.status,
+				employee.education,
+				employee.degree,
+				employee.major,
+				employee.graduate_school,
+				employee.education_form,
+				department.department_id,
+				department.department_name,
+				department.note
+				from employee left join department on employee.department_id = department.department_id
+				where employee.emp_id = #{id}
+	</select>
+
+
+
+	<!--根据id模糊查询员工-->
+	<resultMap id="selectById" type="com.cskaoyan.bean.employee.Employee"	>
+		<result column="emp_id" property="empId" />
+		<result column="emp_name" property="empName" />
+		<result column="sex" property="sex" />
+		<result column="id_code" property="idCode" />
+		<result column="birthday" property="birthday" />
+		<result column="join_date" property="joinDate" />
+		<result column="status" property="status" />
+		<result column="education" property="education" />
+		<result column="degree" property="degree" />
+		<result column="major" property="major" />
+		<result column="graduate_school" property="graduateSchool" />
+		<result column="education_form" property="educationForm" />
+		<association property="department" javaType="com.cskaoyan.bean.employee.Department">
+			<result column="department_id" property="departmentId"/>
+			<result column="department_name" property="departmentName"/>
+			<result column="note" property="note"/>
+		</association>
+	</resultMap>
+	<select id="selectById" resultMap="selectById">
+    	select 	employee.emp_id,
+				employee.emp_name,
+				employee.sex,
+				employee.id_code,
+				employee.birthday,
+				employee.join_date,
+				employee.status,
+				employee.education,
+				employee.degree,
+				employee.major,
+				employee.graduate_school,
+				employee.education_form,
+				department.department_id,
+				department.department_name,
+				department.note
+				from employee left join department on employee.department_id = department.department_id
+				where employee.emp_id like CONCAT(CONCAT('%',#{searchValue}),'%')
+	</select>
+
+
+	<!--根据name模糊查询员工-->
+	<resultMap id="selectByName" type="com.cskaoyan.bean.employee.Employee"	>
+		<result column="emp_id" property="empId" />
+		<result column="emp_name" property="empName" />
+		<result column="sex" property="sex" />
+		<result column="id_code" property="idCode" />
+		<result column="birthday" property="birthday" />
+		<result column="join_date" property="joinDate" />
+		<result column="status" property="status" />
+		<result column="education" property="education" />
+		<result column="degree" property="degree" />
+		<result column="major" property="major" />
+		<result column="graduate_school" property="graduateSchool" />
+		<result column="education_form" property="educationForm" />
+		<association property="department" javaType="com.cskaoyan.bean.employee.Department">
+			<result column="department_id" property="departmentId"/>
+			<result column="department_name" property="departmentName"/>
+			<result column="note" property="note"/>
+		</association>
+	</resultMap>
+	<select id="selectByName" resultMap="selectByName">
+    	select 	employee.emp_id,
+				employee.emp_name,
+				employee.sex,
+				employee.id_code,
+				employee.birthday,
+				employee.join_date,
+				employee.status,
+				employee.education,
+				employee.degree,
+				employee.major,
+				employee.graduate_school,
+				employee.education_form,
+				department.department_id,
+				department.department_name,
+				department.note
+				from employee left join department on employee.department_id = department.department_id
+				where employee.emp_name like CONCAT(CONCAT('%%',#{searchValue}),'%%')
+	</select>
+
+
+
+	<!--根据部门name模糊查询员工-->
+	<resultMap id="selectByDepartmentName" type="com.cskaoyan.bean.employee.Employee"	>
+		<result column="emp_id" property="empId" />
+		<result column="emp_name" property="empName" />
+		<result column="sex" property="sex" />
+		<result column="id_code" property="idCode" />
+		<result column="birthday" property="birthday" />
+		<result column="join_date" property="joinDate" />
+		<result column="status" property="status" />
+		<result column="education" property="education" />
+		<result column="degree" property="degree" />
+		<result column="major" property="major" />
+		<result column="graduate_school" property="graduateSchool" />
+		<result column="education_form" property="educationForm" />
+		<association property="department" javaType="com.cskaoyan.bean.employee.Department">
+			<result column="department_id" property="departmentId"/>
+			<result column="department_name" property="departmentName"/>
+			<result column="note" property="note"/>
+		</association>
+	</resultMap>
+	<select id="selectByDepartmentName" resultMap="selectByDepartmentName">
+    	select 	employee.emp_id,
+				employee.emp_name,
+				employee.sex,
+				employee.id_code,
+				employee.birthday,
+				employee.join_date,
+				employee.status,
+				employee.education,
+				employee.degree,
+				employee.major,
+				employee.graduate_school,
+				employee.education_form,
+				department.department_id,
+				department.department_name,
+				department.note
+				from employee left join department on employee.department_id = department.department_id
+				where department.department_name like CONCAT(CONCAT('%%',#{searchValue}),'%%')
+	</select>
+</mapper>
+

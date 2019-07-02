@@ -1,8 +1,6 @@
 package com.cskaoyan.controller.device;
 
-import com.cskaoyan.bean.Device_check;
-import com.cskaoyan.bean.Device_fault;
-import com.cskaoyan.bean.Device_maintain;
+import com.cskaoyan.bean.device.DeviceFault;
 import com.cskaoyan.service.device.DeviceFaultService;
 import com.cskaoyan.vo.PageVo;
 import com.cskaoyan.vo.ResponseVo;
@@ -33,15 +31,15 @@ public class DeviceFaultController {
     @ResponseBody
     @RequestMapping("deviceFault/list")
     public PageVo selectAllFault(int page, int rows){
-        List<Device_fault> device_faults = deviceFaultService.selectAllFault();
+        List<DeviceFault> device_faults = deviceFaultService.selectAllFault();
         PageVo pageVo = deviceFaultService.getPage(page, rows, device_faults);
         return pageVo;
     }
 
     @ResponseBody
     @RequestMapping("deviceFault/get_data")
-    public List<Device_fault> getFaultData() {
-        List<Device_fault> device_faults = deviceFaultService.selectAllFault();
+    public List<DeviceFault> getFaultData() {
+        List<DeviceFault> device_faults = deviceFaultService.selectAllFault();
         return device_faults;
     }
 
@@ -58,7 +56,7 @@ public class DeviceFaultController {
 
     @ResponseBody
     @RequestMapping("deviceFault/insert")
-    public ResponseVo insertFault(Device_fault device_fault) {
+    public ResponseVo insertFault(DeviceFault device_fault) {
         ResponseVo responseVo = deviceFaultService.insertFault(device_fault);
         return responseVo;
     }
@@ -76,7 +74,7 @@ public class DeviceFaultController {
 
     @ResponseBody
     @RequestMapping("deviceFault/update")
-    public ResponseVo updateFault(Device_fault device_fault) {
+    public ResponseVo updateFault(DeviceFault device_fault) {
         ResponseVo responseVo = deviceFaultService.updateFault(device_fault);
         return responseVo;
     }
@@ -110,14 +108,14 @@ public class DeviceFaultController {
 
     @ResponseBody
     @RequestMapping("deviceFault/update_all")
-    public ResponseVo updateFaultAll(Device_fault device_fault){
+    public ResponseVo updateFaultAll(DeviceFault device_fault){
         ResponseVo responseVo = deviceFaultService.updateFault(device_fault);
         return responseVo;
     }
 
     @ResponseBody
     @RequestMapping("deviceFault/update_note")
-    public ResponseVo update_note(Device_fault device_fault){
+    public ResponseVo update_note(DeviceFault device_fault){
         ResponseVo responseVo = deviceFaultService.updateNote(device_fault);
         return responseVo;
     }

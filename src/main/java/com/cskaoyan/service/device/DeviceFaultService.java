@@ -1,6 +1,6 @@
 package com.cskaoyan.service.device;
 
-import com.cskaoyan.bean.Device_fault;
+import com.cskaoyan.bean.device.DeviceFault;
 import com.cskaoyan.vo.PageVo;
 import com.cskaoyan.vo.ResponseVo;
 
@@ -12,13 +12,13 @@ import java.util.List;
  */
 public interface DeviceFaultService {
 
-    PageVo getPage(int page, int rows, List<Device_fault> device_faults);
+    PageVo getPage(int page, int rows, List<DeviceFault> device_faults);
 
-    List<Device_fault> selectAllFault();
+    List<DeviceFault> selectAllFault();
 
-    ResponseVo insertFault(Device_fault device_fault);
+    ResponseVo insertFault(DeviceFault device_fault);
 
-    ResponseVo updateFault(Device_fault device_fault);
+    ResponseVo updateFault(DeviceFault device_fault);
 
     ResponseVo deleteFault(List<String> ids);
 
@@ -26,7 +26,7 @@ public interface DeviceFaultService {
 
     PageVo selectByFaultId(String searchValue, int page, int rows);
 
-    Device_fault selectById(String faultId);
+    DeviceFault selectById(String faultId);
 
-    ResponseVo updateNote(Device_fault device_fault);
+    ResponseVo updateNote(DeviceFault device_fault);
 }

@@ -1,8 +1,8 @@
 package com.cskaoyan.controller.quality;
 
-import com.cskaoyan.bean.quality.Unqualify_apply;
-import com.cskaoyan.bean.quality.Unqualify_applyExample;
-import com.cskaoyan.service.quality.Unqualify_applyService;
+import com.cskaoyan.bean.quality.UnqualifyApply;
+import com.cskaoyan.bean.quality.UnqualifyApplyExample;
+import com.cskaoyan.service.quality.UnqualifyApplyService;
 import com.cskaoyan.tool.PageTool;
 import com.cskaoyan.vo.PageVo;
 import com.cskaoyan.vo.ResponseVo;
@@ -24,7 +24,7 @@ import java.util.List;
 @Controller
 public class UnqualityController {
     @Autowired
-    Unqualify_applyService unqualify_applyService;
+    UnqualifyApplyService unqualify_applyService;
 
 
     //查找不合格产品跳转页面
@@ -37,7 +37,7 @@ public class UnqualityController {
     @RequestMapping("unqualify/list")
     @ResponseBody
     public PageVo checkUnqualify(@RequestParam("page") int page, @RequestParam("rows") int rows) {
-        List<Unqualify_apply> unqualify_applies = unqualify_applyService.selectAll();
+        List<UnqualifyApply> unqualify_applies = unqualify_applyService.selectAll();
         PageVo pageVo = PageTool.getPageVo(unqualify_applies, page, rows);
         return pageVo;
     }
@@ -54,8 +54,8 @@ public class UnqualityController {
     @ResponseBody
     public ResponseVo deleteBatch(@RequestParam("ids") String[] ids) {
         ResponseVo responseVo = new ResponseVo();
-        Unqualify_applyExample unqualify_applyExample = new Unqualify_applyExample();
-        Unqualify_applyExample.Criteria criteria = unqualify_applyExample.createCriteria();
+        UnqualifyApplyExample unqualify_applyExample = new UnqualifyApplyExample();
+        UnqualifyApplyExample.Criteria criteria = unqualify_applyExample.createCriteria();
         criteria.andUnqualifyApplyIdIn(Arrays.asList(ids));
         int i = unqualify_applyService.deleteByExample(unqualify_applyExample);
         if (i >= 1) {
@@ -82,7 +82,7 @@ public class UnqualityController {
     //提交添加操作，并返回操作结果状态信息
     @RequestMapping("unqualify/insert")
     @ResponseBody
-    public ResponseVo insertUnqualify(Unqualify_apply unqualify_apply) {
+    public ResponseVo insertUnqualify(UnqualifyApply unqualify_apply) {
         ResponseVo responseVo = new ResponseVo();
         int i = unqualify_applyService.insert(unqualify_apply);
         if (i == 1) {
@@ -109,7 +109,7 @@ public class UnqualityController {
     //提交编辑，进行更新操作并返回操作结果状态信息
     @RequestMapping("unqualify/update_all")
     @ResponseBody
-    public ResponseVo updateUnqualify(Unqualify_apply unqualify_apply) {
+    public ResponseVo updateUnqualify(UnqualifyApply unqualify_apply) {
         ResponseVo responseVo = new ResponseVo();
         int i = unqualify_applyService.updateByPrimaryKey(unqualify_apply);
         if (i == 1) {
@@ -123,7 +123,7 @@ public class UnqualityController {
     @RequestMapping("unqualify/search_unqualify_by_unqualifyId")
     @ResponseBody
     public PageVo search_unqualify_by_unqualifyId(@RequestParam("page") int page, @RequestParam("rows") int rows,String searchValue){
-        List<Unqualify_apply> unqualify_applies =unqualify_applyService.fuzzyqueryByPid(searchValue);
+        List<UnqualifyApply> unqualify_applies =unqualify_applyService.fuzzyqueryByPid(searchValue);
         PageVo pageVo  =new PageVo();
         try{
             pageVo = PageTool.getPageVo(unqualify_applies, page, rows);
@@ -139,7 +139,7 @@ public class UnqualityController {
     @ResponseBody
     public PageVo search_unqualify_by_unqualifyName(@RequestParam("page") int page, @RequestParam("rows") int rows,String searchValue){
 
-        List<Unqualify_apply> unqualify_applies =unqualify_applyService.fuzzyqueryByPname(searchValue);
+        List<UnqualifyApply> unqualify_applies =unqualify_applyService.fuzzyqueryByPname(searchValue);
         PageVo pageVo  =new PageVo();
         try{
             pageVo = PageTool.getPageVo(unqualify_applies, page, rows);
@@ -154,7 +154,7 @@ public class UnqualityController {
     @RequestMapping("unqualify/update_note")
     @ResponseBody
     public ResponseVo update_note(@RequestParam("unqualifyApplyId") String pCountCheckId, @RequestParam("note") String note) {
-        Unqualify_apply unqualify_apply = unqualify_applyService.selectByPrimaryKey(pCountCheckId);
+        UnqualifyApply unqualify_apply = unqualify_applyService.selectByPrimaryKey(pCountCheckId);
         unqualify_apply.setNote(note);
         int i = unqualify_applyService.updateByPrimaryKey(unqualify_apply);
         ResponseVo responseVo = new ResponseVo();
